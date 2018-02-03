@@ -1,8 +1,8 @@
 <?php
 
-namespace CloudLine\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend;
 
-use CloudLine\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller

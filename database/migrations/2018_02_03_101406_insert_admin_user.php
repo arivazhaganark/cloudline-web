@@ -14,7 +14,6 @@ class InsertAdminUser extends Migration
     public function up()
     {
         \App\User::create([
-            'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('123456')
         ]);
