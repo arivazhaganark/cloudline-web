@@ -13,10 +13,15 @@ class InsertAdminUser extends Migration
      */
     public function up()
     {
-        \App\User::create([
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('id',36)->change();
+            $table->string('role',2);
+        });
+        \App\Models\User::create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('123456'),
+            'role' => 'A'
         ]);
     }
 
@@ -27,6 +32,6 @@ class InsertAdminUser extends Migration
      */
     public function down()
     {
-        \App\User::where('email', 'admin@admin.com')->forceDelete();
+        \App\Models\User::where('email', 'admin@admin.com')->forceDelete();
     }
 }
