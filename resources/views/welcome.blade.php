@@ -65,9 +65,6 @@
         </style>
     </head>
     <body>
-    rajencba_cloudline
-    rajencba_cloud
-    Zqh*k78fRu_q
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
