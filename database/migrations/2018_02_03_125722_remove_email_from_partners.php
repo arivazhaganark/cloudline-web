@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InsertAdminUser extends Migration
+class RemoveEmailFromPartners extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class InsertAdminUser extends Migration
      */
     public function up()
     {
-        \App\User::create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('123456')
-        ]);
+        Schema::table('partners', function (Blueprint $table) {
+            $table->dropColumn('email');
+        });
     }
 
     /**
@@ -27,6 +25,8 @@ class InsertAdminUser extends Migration
      */
     public function down()
     {
-        \App\User::where('email', 'admin@admin.com')->forceDelete();
+        Schema::table('partners', function (Blueprint $table) {
+            $table->string('email',65)->nullable();
+        });
     }
 }
