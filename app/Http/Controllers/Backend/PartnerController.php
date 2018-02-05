@@ -21,18 +21,58 @@ class PartnerController extends Controller {
         return view('admin.partner.index');
     }
 
+    protected function _append_form_variables(&$data)
+    {
+        $data['types'] = Partner::$types;
+        $data['focus'] = Partner::$focuses;
+    }
+
     public function create() {
-        $partner_types = Partner::$types;
-        $current_focuses = Partner::$focuses;
-        return view('admin.partner.create', compact('partner_types', 'current_focuses'));
+        $data['Model'] = new Partner();
+        $this->_append_form_variables($data);
+
+        return view('admin.partner.create', $data);
     }
 
     public function store(Request $request) {
-        $request->validate([
+        $this->_validate($request);
+
+        $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => bcrypt($request->password),
+                    'role' => 'P',
+        ]);
+        $data = $request->except(['_token','name','email','password']);
+        $data['user_id'] = $user->id;
+
+        Partner::create($data);
+
+        return redirect()->to('backend/partners')->with('message', 'Thanks for Registration!');
+    }
+
+    public function edit($id)
+    {
+        $data['Model'] = Partner::find($id);
+        $this->_append_form_variables($data);
+        return view('admin.partner.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->_validate($request, $id);
+        $model = Partner::find($id);
+
+        return redirect('backend/partners')->with('alert-success', 'News was successful updated!');
+    }
+
+    protected function _validate($request, $id = null)
+    {
+        $rules = [
             'partner_type' => 'required',
             'company_name' => 'required',
             'name' => 'required',
-            'email' => 'required|email',
+            'email'  => "required|email|unique:users,email,{$id},id",
             'phone' => 'required',
             'address' => 'required',
             'state' => 'required',
@@ -44,22 +84,11 @@ class PartnerController extends Controller {
             'current_focus' => 'required',
             'products_offered' => 'required',
             'brands_deal' => 'required',
-        ]);
-
-        $user = User::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => $request->password,
-                    'role' => 'P',
-        ]);
-        $data = $request->except(['_token','name','email','password']);
-        $data['user_id']=$user->id;
-        $data['partner_type']='G';
-
-        $partners = Partner::create($data);
-
-        return redirect()->to('backend/partners')
-                        ->with('message', 'Thanks for Registration!');
+        ];
+        if(!$id){
+            $rules['password'] = 'required';
+        }
+        $this->validate($request,$rules);
     }
 
 }

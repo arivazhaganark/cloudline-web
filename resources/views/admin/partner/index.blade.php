@@ -5,15 +5,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    Partners
+                    <a href="{{ url('backend/partners/create') }}" class="pull-right btn btn-sm btn-primary">Partner Registration</a>
+                </div>
 
-                <div class="panel-heading">Partners</div>
-
-                <nav class="navbar navbar-inverse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ url('backend/partners/create') }}">Partner Registration</a>
-                        </li>
-                    </ul>
-                </nav>
                 <div class="panel-body">
                     TEST
                 </div>
