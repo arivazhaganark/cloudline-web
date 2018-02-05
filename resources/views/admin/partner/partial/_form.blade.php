@@ -2,7 +2,7 @@
     {!! Form::label('partner_type','Partner Type*',['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         @foreach ($types as $id=>$partner_type)
-            <label>{!! Form::radio('partner_type', $id, false); !!} {{$partner_type}} </label>
+            <label>{!! Form::radio('partner_type', $id, (old('partner_type')==$id) ); !!} {{$partner_type}} </label>
         @endforeach
     </div>
 </div>
@@ -17,14 +17,14 @@
 <div class="form-group">
     {{ Form::label('name','Name*',['class'=>'col-sm-2 control-label']) }}
     <div class="col-sm-10">
-        {!! Form::text('name', old('name'),['class'=>'form-control']) !!}
+        {!! Form::text('name', @$User->name,['class'=>'form-control']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {{ Form::label('email','Email*',['class'=>'col-sm-2 control-label']) }}
     <div class="col-sm-10">
-        {!! Form::text('email', old('email'),['class'=>'form-control']) !!}
+        {!! Form::text('email', @$User->email,['class'=>'form-control']) !!}
     </div>
 </div>
 
@@ -98,7 +98,7 @@
     {!! Form::label('current_focus','Current Focus Segment*',['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         @foreach ($focus as $id=>$current_focus)
-            <label>{!! Form::checkbox('current_focus[]', $id, false); !!} {{$current_focus}}</label>
+            <label>{!! Form::checkbox('current_focus[]', $id, in_array($id, @$Model->current_focus?:[])); !!} {{$current_focus}}</label>
         @endforeach
     </div>
 </div>
@@ -119,6 +119,7 @@
 
 <div class="form-group">
     <div class="col-xs-offset-2 col-xs-6">
+        {!! Form::hidden('uid', @$User->id) !!}
         {!! Form::submit('Submit', array('class'=>'btn btn-primary')) !!}
     </div>
 </div>
