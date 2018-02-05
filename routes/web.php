@@ -16,7 +16,7 @@ Route::middleware(['auth'])->namespace('Backend')->prefix('backend')->group(func
     Route::get('home', 'HomeController@index')->name('home');
     Route::get('registerusers', 'CustomerController@ruser');
     Route::get('customers', 'CustomerController@index');
-    Route::get('partners', 'PartnerController@index');
+    Route::resource('partners', 'PartnerController');
 });
 
 Route::get('/', function () {

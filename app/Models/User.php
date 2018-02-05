@@ -34,4 +34,8 @@ class User extends Authenticatable
     ];
 
     public $roles = ['A' => 'Admin','P' => 'Partner'];
+    
+    public function partners() {
+        return $this->hasMany(Partner::class);
+    }
 }
