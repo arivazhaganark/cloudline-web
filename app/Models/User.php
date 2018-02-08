@@ -38,4 +38,8 @@ class User extends Authenticatable
     public function partners() {
         return $this->hasMany(Partner::class);
     }
+    
+    public function getIsAdminAttribute() {
+        return ($this->role == 'A');
+    }
 }

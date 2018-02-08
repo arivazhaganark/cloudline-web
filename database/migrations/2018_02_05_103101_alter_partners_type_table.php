@@ -26,7 +26,7 @@ class AlterPartnersTypeTable extends Migration
     public function down()
     {
         Schema::table('partners', function (Blueprint $table) {
-            $table->tinyInteger('partner_type')->nullable()->change();
+            $table->string('partner_type',2)->nullable()->change();
         });
     }
 }

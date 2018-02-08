@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Partner extends Model
 {
@@ -12,8 +13,7 @@ class Partner extends Model
     public $incrementing = false;
     protected $table = 'partners';
 
-    use Notifiable,
-        Uuids;
+    use Notifiable, SoftDeletes,Uuids;
 
     protected $fillable = ['user_id', 'partner_type', 'company_name', 'phone', 'address', 'state', 'years_business', 'no_of_sales', 'no_of_technical', 'annual_revenue', 'sales_territory',
         'current_focus', 'products_offered', 'brands_deal'];

@@ -17,9 +17,6 @@
                 $.ajax({
                     method: 'DELETE',
                     url: '/backend/' + $this.data('model') + '/' + $this.data('id'),
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
                     beforeSend: function () {
                         $this.button('loading')
                     },
