@@ -27,6 +27,15 @@
 </div>
 
 <div class="form-group">
+    {{ Form::label('captcha','Captcha*',['class'=>'col-sm-2 control-label']) }}
+    <div class="col-sm-10">
+        <div class="g-recaptcha" 
+             data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
     <div class="col-xs-offset-2 col-xs-6">
         {!! Form::submit('Submit', array('class'=>'btn btn-primary')) !!}
     </div>

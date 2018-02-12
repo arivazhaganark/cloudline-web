@@ -29,7 +29,11 @@ Route::middleware(['auth'])->namespace('Backend')->prefix('backend')->group(func
 Route::get('/', function () {
     return view('welcome');
 });
-Route::middleware(['auth'])->namespace('site')->group(function () {
+Route::namespace('site')->group(function () {
 Route::get('registerusers', 'CustomerController@ruser');
 Route::post('registerusers/store', 'CustomerController@rstore');
+Route::get('registerusers/verify/{token}','CustomerController@confirm');
+Route::get('contactus','ContactusController@index');
+Route::post('contactus/store','ContactusController@store');
+Route::resource('partners', 'PartnerController');
 });
