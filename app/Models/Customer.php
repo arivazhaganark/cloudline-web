@@ -18,5 +18,14 @@ class Customer extends Model {
     protected $fillable = ['id', 'name', 'company_name', 'email', 'phone', 'status','access_token'];
     
     public static $statuses = ['0'=>'Un Verified','1'=>'Registered','2'=>'Customer'];
-
+    
+    public function scopeRusers($query)
+    {
+        return $query->where('status', 1);
+    }
+    
+    public function scopeCusers($query)
+    {
+        return $query->where('status', 2);
+    }
 }

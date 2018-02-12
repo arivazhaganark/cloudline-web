@@ -40,7 +40,7 @@
                             <?php $role = Auth::user()->role; ?>
                             <li><a href="{{ url('backend/registerusers') }}">Register Users</a></li>
                             <li><a href="{{ url('backend/customers') }}">Customers</a></li>
-                            @if($role == 'A')
+                            @if(Auth::user()->isAdmin)
                             <li><a href="{{ url('backend/partners') }}">Partners</a></li>
                             @endif
                             @endauth
@@ -58,7 +58,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                   <li> <a href="{{ url('backend/my_profile/'. Auth::user()->id )}}"> My Profile </a> </li>
+                                    <li> <a href="{{ route('profile')}}"> My Profile </a> </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
@@ -77,19 +77,21 @@
                     </div>
                 </div>
             </nav>
-
+            <div class="container flash-container">
+                @include('layouts.partials.alert')
+            </div>
             @yield('content')
         </div>
 
-                 <!--Scripts--> 
-                
+        <!--Scripts--> 
+
         <script src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript">
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-            });
+                                               $.ajaxSetup({
+                                                   headers: {
+                                                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                   },
+                                               });
         </script>
         @stack('scripts')
     </body>

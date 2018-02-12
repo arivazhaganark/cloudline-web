@@ -15,11 +15,34 @@ class PartnerDataTable extends DataTable {
      */
     public function dataTable($query) {
         return datatables($query)
+                        ->addColumn('name', function ($partner) {
+                            return $partner->user->name;
+                        })
+                        ->addColumn('email', function ($partner) {
+                            return $partner->user->email;
+                        })
+                        ->addColumn('register_users', function ($partner) {
+                            $count = $partner->customers()->rusers()->count();
+                            return "<a href='" . url('backend/registerusers/') . "?pid={$partner->user_id}' class='label label-primary'>{$count}</a>";
+                        })
+                        ->addColumn('customers', function ($partner) {
+                            $count = $partner->customers()->cusers()->count();
+                            return "<a href='" . url('backend/customers/') . "?pid={$partner->user_id}' class='label label-primary'>{$count}</a>";
+                        })
                         ->addColumn('action', function ($query) {
                             $action = '<a href="' . url('backend/partners/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="la la-edit"></i> Edit</a>&nbsp;';
                             $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="partners" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="la la-trash"></i> Delete</a>';
                             return $action;
-                        });
+                        })
+                        ->editColumn('partner_type', function ($type) {
+                            if ($type->partner_type == 'G') {
+                                return "Gold";
+                            } else if ($type->partner_type == 'S') {
+                                return "Silver";
+                            } else
+                                return "Express";
+                        })
+                        ->rawColumns(['register_users', 'customers', 'action']);
     }
 
     /**
@@ -29,8 +52,14 @@ class PartnerDataTable extends DataTable {
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Partner $model) {
-        return $model->newQuery()->join('users','partners.user_id','=','users.id')
-                ->select(['partners.id','partners.partner_type', 'partners.company_name','users.name', 'users.email', 'partners.phone', 'partners.annual_revenue','partners.current_focus']);
+
+        $Query = $model->newQuery();
+
+        if (!\Auth::user()->isAdmin) {
+            $Query->where('partners.user_id', '=', \Auth::user()->id);
+        }
+
+        return $Query;
     }
 
     /**
@@ -57,6 +86,8 @@ class PartnerDataTable extends DataTable {
             'company_name',
             'name',
             'email',
+            'register_users',
+            'customers',
             'phone',
             'annual_revenue',
             'current_focus',

@@ -14,6 +14,7 @@ use function url;
 class CustomerDataTable extends DataTable {
 
     public $rUsersOnly = false;
+    public $CUserOnly = false;
     /**
      * Build DataTable class.
      *
@@ -37,11 +38,17 @@ class CustomerDataTable extends DataTable {
      */
     public function query(Customer $model) {
         $Query = $model->newQuery();
-        if(!Auth::user()->isAdmin){
-           $Query->where('created_by', Auth::user()->id);
+        $pid = @request()->pid;
+        if(!Auth::user()->isAdmin || $pid){
+           $cid = ($pid) ?: Auth::user()->id;
+           $Query->where('created_by', $cid);
         }
         if($this->rUsersOnly){
-            $Query->where('status','1');
+            $Query->rusers();
+        }
+        
+        if($this->CUserOnly){
+            $Query->cusers();
         }
         return $Query;
     }

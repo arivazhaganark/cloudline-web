@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Response;
-use Yajra\DataTables\Utilities\Request;
+use Illuminate\Http\Request;
 use function redirect;
 use function view;
 
@@ -20,8 +19,13 @@ class HomeController extends Controller {
         return view('admin.home');
     }
 
-    public function my_profile($id) {
+    public function myprofile(Request $request) {
+        $id = \Auth::user()->id;
         $data['Model'] = User::find($id);
+        if ($request->post()) {
+            $this->_save($request, $data['Model']);
+            return redirect('backend/home')->with('alert-success', 'successfully updated!');
+        }
 
         return view('admin.my_profile', $data);
     }
@@ -37,14 +41,6 @@ class HomeController extends Controller {
         }
         $model->fill($userdata);
         $model->save();
-    }
-
-    public function my_profile_update(Request $request, $id) {
-
-        $model = User::find($id);
-        $this->_save($request, $model);
-
-        return redirect('backend/home')->with('alert-success', 'successfully updated!');
     }
 
 }

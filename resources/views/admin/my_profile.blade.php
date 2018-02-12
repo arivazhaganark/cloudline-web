@@ -8,7 +8,7 @@
                 <div class="panel-heading">My Profile</div>
 
                 <div class="panel-body">
-                    {{ Form::model($Model, ['url' => [ 'backend/my_profile/'. $Model->id ],'method' => 'PUT', 'class' => 'form-horizontal']) }}
+                    {{ Form::model($Model, ['route' => [ 'profile' ],'method' => 'POST', 'class' => 'form-horizontal']) }}
 
                     <div class="form-group">
                         {{ Form::label('name','Name*',['class'=>'col-sm-2 control-label']) }}

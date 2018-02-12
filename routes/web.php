@@ -14,8 +14,7 @@ Auth::routes();
 
 Route::middleware(['auth'])->namespace('Backend')->prefix('backend')->group(function () {
     Route::get('home', 'HomeController@index')->name('home');
-    Route::get('my_profile/{id}', 'HomeController@my_profile')->name('home');
-    Route::put('my_profile/{id}', 'HomeController@my_profile_update')->name('home');
+    Route::match(['get','post'],'profile', 'HomeController@myprofile')->name('profile');
     Route::get('registerusers', 'CustomerController@rindex');
     Route::get('registerusers/create', 'CustomerController@ruser');
     Route::post('registerusers/store', 'CustomerController@rstore');

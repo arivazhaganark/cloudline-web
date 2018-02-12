@@ -12,62 +12,58 @@ use Illuminate\Support\Facades\Input;
 use function redirect;
 use function view;
 
-class CustomerController extends Controller
-{
+class CustomerController extends Controller {
+
     /**
      * Show the application dashboard.
      *
      * @return Response
      */
-    
-     protected function _append_form_variables(&$data) {
+    protected function _append_form_variables(&$data) {
         $data['statuses'] = Customer::$statuses;
     }
-    
+
     protected function _save($request, $model) {
         $registerusers = (!$model->exists) ? new Customer() : Customer::find($model->id);
-        
+
         $data = $request->except(['_token']);
         $model->fill($data);
         $model->save();
     }
-    
-     public function ruser()
-    {
-         $data['Model'] = new Customer();
-         $this->_append_form_variables($data);
-         
-        return view('admin.customer.ruser',$data);
+
+    public function ruser() {
+        $data['Model'] = new Customer();
+        $this->_append_form_variables($data);
+
+        return view('admin.customer.ruser', $data);
     }
-    
+
     public function rstore(Request $request) {
         $this->_validate($request);
 
         $model = new Customer();
-        $model->access_token = bin2hex(random_bytes(32)); 
+        $model->access_token = bin2hex(random_bytes(32));
         $model->created_by = Auth::user()->id;
-        $this->_save($request,$model);
-        
+        $this->_save($request, $model);
+
         $token = $model['access_token'];
 //        dd($token);
-        
-        \Illuminate\Support\Facades\Mail::send('admin.customer.verify', ['token'=>$token], function($message) {
+
+        \Mail::send('admin.customer.verify', ['token' => $token], function($message) {
             $message->to(Input::get('email'), Input::get('name'))
-                ->subject('Verify your email address');
+                    ->subject('Verify your email address');
         });
 
 
-        return redirect()->to('backend/registerusers')->with('status', 'Thanks for Registration!Please check your email.');
+        return redirect()->to('backend/registerusers')->with('alert-success', 'Thanks for Registration!Please check your email.');
     }
 
-    
-    public function rindex(CustomerDataTable $dataTable)
-    {
+    public function rindex(CustomerDataTable $dataTable) {
         $dataTable->rUsersOnly = true;
         return $dataTable->render('admin.customer.rindex');
     }
-    
-     public function redit($id) {
+
+    public function redit($id) {
         $data['Model'] = Customer::find($id);
 
         $this->_append_form_variables($data);
@@ -82,19 +78,18 @@ class CustomerController extends Controller
         return redirect('backend/registerusers')->with('alert-success', 'successfully updated!');
     }
 
-     public function rdestroy($id) {
+    public function rdestroy($id) {
         $model = Customer::find($id)->delete();
 
         redirect('backend/registerusers')->with('alert-success', 'successfully deleted!');
     }
 
-
-    public function index()
-    {
-        return view('admin.customer.index');
+    public function index(CustomerDataTable $dataTable) {
+        $dataTable->CUserOnly = true;
+        return $dataTable->render('admin.customer.index');
     }
-    
-     protected function _validate($request, $id = null) {
+
+    protected function _validate($request, $id = null) {
         $rules = [
             'name' => 'required',
             'company_name' => 'required',
@@ -103,28 +98,24 @@ class CustomerController extends Controller
         ];
         $this->validate($request, $rules);
     }
-    
-     public function confirm($token)
-    {
-        if( ! $token)
-        {
+
+    public function confirm($token) {
+        if (!$token) {
             throw new InvalidConfirmationCodeException;
         }
 
         $user = Customer::whereAccessToken($token)->first();
-        
 
-        if ( ! $user)
-        {
+
+        if (!$user) {
             throw new InvalidConfirmationCodeException;
         }
 
         $user->status = 1;
         $user->access_token = null;
         $user->save();
-//
-//        Flash::message('You have successfully verified your account.');
 
-        return redirect('backend/registerusers');
+        return redirect('backend/registerusers')->with('alert-success', 'You have successfully verified your account.');
     }
+
 }
