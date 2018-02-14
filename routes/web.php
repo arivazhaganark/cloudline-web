@@ -18,10 +18,13 @@ Route::middleware(['auth'])->namespace('Backend')->prefix('backend')->group(func
     Route::get('registerusers', 'CustomerController@rindex');
     Route::get('registerusers/create', 'CustomerController@ruser');
     Route::post('registerusers/store', 'CustomerController@rstore');
-    Route::get('registerusers/verify/{token}','CustomerController@confirm');
+    Route::get('registerusers/verify/{token}','CustomerController@confirm');   
     Route::get('registerusers/{id}/edit','CustomerController@redit');
     Route::put('registerusers/{id}','CustomerController@rupdate');
     Route::delete('registerusers/{id}','CustomerController@rdestroy');
+    Route::get('demorequest/{id}','CustomerController@dview');
+    Route::get('upgrade_customer/{id}','CustomerController@upgradecustomer');
+    Route::put('upgrade_customer/{id}','CustomerController@upgradecustomerstore');
     Route::resource('customers', 'CustomerController');
     Route::resource('partners', 'PartnerController');
 });
@@ -33,6 +36,8 @@ Route::namespace('site')->group(function () {
 Route::get('registerusers', 'CustomerController@ruser');
 Route::post('registerusers/store', 'CustomerController@rstore');
 Route::get('registerusers/verify/{token}','CustomerController@confirm');
+Route::get('demorequest/{token}','CustomerController@demorequest');
+Route::post('demorequest/store','CustomerController@dstore');
 Route::get('contactus','ContactusController@index');
 Route::post('contactus/store','ContactusController@store');
 Route::resource('partners', 'PartnerController');

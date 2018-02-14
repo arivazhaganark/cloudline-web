@@ -8,7 +8,7 @@
                     <div class="panel-heading">Partners Regsitration</div>
 
                     <div class="panel-body">
-                        {{ Form::model($Model, ['url'=>'backend/partner/store', 'class' => 'form-horizontal']) }}
+                        {{ Form::model($Model, ['route'=>'partners.store', 'class' => 'form-horizontal']) }}
                         @include('admin.partner.partial._form')
                         {!! Form::close() !!}
                     </div>

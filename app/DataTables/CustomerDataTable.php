@@ -9,12 +9,14 @@ use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
 use function datatables;
+use function request;
 use function url;
 
 class CustomerDataTable extends DataTable {
 
     public $rUsersOnly = false;
     public $CUserOnly = false;
+
     /**
      * Build DataTable class.
      *
@@ -23,11 +25,29 @@ class CustomerDataTable extends DataTable {
      */
     public function dataTable($query) {
         return datatables($query)
+                        ->addColumn('demo_request_status', function ($request) {
+                            if ($request->access_token == null) {
+                                return "Requested";
+                            } else {
+                                return "Not Requested";
+                            }
+                        })
+                        ->addColumn('view', function ($query) {
+                            if ($query->access_token == null) {
+                                $action = '<a href="' . url('backend/demorequest/' . $query->id) . '" class="btn btn-sm btn-default" type="button"><i class="la la-eye"></i> View </a>&nbsp;';
+                                return $action;
+                            }
+                        })
+                        ->addColumn('upgrade_to_customer', function ($customer) {
+                            $action = '<a href="' . url('backend/upgrade_customer/' . $customer->id) . '" class="btn btn-sm btn-primary" type="button"> Upgrade to Customer </a>&nbsp;';
+                            return $action;
+                        })
                         ->addColumn('action', function ($query) {
                             $action = '<a href="' . url('backend/registerusers/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="la la-edit"></i> Edit</a>&nbsp;';
                             $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="registerusers" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="la la-trash"></i> Delete</a>';
                             return $action;
-                        });
+                        })
+                        ->rawColumns(['upgrade_to_customer', 'view', 'action']);
     }
 
     /**
@@ -39,15 +59,15 @@ class CustomerDataTable extends DataTable {
     public function query(Customer $model) {
         $Query = $model->newQuery();
         $pid = @request()->pid;
-        if(!Auth::user()->isAdmin || $pid){
-           $cid = ($pid) ?: Auth::user()->id;
-           $Query->where('created_by', $cid);
+        if (!Auth::user()->isAdmin || $pid) {
+            $cid = ($pid) ?: Auth::user()->id;
+            $Query->where('created_by', $cid);
         }
-        if($this->rUsersOnly){
+        if ($this->rUsersOnly) {
             $Query->rusers();
         }
-        
-        if($this->CUserOnly){
+
+        if ($this->CUserOnly) {
             $Query->cusers();
         }
         return $Query;
@@ -72,11 +92,14 @@ class CustomerDataTable extends DataTable {
      * @return array
      */
     protected function getColumns() {
-        return [            
+        return [
             'name',
             'company_name',
             'email',
             'phone',
+            'demo_request_status',
+            'view',
+            'upgrade_to_customer'
         ];
     }
 
