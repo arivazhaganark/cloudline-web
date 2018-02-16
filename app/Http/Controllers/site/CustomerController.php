@@ -64,14 +64,16 @@ class CustomerController extends Controller {
 
     protected function _validate($request, $id = null) {
         
-        $request['captcha'] = $this->captchaCheck();
+        \NoCaptcha::shouldReceive('verifyResponse')
+                ->once()
+                ->andReturn(true);
         
         $rules = [
             'name' => 'required',
             'company_name' => 'required',
             'email' => "required|email",
             'phone' => 'required',
-            'g-recaptcha-response'  => 'required',
+            'g-recaptcha-response'  => 'required|captcha',
         ];
         $this->validate($request, $rules);
     }

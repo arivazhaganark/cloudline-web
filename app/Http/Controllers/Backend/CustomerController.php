@@ -119,15 +119,22 @@ class CustomerController extends Controller {
         return redirect('backend/registerusers')->with('alert-success', 'You have successfully verified your account.');
     }
 
-    public function dview($id) {
+    public function view(Request $request, $id) {
         $data['Customer'] = Customer::find($id);
-        $data['Demo'] = DemoRequest::where('customer_id', $id)->first();
-
-        return view('admin.customer.dview', $data);
+        $data['Demoform'] = $data['Customer']->demorequests()->count();
+        $data['Demos'] = $data['Customer']->demorequests;
+        $data['Demo'] = DemoRequest::where('customer_id', '=', $id)->first();
+        $data['Comments'] = $request->only(['admin_comments']);
+        if ($data['Comments']) {
+            $data['Demo']->fill($data['Comments']);
+            $data['Demo']->save();
+        }
+        return view('admin.customer.view', $data);
     }
 
     public function upgradecustomer($id) {
         $data['Customer'] = Customer::find($id);
+        $data['Plan_names'] = Customer::$plan_names;
         return view('admin.customer.upgradecustomer', $data);
     }
 
@@ -135,24 +142,18 @@ class CustomerController extends Controller {
         $rules = [
             'plan_name' => 'required',
             'plan_price' => 'required',
-            'service_availability' => "required",
         ];
         $this->validate($request, $rules);
     }
 
-    public function upgradecustomerstore(Request $request,$id) {
+    public function upgradecustomerstore(Request $request, $id) {
         $this->_ucvalidate($request);
-        $customer = Customer::find($id); 
-        $data = $request->only(['plan_name', 'plan_price', 'service_availability','start_date','end_date']);
-        $customer->plan_name = $request->plan_name;
-        $customer->plan_price = $request->plan_price;
-        $customer->service_availability = $request->service_availability;
-        $customer->start_date = $request->start_date;
-        $customer->end_date = $request->end_date;
-//        $customer->fill($data);
+        $customer = Customer::find($id);
+        $data = $request->only(['plan_name', 'plan_price', 'start_date', 'end_date']);
+        $customer->fill($data);
         $customer->status = 2;
         $customer->save();
-        
+
         return redirect('backend/customers')->with('alert-success', 'You have successfully upgraded customer');
     }
 

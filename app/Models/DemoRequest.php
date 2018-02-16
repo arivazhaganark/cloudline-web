@@ -16,6 +16,11 @@ class DemoRequest extends Model
 
     use Notifiable, SoftDeletes,Uuids;
 
-    protected $fillable = ['customer_id', 'location', 'preferred_date', 'alternate_date', 'schedule_time', 'person_incharge'];
+    protected $fillable = ['customer_id', 'location', 'preferred_date', 'alternate_date', 'schedule_time', 'person_incharge','admin_comments'];
+    
+     public function customers()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 
 }

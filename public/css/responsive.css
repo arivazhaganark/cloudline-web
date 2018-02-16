@@ -1,0 +1,347 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+.navbar-collapse {
+	background: #ffffff;
+}
+.menu .nav-item a {
+	color: #222222 !important;
+	font-size: 18px;
+	font-weight: 300;
+}
+.navbar-toggler {
+	border: 1px solid #ffffff !important;
+}
+.slider-tagline h1 {
+	font-size: 26px;
+		line-height:30px;
+}
+.slider-cont {
+	background-size: cover;
+	height: 430px;
+
+}
+.laptop {
+	margin-top: 20px;
+	
+}
+.home-part1 {
+	margin-top: 125px;
+}
+.price-plans-cont {
+	padding: 20px 0px;
+}
+.home-grey-bg1 {
+	background: url(../images/decor1.png)#f7f7f7 right bottom no-repeat;
+	background-size: 75%;
+}
+.home-grey-bg2 {
+	background: url(../images/decor2.png) 0px 25px no-repeat;
+	background-size: 75%;
+}
+.home-txt2 ul li span {
+	font-size: 18px;
+}
+.home-txt1 {
+	margin-top: 0px;
+}
+.pro-img1, .pro-img2 {
+	text-align: center;
+}
+.home-part2 {
+	padding-bottom: 50px;
+}
+.footer-row2 h6 {
+	font-size: 16px;
+}
+.home-part2 h3 {
+	font-size: 34px;
+}
+.home-part1 h2 {
+	font-size: 34px;
+}
+.home-part3 h4 {
+	font-size: 34px;
+}
+.footer-contact1 {
+	border:none !important;
+	border-bottom:#eeeeee solid 1px !important;
+}
+.slider-cont {
+	padding: 85px 0px 0px 0px;
+}
+header.shrink {
+	height: 70px;
+}
+.menu {
+	position: absolute;
+	margin-top:5px;
+}
+.feature1 {
+	margin-top: 0px;
+}
+.price-plan-cont {
+	margin-top:40px !important;
+}
+.innerpage-heading {
+	height:auto !important;
+}
+.innerpage-heading .slider-tagline h1 {
+	font-size: 40px;
+}
+.price-plan-cont h2 {
+	font-size: 34px;
+}
+
+.plan-quote {
+	font-size: 20px;
+	color: #222222;
+	line-height: 29px;
+	margin-bottom: 50px;
+	margin-top: 0px;
+}
+
+
+.priceplan-txt2 {
+	margin-top: 25px;
+}
+
+.innerpage-cont h3 {
+	font-size: 32px;
+	padding-bottom: 15px;
+	margin-bottom: 25px;
+}
+
+.innerpage-cont h4 {
+	font-size: 35px;
+}
+
+.price-plan-cont1
+{
+	margin-top:0px !important;
+	margin-bottom:0px;
+}
+
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px) {
+.navbar-collapse {
+	background: #ffffff;
+}
+.menu .nav-item a {
+	color: #222222 !important;
+	font-size: 18px;
+	font-weight: 300;
+}
+.navbar-toggler {
+	border: 1px solid #ffffff !important;
+}
+.slider-tagline h1 {
+	font-size: 32px;
+}
+.slider-cont {
+	background-size: cover;
+	height: 520px;
+}
+.home-part1 {
+	margin-top: 240px;
+}
+.home-grey-bg1 {
+	background: url(../images/decor1.png)#f7f7f7 right bottom no-repeat;
+	background-size: 75%;
+}
+.home-grey-bg2 {
+	background: url(../images/decor2.png) 0px 25px no-repeat;
+	background-size: 75%;
+}
+.home-txt2 ul li span {
+	font-size: 18px;
+}
+.home-txt1 {
+	margin-top: 0px;
+}
+.pro-img1, .pro-img2 {
+	text-align: center;
+}
+.home-part2 {
+	padding-bottom: 50px;
+}
+.footer-row2 h6 {
+	font-size: 18px;
+}
+.home-part2 h3 {
+	font-size: 40px;
+}
+.home-part1 h2 {
+	font-size: 42px;
+}
+.home-part3 h4 {
+	font-size: 40px;
+}
+.footer-contact1 {
+	border:none !important;
+	border-bottom:#eeeeee solid 1px !important;
+}
+.slider-cont {
+	padding: 125px 0px 0px 0px;
+}
+header.shrink {
+	height: 80px;
+}
+.price-plan-cont {
+	margin-top:40px !important;
+	margin-bottom:0px;
+}
+.innerpage-heading {
+	height:auto !important;
+}
+.innerpage-heading .slider-tagline h1 {
+	font-size: 40px;
+}
+.price-plan-cont h2 {
+	font-size: 34px;
+}
+.priceplan-img {
+	text-align:center;
+	margin-top:0px;
+	margin-bottom:40px;
+}
+.plan-quote {
+	margin-bottom: 50px;
+}
+.innerpage-cont h4 {
+	font-size: 47px;
+	line-height: 55px;
+}
+
+header
+{
+	height:70px;
+}
+
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+header.shrink {
+	height: 80px;
+}
+.navbar-collapse {
+	background: #ffffff;
+}
+.menu .nav-item a {
+	color: #222222 !important;
+	font-size: 18px;
+	font-weight: 300;
+}
+.navbar-toggler {
+	border: 1px solid #ffffff !important;
+}
+.slider-tagline h1 {
+	font-size: 32px;
+}
+.slider-cont {
+	background-size: cover;
+	height: 520px;
+}
+.home-part1 {
+	margin-top: 280px;
+}
+.home-grey-bg1 {
+	background: url(../images/decor1.png)#f7f7f7 right top no-repeat;
+	background-size: 50%;
+}
+.home-grey-bg2 {
+	background: url(../images/decor2.png) 0px 25px no-repeat;
+	background-size: 50%;
+}
+.home-txt2 ul li span {
+	font-size: 18px;
+}
+.home-txt1 {
+	margin-top: 0px;
+}
+.pro-img1, .pro-img2 {
+	text-align: center;
+}
+.home-part2 {
+	padding-bottom: 50px;
+}
+.footer-row2 h6 {
+	font-size: 18px;
+}
+.home-part2 h3 {
+	font-size: 40px;
+}
+.home-part1 h2 {
+	font-size: 42px;
+}
+.price-plan-cont {
+	margin-top:60px !important;
+}
+.innerpage-heading {
+	height:auto !important;
+}
+.innerpage-heading .slider-tagline h1 {
+	font-size: 40px;
+}
+.priceplan-img {
+	text-align:center;
+	margin-top:0px;
+	margin-bottom:40px;
+}
+.plan-quote {
+	margin-bottom: 50px;
+}
+
+header
+{
+	height:80px;
+}
+
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+.slider-tagline h1 {
+	font-size: 42px;
+}
+.slider-cont {
+	background-size: cover;
+	height: 520px;
+}
+.home-part1 {
+	margin-top:440px;
+}
+.home-grey-bg1 {
+	background: url(../images/decor1.png)#f7f7f7 right bottom no-repeat;
+}
+.home-txt1 {
+	margin-top: 0px;
+}
+.footer-row2 h6 {
+	font-size: 18px;
+}
+.price-plan-cont {
+	margin-top:60px !important;
+	margin-bottom:0px;
+}
+.innerpage-heading {
+	height:auto !important;
+}
+.innerpage-heading .slider-tagline h1 {
+	font-size: 40px;
+}
+.innerpage-heading h1 {
+	font-size: 50px !important;
+	font-weight: 600;
+}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+...
+}

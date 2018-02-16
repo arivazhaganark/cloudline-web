@@ -40,14 +40,16 @@ class ContactusController extends Controller {
 
     protected function _validate($request) {
 
-        $request['captcha'] = $this->captchaCheck();
+        \NoCaptcha::shouldReceive('verifyResponse')
+                ->once()
+                ->andReturn(true);
 
         $rules = [
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
             'message' => 'required',
-            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
         ];
         $this->validate($request, $rules);
     }

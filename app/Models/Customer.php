@@ -15,9 +15,11 @@ class Customer extends Model {
 
     use Notifiable,SoftDeletes, Uuids;
 
-    protected $fillable = ['id', 'name', 'company_name', 'email', 'phone', 'status','access_token'];
+    protected $fillable = ['id', 'name', 'company_name', 'email', 'phone', 'status','access_token','plan_name','plan_price','start_date','end_date'];
     
     public static $statuses = ['0'=>'Un Verified','1'=>'Registered','2'=>'Customer'];
+    
+    public static $plan_names = ['A' => 'Enterprise', 'B' => 'Wellness', 'C' => 'Edu','D'=>'Starter'];
     
     public function scopeRusers($query)
     {
@@ -27,5 +29,10 @@ class Customer extends Model {
     public function scopeCusers($query)
     {
         return $query->where('status', 2);
+    }
+    
+    public function demorequests()
+    {
+        return $this->hasMany(DemoRequest::class,'customer_id','id');
     }
 }
