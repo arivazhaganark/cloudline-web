@@ -13,7 +13,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+               {{ 'Cloudline' }}
             </a>
         </div>
 
@@ -26,6 +26,7 @@
                     <li><a href="{{ url('backend/customers') }}">Customers</a></li>
                     @if(Auth::user()->isAdmin)
                         <li><a href="{{ url('backend/partners') }}">Partners</a></li>
+                        <li><a href="{{ url('backend/settings') }}"> Settings </a> </li>
                     @endif
                 @endauth
             </ul>

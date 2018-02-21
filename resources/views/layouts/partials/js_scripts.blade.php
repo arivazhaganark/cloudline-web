@@ -26,4 +26,19 @@
         $(this).parent('.option').find('.fa-minus').hide();
         $(this).parent('.option').find('.fa-plus').show();
     })
+
+    function showpanel() {
+        localStorage.setItem('show', 'true');
+        $('#videocall').show();
+    }
+
+    $(document).ready(function () {
+        var show = localStorage.getItem('show');
+        if (show === 'true') {
+            $('#videocall').show();
+        } else {
+            setTimeout(showpanel, 1*60*1000);
+        }
+    });
+
 </script>

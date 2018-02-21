@@ -1,4 +1,6 @@
-You received a message from : {{ $data['name'] }}
+Hi Admin, <br>
+
+    You received a message from : {{ $data['name'] }}
 
 <p>
 Name: {{ $data['name'] }}
