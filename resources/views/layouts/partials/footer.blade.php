@@ -49,8 +49,8 @@
                 <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
                     <h6>Contact Us </h6>
                     <ul>
-                        <li><a href="#"> Demo</a></li>
-                        <li><a href="#"> Support</a></li>
+                        <li><a href="{{ url('registerusers') }}"> Demo</a></li>
+                        <li><a href="{{ url('contactus') }}"> Support</a></li>
                         <li><a href="#"> Careers</a></li>
                     </ul>
                 </div>
@@ -62,6 +62,11 @@
                         <li><a href="#"> Press</a></li>
                     </ul>
                 </div>
+                <div class='demopadding'>
+                    <div class='icon social fb'><a href="https://www.facebook.com/cloudlinevideo/" class="social" target="_blank"><i class='fa fa-facebook'></i></a></div>
+                    <div class='icon social tw'><a href="https://twitter.com/Cloudline_video" class="social" target="_blank"><i class='fa fa-twitter'></i></a></div>
+                    <div class='icon social in'><a href="https://www.linkedin.com/in/cloudline-video/" class="social" target="_blank"><i class='fa fa-linkedin'></i></a></div>
+                </div>  
             </div>
         </div>
     </div>

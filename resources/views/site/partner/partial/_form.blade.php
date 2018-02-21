@@ -120,9 +120,7 @@
 <div class="form-group">
     {{ Form::label('captcha','Captcha*',['class'=>'col-sm-2 control-label']) }}
     <div class="col-sm-10">
-        <div class="g-recaptcha" 
-             data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
-        </div>
+       {!! NoCaptcha::display() !!}
     </div>
 </div>
 

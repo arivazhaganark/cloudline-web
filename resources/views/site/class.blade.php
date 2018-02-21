@@ -48,15 +48,61 @@
                                     <table class="table table-striped table-hover">
                                         <tbody>
                                             <tr>
-                                                <td class="w-75 option">Video Lecturing Features <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Shedule Unlimited Meetings, Host Meetings, Manage Meetings, Control Participants, Discussion Mode, Webinar Mode, Desktop, Laptop, WebRTC, Mobile, Dfferent Layouts, Audio&Video Mute, Invitation via mail client, Change Camera, Mic&Speaker on the fly, Auto Bandwidth Optimization, Auto echo cancellation, Participant List, Active Speaker View, Ban/Unban participants, Hold/Unhold Participants, Standard/Compact&Fullscreen Mode, Conference Information Link for sharing, AES 128 Enabled.">
-                                                        <i class="fas fa-exclamation-circle"></i>
-                                                    </button></td>
+                                                <td class="w-75 option">
+                                                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                        <i class="fa fa-plus"></i>
+                                                        <i class="fa fa-minus" style="display: none"></i>
+                                                        &nbsp;&nbsp;Video Lecturing Features 
+                                                    </a>
+                                                    <div class="panel-collapse collapse" id="collapseExample">
+                                                        <ul>
+                                                            <li>Shedule Unlimited Meetings</li>
+                                                            <li> Host Meetings </li>
+                                                            <li>Manage Meetings</li> 
+                                                            <li>Control Participants</li>
+                                                            <li>Discussion Mode</li>
+                                                            <li>Desktop</li>
+                                                            <li>Laptop</li>
+                                                            <li>WebRTC</li>
+                                                            <li>Mobile </li>
+                                                            <li>Dfferent Layouts</li>
+                                                            <li>Audio&Video Mute</li>
+                                                            <li>Invitation via mail client</li>
+                                                            <li>Change Camera</li>
+                                                            <li>Mic&Speaker on the fly</li>
+                                                            <li>Auto Bandwidth Optimization</li>
+                                                            <li>Auto echo cancellation</li>
+                                                            <li>Participant List</li>
+                                                            <li>Active Speaker View</li>
+                                                            <li>Ban/Unban participants</li>
+                                                            <li>Hold/Unhold Participants</li>
+                                                            <li>Standard/Compact&Fullscreen Mode</li>
+                                                            <li>Conference Information Link for sharing</li>
+                                                            <li>AES 128 Enabled</li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
                                                 <td><i class="fa fa-check"></i></td>
                                             </tr>
                                             <tr>
-                                                <td class="option">Collaboration / Presentation <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="WhiteBoard Collaboration, Desktop Sharing, App sharing, Presentation Sharing, File Sharing, Poll/QA Session, Private/Group Chat.">
-                                                        <i class="fas fa-exclamation-circle"></i>
-                                                    </button> </td>
+                                                <td class="option">
+                                                    <a data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+                                                        <i class="fa fa-plus"></i>
+                                                        <i class="fa fa-minus" style="display: none"></i>
+                                                        &nbsp;&nbsp;Collaboration / Presentation 
+                                                    </a>
+                                                    <div class="panel-collapse collapse" id="collapseExample1">
+                                                        <ul class="link">
+                                                            <li>WhiteBoard Collaboration</li>
+                                                            <li>Desktop Sharing</li>
+                                                            <li>App sharing</li>
+                                                            <li>Presentation Sharing</li>
+                                                            <li>File Sharing</li>
+                                                            <li>Poll/QA Session</li>
+                                                            <li>Private/Group Chat</li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
                                                 <td><i class="fa fa-check"></i></td>
                                             </tr>
                                             <tr>

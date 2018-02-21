@@ -80,7 +80,9 @@ class PartnerController extends Controller {
     }
 
     public function destroy($id) {
-        $model = Partner::find($id)->delete();
+        $partner = Partner::find($id);
+        $usermodel = User::where('id',$partner->user_id)->delete();
+        $partner->delete();
 
         redirect('backend/partners')->with('alert-success', 'successfully deleted!');
     }

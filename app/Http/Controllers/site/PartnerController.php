@@ -19,14 +19,13 @@ class PartnerController extends Controller {
      *
      * @return Response
      */
-   
     use CaptchaTrait;
-    
+
     protected function _append_form_variables(&$data) {
         $data['types'] = Partner::$types;
         $data['focus'] = Partner::$focuses;
     }
-    
+
     public function index() {
         return view('site.partner.index');
     }
@@ -44,7 +43,7 @@ class PartnerController extends Controller {
         $model = new Partner();
         $this->_save($request, $model);
 
-        return redirect()->to('partners')->with('alert-success', 'Thanks for Registration!');
+        return redirect()->to('partner')->with('alert-success', 'Thanks for Registration!');
     }
 
     protected function _save($request, $model) {
@@ -66,9 +65,11 @@ class PartnerController extends Controller {
     }
 
     protected function _validate($request, $id = null, $uid = null) {
-        
-        $request['captcha'] = $this->captchaCheck();
-        
+
+        \NoCaptcha::shouldReceive('verifyResponse')
+                ->once()
+                ->andReturn(true);
+
         $rules = [
             'partner_type' => 'required',
             'company_name' => 'required',
@@ -85,7 +86,7 @@ class PartnerController extends Controller {
             'current_focus' => 'required',
             'products_offered' => 'required',
             'brands_deal' => 'required',
-            'g-recaptcha-response'  => 'required',
+            'g-recaptcha-response' => 'required',
         ];
         if (!$id) { // On Create
             $rules['password'] = 'required';

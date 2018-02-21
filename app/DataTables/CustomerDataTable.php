@@ -36,7 +36,7 @@ class CustomerDataTable extends DataTable {
                             return $action;
                         })
                         ->addColumn('upgrade_to_customer', function ($customer) {
-                            $action = '<a href="' . url('backend/upgrade_customer/' . $customer->id) . '" class="btn btn-sm btn-primary" type="button"> Upgrade to Customer </a>&nbsp;';
+                            $action = '<a href="' . url('backend/upgrade_customer/' . $customer->id) . '" class="btn btn-sm btn-info" type="button"> Upgrade to Customer </a>&nbsp;';
                             return $action;
                         })
                         ->rawColumns(['upgrade_to_customer', 'view', 'action']);
