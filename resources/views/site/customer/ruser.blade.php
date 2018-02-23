@@ -5,7 +5,7 @@
     <section class="home-part1 partners-page-cont my-login-page">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6  offset-md-2  offset-lg-3 offset-xl-3 partner-login-form">
+                <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 offset-md-1 offset-lg-1 offset-xl-1 partner-login-form">
                     <div class="card-wrapper">
                         <div class="card fat">
                             <div class="card-body">
