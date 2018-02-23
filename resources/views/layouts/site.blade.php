@@ -9,7 +9,7 @@
         @yield('content')
         @include('layouts.partials.footer')
 
-        <div class="videocall" id="videocall"> <a href="#"> <img src="images/videocall.png"  alt=""> </a></div>
+        <div class="videocall" id="videocall"> <a href="#"> <img src="{{ asset('images/videocall.png') }}"  alt=""> </a></div>
 
         @include('layouts.partials.js_scripts')
         @stack('scripts')

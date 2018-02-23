@@ -3,7 +3,10 @@ $(document).ready(function () {
         format: 'yyyy-mm-dd',
         autoclose: true
     });
-    $('.timepicker').datetimepicker({
-        format: 'HH:mm:ss',
+});
+
+$(function () {
+    $('#timepicker').datetimepicker({
+        format: 'HH:mm:ss'
     });
 });

@@ -114,6 +114,11 @@
                             </div>
                         </div>
                         {!! Form::close() !!}
+                        
+                        
+                        @else
+                        
+                        <a href="{{ url('backend/demorequestform/'.$Customer->access_token) }}" class="btn btn-sm btn-success" type="button"> Demo Request Form </a>
 
                         @endif
 

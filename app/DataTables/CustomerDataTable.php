@@ -90,7 +90,7 @@ class CustomerDataTable extends DataTable {
             'email',
             'phone',
             'demo_request_status'];
-        if ($this->rUsersOnly) {
+        if ($this->rUsersOnly && \Auth::user()->isAdmin) {
             $columns[] = 'upgrade_to_customer';
         }
         return $columns;

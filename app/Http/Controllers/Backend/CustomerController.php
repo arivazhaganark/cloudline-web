@@ -157,4 +157,37 @@ class CustomerController extends Controller {
         return redirect('backend/customers')->with('alert-success', 'You have successfully upgraded customer');
     }
 
+    public function demorequest($token) {
+        $data['Customer'] = Customer::where('access_token', $token)->first();
+        $data['Model'] = new DemoRequest();
+
+        return view('admin.customer.demorequest', $data);
+    }
+
+    protected function _dvalidate($request) {
+
+        $rules = [
+            'location' => "required",
+            'preferred_date' => 'required',
+            'schedule_time' => 'required',
+            'person_incharge' => 'required',
+        ];
+        $this->validate($request, $rules);
+    }
+
+    public function dstore(Request $request) {
+        $this->_dvalidate($request);
+
+        $model = new DemoRequest();
+        $data = $request->except(['_token', 'company_name']);
+        $model->fill($data);
+        $model->save();
+
+        $customer = Customer::find($model->customer_id);
+        $customer->access_token = null;
+        $customer->save();
+
+        return redirect('/backend/registerusers')->with('alert-success', 'Thanks for your Demo request!');
+    }
+
 }

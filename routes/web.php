@@ -20,6 +20,8 @@ Route::middleware(['auth'])->namespace('Backend')->prefix('backend')->group(func
     Route::get('registerusers/create', 'CustomerController@ruser');
     Route::post('registerusers/store', 'CustomerController@rstore');
     Route::get('registerusers/verify/{token}', 'CustomerController@confirm');
+    Route::get('demorequestform/{token}', 'CustomerController@demorequest');    
+    Route::post('demorequestform/store', 'CustomerController@dstore');
     Route::get('registerusers/{id}/edit', 'CustomerController@redit');
     Route::put('registerusers/{id}', 'CustomerController@rupdate');
     Route::delete('registerusers/{id}', 'CustomerController@rdestroy');

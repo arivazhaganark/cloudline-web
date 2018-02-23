@@ -864,3 +864,8 @@ li {
 [data-toggle="collapse"].collapsed i:before{
     content: "\f067";
 }*/
+
+.price-plan-cont .card-body-contact {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}

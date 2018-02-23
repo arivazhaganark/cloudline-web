@@ -31,16 +31,6 @@
                 @endauth
             </ul>
 
-
-            <ul class="nav navbar-nav">
-                @guest
-                    <li><a href="{{ url('registerusers') }}">Register Users</a></li>
-                    <li><a href="{{ url('partners/create') }}">Partners</a></li>
-                    <li><a href="{{ url('contactus') }}">Contact Us</a></li>
-                @endguest
-            </ul>
-
-
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
