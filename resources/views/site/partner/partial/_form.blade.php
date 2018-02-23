@@ -1,7 +1,10 @@
 <div class="form-group{{ $errors->has('partner_type') ? ' has-error' : '' }}">
     {!! Form::label('partner_type','Partner Type*') !!}
     @foreach ($types as $id=>$partner_type)
-    <label> {!! Form::radio('partner_type', $id, (old('partner_type')==$id) ); !!} {{$partner_type}} </label>
+        <div class="form-check form-check-inline">
+            {!! Form::radio('partner_type', $id, (old('partner_type')==$id) ); !!}
+            <label class="form-check-label" for="{{$id}}">{{$partner_type}}</label>
+        </div>
     @endforeach
     @if ($errors->has('partner_type'))
     <span class="help-block">
