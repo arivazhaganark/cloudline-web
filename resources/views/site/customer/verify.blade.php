@@ -7,7 +7,7 @@
         <h2>Verify Your Email Address</h2>
         
         <div>
-            Thanks for creating an account with the verification demo app.
+            Thanks for creating an account in Cloudline.
             Please follow the link below to verify your email address
             {{ url('registerusers/verify' , $token) }}.<br/>
 

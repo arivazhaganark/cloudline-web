@@ -116,26 +116,29 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   <h4> Cloudline Cloud Service - Simple, Affordable   <br>  <span> The first Video conferencing Cloud service with Custom Plans </span></h4>  </div>  </div>
 
 
+
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">   
 
 
-                    <div class="pro-cate-thumb"> 
+                    <div class="pro-cate-thumb pro-cate-thumb2"> 
 
 
-                        <p> <img src="images/icon1.png"  alt=""></p>
+                        <p> <img src="images/icon4.png"  alt=""></p>
 
-                        <h6> Business  </h6>
+                        <h6> Starter   </h6>
 
-                        <p class="product-thumb-txt"> For Industries, BFSI Enterprise, MSMEs, SOHO, Retail </p>
+                        <p class="product-thumb-txt">
+                            Startups can use this plan FREE for a period of upto 3 years
+                        </p>
 
-                        <a href="{{ url('enterprise') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ url('starter') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
 
 
 
                     </div>
 
 
-                </div>
+                </div>                               
 
 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">   
@@ -146,7 +149,7 @@
 
                         <p> <img src="images/icon2.png"  alt=""></p>
 
-                        <h6> Healthy   </h6>
+                        <h6> Wellness   </h6>
 
                         <p class="product-thumb-txt"> For Multi Specialty Hospitals, Clinics, Specialist Doctors  </p>
 
@@ -166,7 +169,7 @@
 
                         <p> <img src="images/icon3.png"  alt=""></p>
 
-                        <h6> Class   </h6>
+                        <h6> Edu   </h6>
 
                         <p class="product-thumb-txt">For Schools, Colleges, universities, Training institutes, Medical Colleges, Ivy League institutions, and Corporate Training  </p>
 
@@ -180,22 +183,19 @@
                 </div>
 
 
-
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">   
 
 
-                    <div class="pro-cate-thumb pro-cate-thumb2"> 
+                    <div class="pro-cate-thumb"> 
 
 
-                        <p> <img src="images/icon4.png"  alt=""></p>
+                        <p> <img src="images/icon1.png"  alt=""></p>
 
-                        <h6> Starts   </h6>
+                        <h6> Enterprise  </h6>
 
-                        <p class="product-thumb-txt">
-                            Startups can use this plan FREE for a period of upto 3 years
-                        </p>
+                        <p class="product-thumb-txt"> For Industries, BFSI Enterprise, MSMEs, SOHO, Retail </p>
 
-                        <a href="{{ url('starts') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ url('enterprise') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
 
 
 
@@ -203,6 +203,8 @@
 
 
                 </div>
+
+
 
 
             </div>

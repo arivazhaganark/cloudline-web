@@ -32,7 +32,7 @@
                                         </span>
                                         @endif
                                     </div>
-                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="password">Password <a href="{{ route('password.request') }}" class="float-right"> Forgot Password? </a> </label>
                                         <input id="password" type="password" class="form-control" name="password" required data-eye>
                                         @if ($errors->has('password'))

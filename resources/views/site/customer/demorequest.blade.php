@@ -76,7 +76,7 @@
                                 </div>                                
                                 <div class="form-group no-margin">
                                     {!! Form::hidden('customer_id', $Customer->id) !!}
-                                    {!! Form::submit('Submit', array('class'=>'btn btn-primary btn-block')) !!}
+                                    {!! Form::submit('Submit', array('class'=>'btn btn-sec btn-block')) !!}
                                 </div>
                                 {!! Form::close() !!}
                             </div>

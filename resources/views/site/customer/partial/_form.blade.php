@@ -44,5 +44,5 @@
 </div>
 
 <div class="form-group no-margin">
-    {!! Form::submit('Submit', array('class'=>'btn btn-primary btn-block')) !!}
+    {!! Form::submit('Submit', array('class'=>'btn btn-sec btn-block')) !!}
 </div>

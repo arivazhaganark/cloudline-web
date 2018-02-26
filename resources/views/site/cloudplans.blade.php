@@ -23,22 +23,22 @@
                 <div class="col-12 col-md-6 col-lg-3 col-xl-3 pricing-cont ">
                     <div class="card">
                         <div class="card-header  bg-primary">
-                            <h3 class="card-title">Enterprise</h3>
+                            <h3 class="card-title">Starter</h3>
                         </div>
                         <div class="card-body">
-                            <div class="the-price"> <span class="text-center"> <img src="{{ asset('images/icon1.png') }}"  alt=""></span> </div>
+                            <div class="the-price"> <span class="text-center"> <img src="{{ asset('images/icon4.png') }}"  alt=""></span> </div>
                             <div class="">
                                 <div class="table-responsve">
                                     <table class="table table-striped table-hover">
                                         <tbody>
                                             <tr>
-                                                <td class="w-75 option">Video Conferencing Features </td>
+                                                <td class="w-75 option">Exclusively for Startups </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="w-75 option">Video Conferencing Features</td>
                                             </tr>
                                             <tr>
                                                 <td class="w-75 option">Collaboration</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="w-75 option">Live Webcasting to third party </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p> <a href="{{ url('enterprise') }}" class="btn btn1 btn2 boder1"> Get Started </a> </p>
+                            <p> <a href="{{ url('starter') }}" class="btn btn1 btn2 boder1"> Get Started </a> </p>
                         </div>
                     </div>
                 </div>
@@ -109,26 +109,26 @@
                             <p> <a href="{{ url('class') }}" class="btn btn1 btn2 boder1"> Get Started </a> </p>
                         </div>
                     </div>
-                </div>
+                </div>                
                 <div class="col-12 col-md-6 col-lg-3 col-xl-3 pricing-cont ">
                     <div class="card">
                         <div class="card-header  bg-primary">
-                            <h3 class="card-title">Starter</h3>
+                            <h3 class="card-title">Enterprise</h3>
                         </div>
                         <div class="card-body">
-                            <div class="the-price"> <span class="text-center"> <img src="{{ asset('images/icon4.png') }}"  alt=""></span> </div>
+                            <div class="the-price"> <span class="text-center"> <img src="{{ asset('images/icon1.png') }}"  alt=""></span> </div>
                             <div class="">
                                 <div class="table-responsve">
                                     <table class="table table-striped table-hover">
                                         <tbody>
                                             <tr>
-                                                <td class="w-75 option">Exclusively for Startups </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="w-75 option">Video Conferencing Features</td>
+                                                <td class="w-75 option">Video Conferencing Features </td>
                                             </tr>
                                             <tr>
                                                 <td class="w-75 option">Collaboration</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="w-75 option">Live Webcasting to third party </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p> <a href="{{ url('starter') }}" class="btn btn1 btn2 boder1"> Get Started </a> </p>
+                            <p> <a href="{{ url('enterprise') }}" class="btn btn1 btn2 boder1"> Get Started </a> </p>
                         </div>
                     </div>
                 </div>

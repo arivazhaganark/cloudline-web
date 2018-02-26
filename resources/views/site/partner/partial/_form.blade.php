@@ -174,5 +174,5 @@
 </div>
 <div class="form-group no-margin">
     {!! Form::hidden('uid', @$User->id) !!}
-    {!! Form::submit('Submit', array('class'=>'btn btn-primary btn-block')) !!}
+    {!! Form::submit('Submit', array('class'=>'btn btn-sec btn-block')) !!}
 </div>
