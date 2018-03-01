@@ -11,7 +11,15 @@
 
         <div class="videocall" id="videocall"> <a href="#"> <img src="{{ asset('images/videocall.png') }}"  alt=""> </a></div>
 
-        @include('layouts.partials.js_scripts')
+
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
+        @include('layouts.partials.js_scripts')        
         @stack('scripts')
     </body>
 </html>

@@ -68,10 +68,10 @@
                                                             <li>Desktop, Laptop</li>
                                                             <li>WebRTC, Mobile </li>
                                                             <li>Dfferent Layouts</li>
-                                                            <li>Audio&Video Mute</li>
+                                                            <li>Audio & Video Mute</li>
                                                             <li>Invitation via mail client</li>
                                                             <li>Change Camera</li>
-                                                            <li>Mic&Speaker on the fly</li>
+                                                            <li>Mic & Speaker on the fly</li>
                                                             <li>Auto Bandwidth Optimization</li>
                                                             <li>Auto echo cancellation</li>
                                                             <li>Participant List</li>
@@ -121,6 +121,9 @@
                                                         <option>5</option>
                                                         <option>6</option>
                                                         <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
                                                     </select></td>
                                             </tr>
                                             <tr>

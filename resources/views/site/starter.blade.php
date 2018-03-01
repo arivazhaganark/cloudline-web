@@ -55,10 +55,10 @@
                                                             <li>WebRTC</li>
                                                             <li>Mobile </li>
                                                             <li>Dfferent Layouts</li>
-                                                            <li>Audio&Video Mute</li>
+                                                            <li>Audio & Video Mute</li>
                                                             <li>Invitation via mail client</li>
                                                             <li>Change Camera</li>
-                                                            <li>Mic&Speaker on the fly</li>
+                                                            <li>Mic & Speaker on the fly</li>
                                                             <li>Auto Bandwidth Optimization</li>
                                                             <li>Auto echo cancellation</li>
                                                             <li>Participant List</li>
@@ -96,16 +96,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="option">No of Simultaneous Meeting room </td>
-                                                <td><select name="select2" id="select2">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                    </select>
-                                                    </i></td>
+                                                <td>1</i></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Total no of max participants</td>
@@ -115,23 +106,128 @@
                                                 <td class="option">Duration</td>
                                                 <td>Upto 3 years </td>
                                             </tr>
-                                            <tr>
+<!--                                            <tr>
                                                 <td class="option">Total Amount</td>
                                                 <td> ? </td>
-                                            </tr>
+                                            </tr>-->
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p> <a href="#" class="btn  btn1  buy-acc">Avail it for Free</a> </p>
+                            <p> <a href="#" class="btn  btn1  buy-acc" data-toggle="modal" data-target="#myModal">Avail it for Free</a> </p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal -->
+                <div class="modal fade bs-example-modal-lg" id="myModal"tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                    <div class="modal-dialog modal-lg" role="document" style="padding-top: 100px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Starter Form</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                {{ Form::open(['url' => 'starter/store','method'=>'POST','files'=> true,'id'=>'register']) }}
+
+                                <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
+                                    {!! Form::label('company_name','Company Name*') !!}
+                                    {!! Form::text('company_name',null,['class'=>'form-control']) !!}
+                                    <span class="text-danger">
+                                        <strong id="company_name-error"></strong>
+                                    </span>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('started_on') ? ' has-error' : '' }}">
+                                    {{ Form::label('started_on','Started On*') }}
+                                    {!! Form::text('started_on', '',['class'=>'date form-control']) !!}
+                                    <span class="text-danger">
+                                        <strong id="started_on-error"></strong>
+                                    </span>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('sector') ? ' has-error' : '' }}">
+                                    {!! Form::label('sector', 'Sector') !!}
+                                    {{ Form::select('sector', ["business"=>"Business","education"=>"Education","wellness"=>"Wellness","other"=>"Other"], null, ['class' => 'form-control','placeholder'=>'Select Sector']) }}
+                                    <span class="text-danger">
+                                        <strong id="sector-error"></strong>
+                                    </span>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('specify_other') ? ' has-error' : '' }}" id="specifyother">
+                                    {!! Form::label('specify_other','Please specify if other*') !!}
+                                    {!! Form::text('specify_other',null,['class'=>'form-control']) !!}  
+                                    <span class="text-danger">
+                                        <strong id="specify_other-error"></strong>
+                                    </span>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
+                                    {!! Form::label('start_date', 'Start Date is < 3 Years') !!}
+                                    {{ Form::select('start_date', ["yes"=>"Yes","no"=>"No"], null, ['class' => 'form-control','placeholder'=>'Select']) }}
+                                </div>
+
+                                <div class="form-group{{ $errors->has('capital') ? ' has-error' : '' }}">
+                                    {!! Form::label('capital', 'Capital < 10 Lakhs') !!}
+                                    {{ Form::select('capital', ["yes"=>"Yes","no"=>"No"], null, ['class' => 'form-control','placeholder'=>'Select']) }}
+                                </div>
+
+                                <div class="form-group {{ $errors->has('file_upload') ? ' has-error' : '' }}" id='fileupload'>
+                                    {{ Form::label('file_upload', 'File Upload*') }}
+                                    {{ Form::file('file_upload',['class'=>'form-control']) }}
+                                    <span class="text-danger">
+                                        <strong id="file_upload-error"></strong>
+                                    </span>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('comments') ? ' has-error' : '' }}">
+                                    {!! Form::label('comments','Comments If any') !!}
+                                    {!! Form::textArea('comments', null, array('class'=>'form-control','placeholder' => 'Add your comment', 'rows' => '4')) !!}
+                                </div>
+
+                                <div class="form-group no-margin">
+                                    {!! Form::submit('Submit', array('id'=>'submitForm','class'=>'btn btn-sec btn-block')) !!}
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </section>
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+
+        $("#specifyother").hide();
+
+        $('#sector').change(function () {
+            if ($(this).val() == 'other') {
+                $('#specifyother').show();
+            } else {
+                $('#specifyother').hide();
+            }
+        });
+        $('#fileupload').hide();
+
+        $('#start_date,#capital').change(function () {
+            if ($('#capital').val() == 'yes' && $('#start_date').val() == 'yes') {
+                $('#fileupload').show();
+            } else {
+                $('#fileupload').hide();
+            }
+        });
+
+    });
+
+</script>
+@endpush

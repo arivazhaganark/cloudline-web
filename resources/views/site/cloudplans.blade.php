@@ -68,7 +68,7 @@
                                                 <td class="w-75 option">Video Consultation Features</td>
                                             </tr>
                                             <tr>
-                                                <td class="w-75 option">Free Consultation Recording </td>
+                                                <td class="w-75 option">Consultation Recording </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -128,7 +128,7 @@
                                                 <td class="w-75 option">Collaboration</td>
                                             </tr>
                                             <tr>
-                                                <td class="w-75 option">Live Webcasting to third party </td>
+                                                <td class="w-75 option">Live Webcasting</td>
                                             </tr>
                                         </tbody>
                                     </table>

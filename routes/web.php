@@ -44,6 +44,8 @@ Route::namespace('site')->group(function () {
     Route::post('demorequest/store', 'CustomerController@dstore');
     Route::get('contactus', 'ContactusController@index');
     Route::post('contactus/store', 'ContactusController@store');
+    Route::get('starter','SiteController@starter');
+    Route::post('starter/store','SiteController@starterstore');
     Route::resource('partner', 'PartnerController');
     Route::get('{page}', 'SiteController@page');
 });

@@ -49,7 +49,7 @@
                         <li> WebRTC support </li>
                     </ul>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 product-txt2"> <img src="images/cloudline-support.jpg"  alt=""></div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 product-txt2"> <img class="pro_image" src="images/cloudline-support.jpg"  alt=""></div>
             </div>
         </div>
     </section>

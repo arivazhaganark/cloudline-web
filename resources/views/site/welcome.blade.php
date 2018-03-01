@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 slider-tagline">
-                <h1> The World's First Video Conferencing Cloud Service With Custom Plans </h1>
+                <h1> The World's First Video Conferencing Cloud Service With Tailor-Made Plans </h1>
                 <p class="text-center"> <a href="{{ url('registerusers') }}" class="btn btn1 boder1"> Request a demo </a> </p>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 laptop"> <img src="{{ asset('images/laptop.png') }}"  alt=""></div>
@@ -27,7 +27,7 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
                 <p> <img src="{{ asset('images/feature2.png') }}"  alt=""> </p>
-                <p> <span>Custom Vertical Plans </span> </p>
+                <p> <span>Tailor-Made Vertical Plans </span> </p>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
                 <p> <img src="{{ asset('images/feature3.png') }}"  alt=""> </p>

@@ -24,7 +24,7 @@
                         <li> The faculty can virtually conduct a webinar based classroom from his scheduled classroom, a studio or his home to reach out to up to 500 students and more who can be in other classrooms or at home. </li>
                         <li> The faculty can share their laptop screen, open an application, collaborate using a whiteboard, conduct question and answer and polling sessions. </li>
                         <li> For large institutions needing in-campus collaboration, an on Premise installation would benefit with lower internet bandwidth costs. </li>
-                        <li>Cloudline Educaty supports all online education applications like eLearning, Distance education, webcasting, lecture recording </li>
+                        <li>Cloudline Edu supports all online education applications like eLearning, Distance education, webcasting, lecture recording </li>
                     </ul>
                 </div>
             </div>
@@ -56,9 +56,9 @@
                                                     </a>
                                                     <div class="panel-collapse collapse" id="collapseExample">
                                                         <ul>
-                                                            <li>Shedule Unlimited Meetings</li>
-                                                            <li> Host Meetings </li>
-                                                            <li>Manage Meetings</li> 
+                                                            <li>Shedule Unlimited  Lectures</li>
+                                                            <li> Host Lectures </li>
+                                                            <li>Manage Lectures</li> 
                                                             <li>Control Participants</li>
                                                             <li>Discussion Mode</li>
                                                             <li>Desktop</li>
@@ -66,17 +66,16 @@
                                                             <li>WebRTC</li>
                                                             <li>Mobile </li>
                                                             <li>Dfferent Layouts</li>
-                                                            <li>Audio&Video Mute</li>
+                                                            <li>Audio & Video Mute</li>
                                                             <li>Invitation via mail client</li>
-                                                            <li>Change Camera</li>
-                                                            <li>Mic&Speaker on the fly</li>
+                                                            <li>Change Camera, Mic & Speaker on the fly</li>
                                                             <li>Auto Bandwidth Optimization</li>
                                                             <li>Auto echo cancellation</li>
                                                             <li>Participant List</li>
                                                             <li>Active Speaker View</li>
                                                             <li>Ban/Unban participants</li>
                                                             <li>Hold/Unhold Participants</li>
-                                                            <li>Standard/Compact&Fullscreen Mode</li>
+                                                            <li>Standard,Compact & Fullscreen Mode</li>
                                                             <li>Conference Information Link for sharing</li>
                                                             <li>AES 128 Enabled</li>
                                                         </ul>
@@ -95,7 +94,7 @@
                                                         <ul class="link">
                                                             <li>WhiteBoard Collaboration</li>
                                                             <li>Desktop Sharing</li>
-                                                            <li>App sharing</li>
+                                                            <li>Application sharing</li>
                                                             <li>Presentation Sharing</li>
                                                             <li>File Sharing</li>
                                                             <li>Poll/QA Session</li>
@@ -123,6 +122,9 @@
                                                         <option>5</option>
                                                         <option>6</option>
                                                         <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
                                                     </select></td>
                                             </tr>
                                             <tr>
@@ -169,7 +171,7 @@
                                                     </select></td>
                                             </tr>
                                             <tr>
-                                                <td class="option">Branding</td>
+                                                <td class="option">Your Own Brand</td>
                                                 <td><select name="select4" id="select4">
                                                         <option>No</option>
                                                         <option>Yes</option>

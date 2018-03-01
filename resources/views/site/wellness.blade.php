@@ -23,7 +23,7 @@
                     <ul>
                         <li> Its custom plan supports telemedicine services offering a consultation room with a remote end patient, and if needed include a third specialty doctor in the same consultation. </li>
                         <li> Doctors can virtually provide advice to their patients from anywhere even from their mobile, by reviewing the patient's reports online. </li>
-                        <li> Cloudline Healthy supports programs likes CME, Surgery recording & broadcasting, Virtual ICUs ( Doctor to Patient & Patient to Relatives) Patient Interactions & medical collaboration.</li>
+                        <li> Cloudline Wellness supports programs likes CME, Surgery recording & broadcasting, Virtual ICUs ( Doctor to Patient & Patient to Relatives) Patient Interactions & medical collaboration.</li>
                     </ul>
                 </div>
             </div>
@@ -55,9 +55,9 @@
                                                     </a>
                                                     <div class="panel-collapse collapse" id="collapseExample">
                                                         <ul>
-                                                            <li>Shedule Unlimited Meetings</li>
-                                                            <li> Host Meetings </li>
-                                                            <li>Manage Meetings</li> 
+                                                            <li>Shedule Unlimited Consultation</li>
+                                                            <li> Host Consultation </li>
+                                                            <li>Manage Consultation</li> 
                                                             <li>Control Participants</li>
                                                             <li>Discussion Mode</li>
                                                             <li>Desktop</li>
@@ -65,10 +65,10 @@
                                                             <li>WebRTC</li>
                                                             <li>Mobile </li>
                                                             <li>Dfferent Layouts</li>
-                                                            <li>Audio&Video Mute</li>
+                                                            <li>Audio & Video Mute</li>
                                                             <li>Invitation via mail client</li>
                                                             <li>Change Camera</li>
-                                                            <li>Mic&Speaker on the fly</li>
+                                                            <li>Mic & Speaker on the fly</li>
                                                             <li>Auto Bandwidth Optimization</li>
                                                             <li>Auto echo cancellation</li>
                                                             <li>Participant List</li>
@@ -109,22 +109,36 @@
                                             </tr>
                                             <tr>
                                                 <td class="option">No of Simultaneous Tele consulation Room</td>
-                                                <td><select  name="select" id="select">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
+                                                <td><select  name="select" id="first">
+                                                        <option value="">Select</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="contact_us">Contact us</option>
                                                     </select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">No of Patients / Telemedicine Center</td>
-                                                <td><select name="select" id="select">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
+                                                <td><select name="select" id="above_selected">
+                                                        <option value="" disabled selected>Select</option>
+                                                        <option value="2">2</option>
+                                                        <option value="4">4</option>
+                                                        <option value="6">6</option>
+                                                        <option value="8">8</option>
+                                                        <option value="10">10</option>
+                                                        <option value="12">12</option>
+                                                        <option value="14">14</option>
+                                                        <option value="16">16</option>
+                                                        <option value="18">18</option>
+                                                        <option value="20">20</option>
+                                                        <option value="contact_us">Contact us</option>
                                                     </select></td>
                                             </tr>
                                             <tr>
