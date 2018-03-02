@@ -20,9 +20,9 @@ class CustomerController extends Controller {
      *
      * @return Response
      */
-    protected function _append_form_variables(&$data) {
-        $data['statuses'] = Customer::$statuses;
-    }
+//    protected function _append_form_variables(&$data) {
+//        $data['statuses'] = Customer::$statuses;
+//    }
 
     protected function _save($request, $model) {
         $registerusers = (!$model->exists) ? new Customer() : Customer::find($model->id);
@@ -34,7 +34,7 @@ class CustomerController extends Controller {
 
     public function ruser() {
         $data['Model'] = new Customer();
-        $this->_append_form_variables($data);
+//        $this->_append_form_variables($data);
 
         return view('admin.customer.ruser', $data);
     }

@@ -118,7 +118,10 @@ class PartnerController extends Controller {
         if (!$id) { // On Create
             $rules['password'] = 'required';
         }
-        $this->validate($request, $rules);
+         $custom_msg = [
+            'g-recaptcha-response.required' => 'The Captcha field is required',
+        ];
+        $this->validate($request, $rules,$custom_msg);
     }
 
 }

@@ -52,7 +52,10 @@ class ContactusController extends Controller {
             'message' => 'required',
             'g-recaptcha-response' => 'required|captcha',
         ];
-        $this->validate($request, $rules);
+        $custom_msg = [
+            'g-recaptcha-response.required' => 'The Captcha field is required',
+        ];
+        $this->validate($request, $rules,$custom_msg);
     }
 
 }

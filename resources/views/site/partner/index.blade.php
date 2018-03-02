@@ -21,6 +21,13 @@
                         <div class="card fat">
                             <div class="card-body">
                                 <h4 class="card-title"> Partner Login </h4>
+                                 <div class="flash-message">
+                                  @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                                    @if(Session::has('alert-' . $msg))
+                                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p>
+                                    @endif
+                                    @endforeach
+                                </div>
                                 <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                                     {{ csrf_field() }}
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

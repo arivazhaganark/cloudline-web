@@ -20,18 +20,16 @@ class CustomerController extends Controller {
      *
      * @return Response
      */
-    
     use CaptchaTrait;
-    
-     protected function _save($request, $model) {
+
+    protected function _save($request, $model) {
         $registerusers = (!$model->exists) ? new Customer() : Customer::find($model->id);
 
         $data = $request->except(['_token']);
         $model->fill($data);
         $model->save();
     }
-    
-    
+
     public function ruser() {
         $data['Model'] = new Customer();
 
@@ -63,21 +61,24 @@ class CustomerController extends Controller {
     }
 
     protected function _validate($request, $id = null) {
-        
+
         \NoCaptcha::shouldReceive('verifyResponse')
                 ->once()
                 ->andReturn(true);
-        
+
         $rules = [
             'name' => 'required',
             'company_name' => 'required',
             'email' => "required|email",
             'phone' => 'required',
-            'g-recaptcha-response'  => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
         ];
-        $this->validate($request, $rules);
+        $custom_msg = [
+            'g-recaptcha-response.required' => 'The Captcha field is required',
+        ];
+        $this->validate($request, $rules, $custom_msg);
     }
-    
+
     public function confirm($token) {
         if (!$token) {
             throw new InvalidConfirmationCodeException;
@@ -94,39 +95,39 @@ class CustomerController extends Controller {
 //        $user->access_token = null;
         $user->save();
 
-        return redirect('demorequest/'.$token)->with('alert-success', 'You have successfully verified your account.');
+        return redirect('demorequest/' . $token)->with('alert-success', 'You have successfully verified your account.');
     }
-    
-    public function demorequest($token) {            
-        $data['Customer'] = Customer::where('access_token',$token)->first();
+
+    public function demorequest($token) {
+        $data['Customer'] = Customer::where('access_token', $token)->first();
         $data['Model'] = new DemoRequest();
-        
-        return view('site.customer.demorequest',$data);
+
+        return view('site.customer.demorequest', $data);
     }
-    
+
     protected function _dvalidate($request) {
-        
+
         $rules = [
             'location' => "required",
             'preferred_date' => 'required',
-            'schedule_time'  => 'required',
+            'schedule_time' => 'required',
             'person_incharge' => 'required',
         ];
         $this->validate($request, $rules);
     }
-    
+
     public function dstore(Request $request) {
-         $this->_dvalidate($request);
+        $this->_dvalidate($request);
 
         $model = new DemoRequest();
         $data = $request->except(['_token', 'company_name']);
         $model->fill($data);
         $model->save();
-        
+
         $customer = Customer::find($model->customer_id);
         $customer->access_token = null;
         $customer->save();
-        
+
         return redirect('/')->with('alert-success', 'Thanks for your Demo request!');
     }
 

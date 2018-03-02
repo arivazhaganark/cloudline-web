@@ -10,6 +10,13 @@
                         <div class="card fat">
                             <div class="card-body">
                                 <h4 class="card-title"> Partner Registration </h4>
+                                 <div class="flash-message">
+                                  @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                                    @if(Session::has('alert-' . $msg))
+                                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p>
+                                    @endif
+                                    @endforeach
+                                </div>
                                 {{ Form::model($Model, ['route' => 'partner.store', 'class' => 'form-horizontal']) }}
                                 @include('site.partner.partial._form')
                                 {!! Form::close() !!}

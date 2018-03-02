@@ -17,7 +17,7 @@ class Customer extends Model {
 
     protected $fillable = ['id', 'name', 'company_name', 'email', 'phone', 'status','access_token','plan_name','plan_price','start_date','end_date'];
     
-    public static $statuses = ['0'=>'Un Verified','1'=>'Registered','2'=>'Customer'];
+//    public static $statuses = ['0'=>'Un Verified','1'=>'Registered','2'=>'Customer'];
     
     public static $plan_names = ['A' => 'Enterprise', 'B' => 'Wellness', 'C' => 'Edu','D'=>'Starter'];
     

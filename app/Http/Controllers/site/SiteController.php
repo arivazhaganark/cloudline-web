@@ -54,7 +54,7 @@ class SiteController extends Controller {
             $contact = Setting::where('name', '=', 'CONTACT')->first();
 
             $input = $request->all();
-            if ($request->file) {
+            if ($request->file_upload) {
                 $file = $request->file('file_upload');
                 $destinationPath = base_path() . '/uploads';
                 $pathname = $file->getClientOriginalName();

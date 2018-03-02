@@ -166,7 +166,7 @@
                             </div>
                         </div>
                         
-                         @else
+                         @elseif(Auth::user()->isAdmin)
 
                         <a href="{{ url('backend/upgrade_customer/'.$Customer->id) }}" class="btn btn-sm btn-info" type="button"> Upgrade to Customer </a>
 

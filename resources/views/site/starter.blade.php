@@ -123,13 +123,13 @@
 
                 <!-- Modal -->
                 <div class="modal fade bs-example-modal-lg" id="myModal"tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                    <div class="modal-dialog modal-lg" role="document" style="padding-top: 100px">
+                    <div class="modal-dialog modal-lg" role="document" style="padding-top: 60px">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4>Starter Form</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" style="overflow: hidden;">
                                 {{ Form::open(['url' => 'starter/store','method'=>'POST','files'=> true,'id'=>'register']) }}
 
                                 <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">

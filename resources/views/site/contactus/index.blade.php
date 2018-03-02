@@ -10,12 +10,19 @@
                         <div class="card fat">
                             <div class="card-body">
                                 <h4 class="card-title"> Contact Us </h4>
+                                <div class="flash-message">
+                                  @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                                    @if(Session::has('alert-' . $msg))
+                                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p>
+                                    @endif
+                                    @endforeach
+                                </div>
                                 {{ Form::open(['url' => 'contactus/store']) }}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     {!! Form::label('name','Name*') !!}
                                     {!! Form::text('name',null,['class'=>'form-control']) !!}
                                     @if ($errors->has('name'))
-                                    <span class="help-block">
+                                    <span class="text-danger">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                     @endif
@@ -25,7 +32,7 @@
                                     {!! Form::label('email','Email*') !!}
                                     {!! Form::text('email',null,['class'=>'form-control']) !!} 
                                     @if ($errors->has('email'))
-                                    <span class="help-block">
+                                    <span class="text-danger">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                     @endif
@@ -34,7 +41,7 @@
                                     {!! Form::label('phone','Phone*') !!}
                                     {!! Form::text('phone',null,['class'=>'form-control']) !!}  
                                     @if ($errors->has('phone'))
-                                    <span class="help-block">
+                                    <span class="text-danger">
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                     @endif
@@ -43,14 +50,19 @@
                                     {!! Form::label('message','Message*') !!}
                                     {!! Form::textArea('message',null,['class'=>'form-control']) !!}
                                     @if ($errors->has('message'))
-                                    <span class="help-block">
+                                    <span class="text-danger">
                                         <strong>{{ $errors->first('message') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('captcha','Captcha*') !!}
+                                    {!! Form::label('g-recaptcha-response','Captcha*') !!}
                                     {!! NoCaptcha::display() !!}
+                                    @if ($errors->has('g-recaptcha-response'))
+                                    <span class="text-danger">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                                 <div class="form-group no-margin">
                                     {!! Form::submit('Submit', array('class'=>'btn btn-sec btn-block')) !!}
