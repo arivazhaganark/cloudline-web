@@ -40,6 +40,7 @@ Route::namespace('site')->group(function () {
     Route::get('registerusers', 'CustomerController@ruser');
     Route::post('registerusers/store', 'CustomerController@rstore');
     Route::get('registerusers/verify/{token}', 'CustomerController@confirm');
+    Route::get('partner/verify/{code}', 'PartnerController@confirm');
     Route::get('demorequest/{token}', 'CustomerController@demorequest');
     Route::post('demorequest/store', 'CustomerController@dstore');
     Route::get('contactus', 'ContactusController@index');

@@ -7,6 +7,7 @@ use App\Models\Partner;
 use App\Models\User;
 use App\Traits\CaptchaTrait;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use function bcrypt;
 use function redirect;
@@ -41,9 +42,17 @@ class PartnerController extends Controller {
         $this->_validate($request);
 
         $model = new Partner();
+        $model->confirmation_code = bin2hex(random_bytes(32));
         $this->_save($request, $model);
 
-        return redirect()->to('partner')->with('alert-success', 'Thanks for Registration!');
+        $code = $model['confirmation_code'];
+
+        \Mail::send('site.partner.verify', ['code' => $code], function($message) {
+            $message->to(Input::get('email'), Input::get('name'))
+                    ->subject('Verify your email address');
+        });
+
+        return back()->with('alert-success', 'Thanks for Registration!Please check your email.');
     }
 
     protected function _save($request, $model) {
@@ -62,6 +71,24 @@ class PartnerController extends Controller {
         $data['user_id'] = $user->id;
         $model->fill($data);
         $model->save();
+    }
+
+    public function confirm($code) {
+        if (!$code) {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $partner = Partner::whereConfirmationCode($code)->first();
+
+
+        if (!$partner) {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $partner->confirmation_code = null;
+        $partner->save();
+
+        return redirect('partner')->with('alert-success', 'You have successfully verified your account.');
     }
 
     protected function _validate($request, $id = null, $uid = null) {
