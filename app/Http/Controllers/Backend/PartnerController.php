@@ -41,7 +41,7 @@ class PartnerController extends Controller {
         $model = new Partner();
         $this->_save($request, $model);
 
-        return redirect()->to('backend/partners')->with('message', 'Thanks for Registration!');
+        return redirect()->to('admin/partners')->with('message', 'Thanks for Registration!');
     }
 
     protected function _save($request, $model) {
@@ -76,7 +76,7 @@ class PartnerController extends Controller {
         $model = Partner::find($id);
         $this->_save($request, $model);
 
-        return redirect('backend/partners')->with('alert-success', 'successfully updated!');
+        return redirect('admin/partners')->with('alert-success', 'successfully updated!');
     }
 
     public function destroy($id) {
@@ -84,7 +84,7 @@ class PartnerController extends Controller {
         $usermodel = User::where('id',$partner->user_id)->delete();
         $partner->delete();
 
-        redirect('backend/partners')->with('alert-success', 'successfully deleted!');
+        redirect('admin/partners')->with('alert-success', 'successfully deleted!');
     }
 
     protected function _validate($request, $id = null, $uid = null) {
@@ -93,7 +93,7 @@ class PartnerController extends Controller {
             'company_name' => 'required',
             'name' => 'required',
             'email' => "required|email|unique:users,email,{$uid},id",
-            'phone' => 'required',
+            'phone' => 'required|numeric',
             'address' => 'required',
             'state' => 'required',
             'years_business' => 'required',

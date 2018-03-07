@@ -100,6 +100,7 @@
                                                             <li>Poll/QA Session</li>
                                                             <li>Private/Group Chat</li>
                                                         </ul>
+                                                    </div>
                                                 </td>
                                                 <td><i class="fa fa-check"></i></td>
                                             </tr>

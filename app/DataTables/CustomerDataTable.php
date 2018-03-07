@@ -30,13 +30,13 @@ class CustomerDataTable extends DataTable {
                             return $count ? "Requested" : "Not Requested";
                         })
                         ->addColumn('action', function ($query) {
-                            $action = '<a href="' . url('backend/demorequest/' . $query->id) . '" class="btn btn-sm btn-default" type="button"><i class="la la-eye"></i> View </a>&nbsp;';
-                            $action .= '<a href="' . url('backend/registerusers/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="la la-edit"></i> Edit</a>&nbsp;';
+                            $action = '<a href="' . url('admin/demorequest/' . $query->id) . '" class="btn btn-sm btn-default" type="button"><i class="la la-eye"></i> View </a>&nbsp;';
+                            $action .= '<a href="' . url('admin/registerusers/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="la la-edit"></i> Edit</a>&nbsp;';
                             $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="registerusers" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="la la-trash"></i> Delete</a>';
                             return $action;
                         })
                         ->addColumn('upgrade_to_customer', function ($customer) {
-                            $action = '<a href="' . url('backend/upgrade_customer/' . $customer->id) . '" class="btn btn-sm btn-info" type="button"> Upgrade to Customer </a>&nbsp;';
+                            $action = '<a href="' . url('admin/upgrade_customer/' . $customer->id) . '" class="btn btn-sm btn-info" type="button"> Upgrade to Customer </a>&nbsp;';
                             return $action;
                         })
                         ->rawColumns(['upgrade_to_customer', 'view', 'action']);
@@ -71,11 +71,26 @@ class CustomerDataTable extends DataTable {
      * @return Builder
      */
     public function html() {
-        return $this->builder()
-                        ->columns($this->getColumns())
-                        ->minifiedAjax()
-                        ->addAction(['width' => '250px'])
-                        ->parameters($this->getBuilderParameters());
+        if ($this->rUsersOnly) {
+            $table = $this->builder()
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    ->addAction(['width' => '250px'])
+                    ->parameters([
+                'dom' => 'Bfrtip',
+                'buttons' => ['create', 'export'],
+            ]);
+        } else {
+            $table = $this->builder()
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    ->addAction(['width' => '250px'])
+                    ->parameters([
+                'dom' => 'Bfrtip',
+                'buttons' => ['export'],
+            ]);
+        }
+        return $table;
     }
 
     /**

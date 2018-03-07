@@ -70,7 +70,7 @@ class CustomerController extends Controller {
             'name' => 'required',
             'company_name' => 'required',
             'email' => "required|email",
-            'phone' => 'required',
+            'phone' => 'required|numeric',
             'g-recaptcha-response' => 'required|captcha',
         ];
         $custom_msg = [

@@ -48,7 +48,7 @@ class ContactusController extends Controller {
         $rules = [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone' => 'required|numeric',
             'message' => 'required',
             'g-recaptcha-response' => 'required|captcha',
         ];

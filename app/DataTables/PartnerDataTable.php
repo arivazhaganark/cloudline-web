@@ -23,14 +23,14 @@ class PartnerDataTable extends DataTable {
                         })
                         ->addColumn('register_users', function ($partner) {
                             $count = $partner->customers()->rusers()->count();
-                            return "<a href='" . url('backend/registerusers/') . "?pid={$partner->user_id}' class='label label-primary'>{$count}</a>";
+                            return "<a href='" . url('admin/registerusers/') . "?pid={$partner->user_id}' class='label label-primary'>{$count}</a>";
                         })
                         ->addColumn('customers', function ($partner) {
                             $count = $partner->customers()->cusers()->count();
-                            return "<a href='" . url('backend/customers/') . "?pid={$partner->user_id}' class='label label-primary'>{$count}</a>";
+                            return "<a href='" . url('admin/customers/') . "?pid={$partner->user_id}' class='label label-primary'>{$count}</a>";
                         })
                         ->addColumn('action', function ($query) {
-                            $action = '<a href="' . url('backend/partners/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="la la-edit"></i> Edit</a>&nbsp;';
+                            $action = '<a href="' . url('admin/partners/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="la la-edit"></i> Edit</a>&nbsp;';
                             $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="partners" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="la la-trash"></i> Delete</a>';
                             return $action;
                         })
@@ -72,7 +72,10 @@ class PartnerDataTable extends DataTable {
                         ->columns($this->getColumns())
                         ->minifiedAjax()
                         ->addAction(['width' => '250px'])
-                        ->parameters($this->getBuilderParameters());
+                        ->parameters([
+                            'dom' => 'Bfrtip',
+                            'buttons' => ['create', 'export'],
+        ]);
     }
 
     /**
@@ -89,8 +92,8 @@ class PartnerDataTable extends DataTable {
             'register_users',
             'customers',
             'phone',
-            'annual_revenue',
-            'current_focus',
+//            'annual_revenue',
+//            'current_focus',
         ];
     }
 

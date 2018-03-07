@@ -131,7 +131,7 @@
                             Startups can use this plan FREE for a period of upto 3 years
                         </p>
 
-                        <a href="{{ url('starter') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ url('cloudplans') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
 
 
 
@@ -153,7 +153,7 @@
 
                         <p class="product-thumb-txt"> For Multi Specialty Hospitals, Clinics, Specialist Doctors  </p>
 
-                        <a href="{{ url('wellness') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ url('cloudplans') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
 
 
 
@@ -173,7 +173,7 @@
 
                         <p class="product-thumb-txt">For Schools, Colleges, universities, Training institutes, Medical Colleges, Ivy League institutions, and Corporate Training  </p>
 
-                        <a href="{{ url('class') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ url('cloudplans') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
 
 
 
@@ -195,7 +195,7 @@
 
                         <p class="product-thumb-txt"> For Industries, BFSI Enterprise, MSMEs, SOHO, Retail </p>
 
-                        <a href="{{ url('enterprise') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ url('cloudplans') }}" class="btn btn1 "> Know More <i class="fas fa-arrow-right"></i></a>
 
 
 

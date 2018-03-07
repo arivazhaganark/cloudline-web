@@ -22,11 +22,11 @@
             <ul class="nav navbar-nav">
                 @auth
                     <?php $role = Auth::user()->role; ?>
-                    <li><a href="{{ url('backend/registerusers') }}">Register Users</a></li>
-                    <li><a href="{{ url('backend/customers') }}">Customers</a></li>
+                    <li><a href="{{ url('admin/registerusers') }}">Register Users</a></li>
+                    <li><a href="{{ url('admin/customers') }}">Customers</a></li>
                     @if(Auth::user()->isAdmin)
-                        <li><a href="{{ url('backend/partners') }}">Partners</a></li>
-                        <li><a href="{{ url('backend/settings') }}"> Settings </a> </li>
+                        <li><a href="{{ url('admin/partners') }}">Partners</a></li>
+                        <li><a href="{{ url('admin/settings') }}"> Settings </a> </li>
                     @endif
                 @endauth
             </ul>

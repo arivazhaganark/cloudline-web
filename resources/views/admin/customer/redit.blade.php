@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.adminLTE.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Register Users</div>
-
-                    <div class="panel-body">
-                        {{ Form::model($Model, ['url' => [ 'backend/registerusers/'. $Model->id ],'method' => 'PUT', 'class' => 'form-horizontal']) }}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Register Users</h3>
+                    <div class="box-body">
+                        {{ Form::model($Model, ['url' => [ 'admin/registerusers/'. $Model->id ],'method' => 'PUT', 'class' => 'form-horizontal']) }}
                         @include('admin.customer.partial._form')
                         {!! Form::close() !!}
                     </div>
@@ -16,4 +16,5 @@
             </div>
         </div>
     </div>
+</section>
 @endsection

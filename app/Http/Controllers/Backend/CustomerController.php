@@ -56,7 +56,7 @@ class CustomerController extends Controller {
         });
 
 
-        return redirect()->to('backend/registerusers')->with('alert-success', 'Thanks for Registration!Please check your email.');
+        return redirect()->to('admin/registerusers')->with('alert-success', 'Thanks for Registration!Please check your email.');
     }
 
     public function rindex(CustomerDataTable $dataTable) {
@@ -67,7 +67,7 @@ class CustomerController extends Controller {
     public function redit($id) {
         $data['Model'] = Customer::find($id);
 
-        $this->_append_form_variables($data);
+//        $this->_append_form_variables($data);
         return view('admin.customer.redit', $data);
     }
 
@@ -76,13 +76,13 @@ class CustomerController extends Controller {
         $model = Customer::find($id);
         $this->_save($request, $model);
 
-        return redirect('backend/registerusers')->with('alert-success', 'successfully updated!');
+        return redirect('admin/registerusers')->with('alert-success', 'successfully updated!');
     }
 
     public function rdestroy($id) {
         $model = Customer::find($id)->delete();
 
-        redirect('backend/registerusers')->with('alert-success', 'successfully deleted!');
+        redirect('admin/registerusers')->with('alert-success', 'successfully deleted!');
     }
 
     public function index(CustomerDataTable $dataTable) {
@@ -95,7 +95,7 @@ class CustomerController extends Controller {
             'name' => 'required',
             'company_name' => 'required',
             'email' => "required|email",
-            'phone' => 'required',
+            'phone' => 'required|numeric',
         ];
         $this->validate($request, $rules);
     }
@@ -116,7 +116,7 @@ class CustomerController extends Controller {
 //        $user->access_token = null;
         $user->save();
 
-        return redirect('backend/registerusers')->with('alert-success', 'You have successfully verified your account.');
+        return redirect('demorequest/' . $token)->with('alert-success', 'You have successfully verified your account.');
     }
 
     public function view(Request $request, $id) {
@@ -154,40 +154,40 @@ class CustomerController extends Controller {
         $customer->status = 2;
         $customer->save();
 
-        return redirect('backend/customers')->with('alert-success', 'You have successfully upgraded customer');
+        return redirect('admin/customers')->with('alert-success', 'You have successfully upgraded customer');
     }
 
-    public function demorequest($token) {
-        $data['Customer'] = Customer::where('access_token', $token)->first();
-        $data['Model'] = new DemoRequest();
+//    public function demorequest($token) {
+//        $data['Customer'] = Customer::where('access_token', $token)->first();
+//        $data['Model'] = new DemoRequest();
+//
+//        return view('admin.customer.demorequest', $data);
+//    }
 
-        return view('admin.customer.demorequest', $data);
-    }
+//    protected function _dvalidate($request) {
+//
+//        $rules = [
+//            'location' => "required",
+//            'preferred_date' => 'required',
+//            'schedule_time' => 'required',
+//            'person_incharge' => 'required',
+//        ];
+//        $this->validate($request, $rules);
+//    }
 
-    protected function _dvalidate($request) {
-
-        $rules = [
-            'location' => "required",
-            'preferred_date' => 'required',
-            'schedule_time' => 'required',
-            'person_incharge' => 'required',
-        ];
-        $this->validate($request, $rules);
-    }
-
-    public function dstore(Request $request) {
-        $this->_dvalidate($request);
-
-        $model = new DemoRequest();
-        $data = $request->except(['_token', 'company_name']);
-        $model->fill($data);
-        $model->save();
-
-        $customer = Customer::find($model->customer_id);
-        $customer->access_token = null;
-        $customer->save();
-
-        return redirect('/backend/registerusers')->with('alert-success', 'Thanks for your Demo request!');
-    }
+//    public function dstore(Request $request) {
+//        $this->_dvalidate($request);
+//
+//        $model = new DemoRequest();
+//        $data = $request->except(['_token', 'company_name']);
+//        $model->fill($data);
+//        $model->save();
+//
+//        $customer = Customer::find($model->customer_id);
+//        $customer->access_token = null;
+//        $customer->save();
+//
+//        return redirect('/admin/registerusers')->with('alert-success', 'Thanks for your Demo request!');
+//    }
 
 }

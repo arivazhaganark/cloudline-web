@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\Partner;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +21,10 @@ class HomeController extends Controller {
      * @return Response
      */
     public function index() {
-        return view('admin.home');
+        $data['partners_count'] = Partner::count();
+        $data['registerusers_count'] = Customer::where('status','=',1)->count();
+        $data['customers_count'] = Customer::where('status','=',2)->count();
+        return view('admin.home',$data);
     }
 
     public function myprofile(Request $request) {
@@ -27,7 +32,7 @@ class HomeController extends Controller {
         $data['Model'] = User::find($id);
         if ($request->post()) {
             $this->_save($request, $data['Model']);
-            return redirect('backend/home')->with('alert-success', 'successfully updated!');
+            return redirect('admin/home')->with('alert-success', 'successfully updated!');
         }
 
         return view('admin.my_profile', $data);
@@ -53,7 +58,7 @@ class HomeController extends Controller {
             $values = $request->except(['_token']);
             $data['Model']->fill($values);
             $data['Model']->save();
-            return redirect('backend/settings')->with('alert-success', 'Contact was successful updated!');
+            return redirect('admin/settings')->with('alert-success', 'Contact was successful updated!');
         }
 
         return view('admin.settings', $data);

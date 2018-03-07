@@ -19,7 +19,7 @@ class Customer extends Model {
     
 //    public static $statuses = ['0'=>'Un Verified','1'=>'Registered','2'=>'Customer'];
     
-    public static $plan_names = ['A' => 'Enterprise', 'B' => 'Wellness', 'C' => 'Edu','D'=>'Starter'];
+    public static $plan_names = ['Enterprise' => 'Enterprise', 'Wellness' => 'Wellness', 'Edu' => 'Edu','Starter'=>'Starter'];
     
     public function scopeRusers($query)
     {

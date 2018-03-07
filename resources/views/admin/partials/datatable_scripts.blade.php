@@ -16,7 +16,7 @@
                 $this = $(this);
                 $.ajax({
                     method: 'DELETE',
-                    url: '/backend/' + $this.data('model') + '/' + $this.data('id'),
+                    url: '/admin/' + $this.data('model') + '/' + $this.data('id'),
                     beforeSend: function () {
                         $this.button('loading')
                     },

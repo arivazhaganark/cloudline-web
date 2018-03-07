@@ -102,7 +102,7 @@ class PartnerController extends Controller {
             'company_name' => 'required',
             'name' => 'required',
             'email' => "required|email|unique:users,email,{$uid},id",
-            'phone' => 'required',
+            'phone' => 'required|numeric',
             'address' => 'required',
             'state' => 'required',
             'years_business' => 'required',
