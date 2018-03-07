@@ -32,7 +32,7 @@ class HomeController extends Controller {
         $data['Model'] = User::find($id);
         if ($request->post()) {
             $this->_save($request, $data['Model']);
-            return redirect('admin/home')->with('alert-success', 'successfully updated!');
+            return redirect('admin')->with('alert-success', 'successfully updated!');
         }
 
         return view('admin.my_profile', $data);

@@ -1,4 +1,4 @@
-@extends('layouts.adminLTE.login')
+@extends('admin.layouts.login')
 
 @section('content')
 <div class="login-logo">
@@ -7,7 +7,7 @@
 <!-- /.login-logo -->
 <div class="login-box-body">
     <p class="login-box-msg">Sign in</p>
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('admin.postlogin') }}">
         {{ csrf_field() }}
 
         <div class="form-group has-feedback">
