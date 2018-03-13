@@ -203,7 +203,7 @@
                         </div>
                         <div class="card-footer">
                             <p> <a href="#" class="btn btn1 buynow-btn">Buy Now </a> </p>
-                            <p> <a href="#" class="btn  btn1  buy-acc">Buy Virtual Class Room Accessories </a> </p>
+                            <p> <a href="{{ url('virtual_class_room_accessories') }}" class="btn  btn1  buy-acc">Buy Virtual Class Room Accessories </a> </p>
                         </div>
                     </div>
                 </div>

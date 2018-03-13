@@ -4,6 +4,8 @@ namespace App\Http\Controllers\site\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use function redirect;
 
 class LoginController extends Controller {
     /*
@@ -26,7 +28,7 @@ use AuthenticatesUsers;
      */
     public function authenticated($request, $user) {
         if ($user->role == 'A') {
-            return redirect('/admin/home');
+            return redirect('/admin');
         } elseif ($user->role == 'P') {
             return redirect('/admin/profile');
         }
@@ -39,6 +41,15 @@ use AuthenticatesUsers;
      */
     public function __construct() {
         $this->middleware('guest')->except('logout');
+    }
+    
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/partner');
     }
 
 }

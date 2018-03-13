@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p> <a href="{{ url('starter') }}" class="btn btn1 btn2 boder1"> Buy Now </a> </p>
+                            <p> <a href="{{ url('starter') }}" class="btn btn1 btn2 boder1"> Get Started </a> </p>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p> <a href="{{ url('wellness') }}" class="btn btn1 btn2 boder1"> Buy Now </a> </p>
+                            <p> <a href="{{ url('wellness') }}" class="btn btn1 btn2 boder1"> Get Started </a> </p>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p> <a href="{{ url('class') }}" class="btn btn1 btn2 boder1"> Buy Now </a> </p>
+                            <p> <a href="{{ url('class') }}" class="btn btn1 btn2 boder1"> Get Started </a> </p>
                         </div>
                     </div>
                 </div>                
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p> <a href="{{ url('enterprise') }}" class="btn btn1 btn2 boder1"> Buy Now </a> </p>
+                            <p> <a href="{{ url('enterprise') }}" class="btn btn1 btn2 boder1"> Get Started </a> </p>
                         </div>
                     </div>
                 </div>

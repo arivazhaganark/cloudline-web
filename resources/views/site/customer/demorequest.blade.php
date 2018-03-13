@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('preferred_date') ? ' has-error' : '' }}">
                                     {{ Form::label('preferred_date','Preferred Date*') }}
-                                    {!! Form::text('preferred_date', '',['class'=>'date form-control']) !!}
+                                    {!! Form::text('preferred_date', '',['class'=>'form-control','id'=>'startdate']) !!}
                                     @if ($errors->has('preferred_date'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('preferred_date') }}</strong>
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('alternate_date') ? ' has-error' : '' }}">
                                     {{ Form::label('alternate_date','Alternate Date*') }}
-                                    {!! Form::text('alternate_date', '',['class'=>'date form-control']) !!}
+                                    {!! Form::text('alternate_date', '',['class'=>'form-control','id'=>'enddate']) !!}
                                     @if ($errors->has('alternate_date'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('alternate_date') }}</strong>
