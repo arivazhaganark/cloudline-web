@@ -1,8 +1,8 @@
 <!--Bootstrap CSS--> 
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
 
-<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
-<link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('css/style.css?v='.File::lastModified('css/style.css')) }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('css/responsive.css?v='.File::lastModified('css/responsive.css')) }}" rel="stylesheet" type="text/css">
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
