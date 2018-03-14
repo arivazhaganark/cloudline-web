@@ -102,9 +102,17 @@
                                 </div>
                             </div>
 
-                            @endforeach
+                            @endforeach                          
 
-                            {{ Form::open(["url" => ["admin/demorequest",$Customer->id], 'class' => 'form-horizontal']) }}
+                            @else
+
+                            <a href="{{ url('admin/demorequestform/'.$Customer->access_token) }}" class="btn btn-sm btn-success" type="button"> Demo Request Form </a>
+
+                            {{ Form::open(["url" => ["admin/demorequest",$Customer->id], 'class' => 'form-horizontal']) }}                            
+
+                            @endif
+
+
                             <div class="form-group">
                                 {{ Form::label('admin_comments','Admin Comment',['class'=>'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
@@ -117,14 +125,6 @@
                                 </div>
                             </div>
                             {!! Form::close() !!}
-
-
-                            @else
-
-                            <a href="{{ url('admin/demorequestform/'.$Customer->access_token) }}" class="btn btn-sm btn-success" type="button"> Demo Request Form </a>
-
-                            @endif
-
 
                             <hr> 
 

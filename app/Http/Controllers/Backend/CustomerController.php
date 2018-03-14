@@ -50,7 +50,7 @@ class CustomerController extends Controller {
         $token = $model['access_token'];
 //        dd($token);
 
-        \Mail::send('admin.customer.verify', ['token' => $token], function($message) {
+        \Mail::send('site.customer.verify', ['token' => $token], function($message) {
             $message->to(Input::get('email'), Input::get('name'))
                     ->subject('Verify your email address');
         });

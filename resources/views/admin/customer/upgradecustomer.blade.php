@@ -55,14 +55,14 @@
                         <div class="form-group">
                             {{ Form::label('start_date','Service Start Date',['class'=>'col-sm-2 control-label']) }}
                             <div class="col-sm-10">
-                                {!! Form::text('start_date', old('start_date'),['class'=>'date form-control']) !!}
+                                {!! Form::text('start_date', old('start_date'),['class'=>'form-control','id'=>'startdate']) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('end_date','Service End Date',['class'=>'col-sm-2 control-label']) !!}
                             <div class="col-sm-10">
-                                {!! Form::text('end_date', old('end_date'),['class'=>'date form-control']) !!}
+                                {!! Form::text('end_date', old('end_date'),['class'=>'date form-control','id'=>'enddate']) !!}
                             </div>
                         </div>
 

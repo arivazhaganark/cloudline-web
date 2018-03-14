@@ -192,7 +192,7 @@
                         </div>
                         <div class="card-footer">
                             <p> <a href="#" class="btn btn1 buynow-btn">Buy Now </a> </p>
-                            <p> <a href="#" class="btn  btn1  buy-acc">Buy Medical Device Accessories </a> </p>
+                            <p> <a href="{{ url('medical_device_accessories') }}" class="btn  btn1  buy-acc">Buy Medical Device Accessories </a> </p>
                         </div>
                     </div>
                 </div>

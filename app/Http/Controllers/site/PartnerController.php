@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Partner;
 use App\Models\User;
 use App\Traits\CaptchaTrait;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Http\Request;
+use function back;
 use function bcrypt;
+use function random_bytes;
 use function redirect;
 use function view;
 
@@ -122,6 +125,12 @@ class PartnerController extends Controller {
             'g-recaptcha-response.required' => 'The Captcha field is required',
         ];
         $this->validate($request, $rules,$custom_msg);
+    }
+    
+    public function home() {
+//        $data['registerusers_count'] = Customer::where('created_by','=',\Auth::user()->id)->whereStatus(1)->count();
+//        $data['customers_count'] = Customer::where('created_by','=',\Auth::user()->id)->whereStatus(2)->count();
+        return view('site.partner.home',$data);
     }
 
 }
