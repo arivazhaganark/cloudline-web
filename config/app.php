@@ -156,7 +156,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Yajra\Datatables\ButtonsServiceProvider::class,        
+        Yajra\Datatables\ButtonsServiceProvider::class,    
+        Creitive\Breadcrumbs\BreadcrumbsServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------
@@ -206,5 +207,6 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        'Breadcrumbs' => Creitive\Breadcrumbs\Facades\Breadcrumbs::class,
     ],
 ];

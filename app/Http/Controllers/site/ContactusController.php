@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Models\ContactUs;
 use App\Models\Setting;
 use App\Traits\CaptchaTrait;
 use Illuminate\Http\Request;
@@ -25,18 +26,27 @@ class ContactusController extends Controller {
 
     public function store(Request $request) {
         $this->_validate($request);
-        $contact = Setting::where('name','=','CONTACT')->first();
+        $contact = Setting::where('name', '=', 'CONTACT')->first();
+        $model = new ContactUs();
+        $this->_save($request, $model);
 
         $data = ['name' => $request->get('name'),
             'email' => $request->get('email'),
             'message' => $request->get('message')];
 
-        \Mail::send('site.contactus.email', ['data' => $data], function($message) use ($request,$contact) {
+        \Mail::send('site.contactus.email', ['data' => $data], function($message) use ($request, $contact) {
             $message->from($request->get('email'));
             $message->to($contact->meta_value, 'Admin')->subject('Cloudline Web Development');
         });
 
         return back()->with('alert-success', 'Thanks for contacting us!');
+    }
+
+    protected function _save($request, $model) {
+        $data = $request->except(['_token', 'g-recaptcha-response']);
+        $data['ip_address'] = $request->ip();
+        $model->fill($data);
+        $model->save();
     }
 
     protected function _validate($request) {
@@ -55,7 +65,7 @@ class ContactusController extends Controller {
         $custom_msg = [
             'g-recaptcha-response.required' => 'The Captcha field is required',
         ];
-        $this->validate($request, $rules,$custom_msg);
+        $this->validate($request, $rules, $custom_msg);
     }
 
 }

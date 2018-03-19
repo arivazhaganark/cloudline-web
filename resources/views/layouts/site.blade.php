@@ -10,8 +10,7 @@
         @include('layouts.partials.footer')
 
         <div class="videocall" id="videocall"> <a href="#"> <img src="{{ asset('images/videocall.png') }}"  alt=""> </a></div>
-
-
+        @include('layouts.partials.js_scripts')
         <script type="text/javascript">
             $.ajaxSetup({
                 headers: {
@@ -19,7 +18,7 @@
                 }
             });
         </script>
-        @include('layouts.partials.js_scripts')        
+                
         @stack('scripts')
     </body>
 </html>

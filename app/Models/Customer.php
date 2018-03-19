@@ -15,7 +15,7 @@ class Customer extends Model {
 
     use Notifiable,SoftDeletes, Uuids;
 
-    protected $fillable = ['id', 'name', 'company_name', 'email', 'phone', 'status','access_token','plan_name','plan_price','start_date','end_date'];
+    protected $fillable = ['id', 'name', 'company_name', 'email', 'phone', 'status','access_token','plan_name','plan_price','start_date','end_date','admin_comments'];
     
 //    public static $statuses = ['0'=>'Un Verified','1'=>'Registered','2'=>'Customer'];
     

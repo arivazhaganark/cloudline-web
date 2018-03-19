@@ -142,7 +142,7 @@
 
                                 <div class="form-group{{ $errors->has('started_on') ? ' has-error' : '' }}">
                                     {{ Form::label('started_on','Started On*') }}
-                                    {!! Form::text('started_on', '',['class'=>'date form-control']) !!}
+                                    {!! Form::text('started_on', '',['class'=>'form-control','id'=>'startdate']) !!}
                                     <span class="text-danger">
                                         <strong id="started_on-error"></strong>
                                     </span>

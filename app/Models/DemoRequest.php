@@ -16,7 +16,7 @@ class DemoRequest extends Model
 
     use Notifiable, SoftDeletes,Uuids;
 
-    protected $fillable = ['customer_id', 'location', 'preferred_date', 'alternate_date', 'schedule_time', 'person_incharge','admin_comments'];
+    protected $fillable = ['customer_id', 'location', 'preferred_date', 'alternate_date', 'schedule_time', 'person_incharge'];
     
      public function customers()
     {

@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Partner;
 use App\Models\Setting;
 use App\Models\User;
+use Creitive\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use function bcrypt;
@@ -22,9 +23,14 @@ class HomeController extends Controller {
      */
     public function index() {
         $data['partners_count'] = Partner::count();
-        $data['registerusers_count'] = Customer::where('status','=',1)->count();
-        $data['customers_count'] = Customer::where('status','=',2)->count();
-        return view('admin.home',$data);
+        $data['registerusers_count'] = Customer::where('status', '=', 1)->count();
+        $data['customers_count'] = Customer::where('status', '=', 2)->count();
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Dashboard', '');
+        $data['breadcrumbs']->setDivider('>');        
+        return view('admin.home', $data);
     }
 
     public function myprofile(Request $request) {
@@ -34,6 +40,11 @@ class HomeController extends Controller {
             $this->_save($request, $data['Model']);
             return redirect('admin')->with('alert-success', 'successfully updated!');
         }
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('My Profile', '');
+        $data['breadcrumbs']->setDivider('>'); 
 
         return view('admin.my_profile', $data);
     }
@@ -60,6 +71,11 @@ class HomeController extends Controller {
             $data['Model']->save();
             return redirect('admin/settings')->with('alert-success', 'Contact was successful updated!');
         }
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Settings', '');
+        $data['breadcrumbs']->setDivider('>');
 
         return view('admin.settings', $data);
     }

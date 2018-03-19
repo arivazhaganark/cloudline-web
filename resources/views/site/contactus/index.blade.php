@@ -64,6 +64,9 @@
                                     </span>
                                     @endif
                                 </div>
+                                <div class="form-group">
+                                    {{ Form::hidden('ip_address') }}
+                                </div>
                                 <div class="form-group no-margin">
                                     {!! Form::submit('Submit', array('class'=>'btn btn-sec btn-block')) !!}
                                 </div>

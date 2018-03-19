@@ -6,6 +6,9 @@
         Dashboard
         <small>Control panel</small>
     </h1>
+    <ol class="breadcrumb">
+        <a href="#"><?php echo $breadcrumbs ?></a>
+    </ol>
 </section>
 <section class="content">
     @if (session('status'))

@@ -6,6 +6,7 @@ use App\DataTables\PartnerDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use App\Models\User;
+use Creitive\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Request;
 use function bcrypt;
@@ -20,7 +21,12 @@ class PartnerController extends Controller {
      * @return Response
      */
     public function index(PartnerDataTable $dataTable) {
-        return $dataTable->render('admin.partner.index');
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Partners', '');
+        $data['breadcrumbs']->setDivider('>');
+        return $dataTable->render('admin.partner.index',$data);
     }
 
     protected function _append_form_variables(&$data) {
@@ -31,6 +37,12 @@ class PartnerController extends Controller {
     public function create() {
         $data['Model'] = new Partner();
         $this->_append_form_variables($data);
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Partners', 'partners');
+        $data['breadcrumbs']->addCrumb('Create Partner', '');
+        $data['breadcrumbs']->setDivider('>');
 
         return view('admin.partner.create', $data);
     }
@@ -65,6 +77,12 @@ class PartnerController extends Controller {
     public function edit($id) {
         $data['Model'] = Partner::with('user')->find($id);
         $data['User'] = $data['Model']->user;
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Partners', 'partners');
+        $data['breadcrumbs']->addCrumb('Edit Partner', '');
+        $data['breadcrumbs']->setDivider('>');
 
         $this->_append_form_variables($data);
         return view('admin.partner.edit', $data);

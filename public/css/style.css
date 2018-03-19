@@ -883,69 +883,96 @@ li {
 }
 .products-tab-cont .nav-item .nav-link
 {
-	color:#222222 !important;
-	font-size:28px;
+    color:#222222 !important;
+    font-size:28px;
 }
 
 .products-tab-cont .nav-pills .nav-link.active, .products-tab-cont .nav-pills .show > .nav-link {
-	color: #ffffff !important;
-	background-color: #444444;
+    color: #ffffff !important;
+    background-color: #444444;
 }
 
 .product-thumb
 {
-	width:100%;
-	float:left;
-	height:100%;
-	text-align:center;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow:    0px 1px 20px 0px rgba(0, 0, 0, 0.2);
-	box-shadow:         0px 1px 20px 0px rgba(0, 0, 0, 0.2);
-	border:none;
-	padding:25px;
-	background:#ffffff;
-	margin-top:30px;
-	padding-bottom:0px;
+    width:100%;
+    float:left;
+    height:100%;
+    text-align:center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow:    0px 1px 20px 0px rgba(0, 0, 0, 0.2);
+    box-shadow:         0px 1px 20px 0px rgba(0, 0, 0, 0.2);
+    border:none;
+    padding:25px;
+    background:#ffffff;
+    margin-top:30px;
+    padding-bottom:0px;
 }
 
 .product-desciption {
-	font-size: 16px;
-	line-height: 28px;
-	border-top: #eeeeee solid 1px;
-	padding-top: 15px;
-	min-height: 200px;
+    font-size: 16px;
+    line-height: 28px;
+    border-top: #eeeeee solid 1px;
+    padding-top: 15px;
+    min-height: 200px;
 }
 
 .product-thumb h4 {
-	background: url(../images/spe.png) center bottom no-repeat;
-	font-size: 37px;
-	font-weight: 300;
-	color: #111111;
-	padding-bottom: 25px;
-	text-align: center;
+    background: url(../images/spe.png) center bottom no-repeat;
+    font-size: 37px;
+    font-weight: 300;
+    color: #111111;
+    padding-bottom: 25px;
+    text-align: center;
 }
 
 .product-thumb span
 {
-	font-weight:400;
+    font-weight:400;
 }
 
 .products-cont
 {
-	padding-bottom:60px;
+    padding-bottom:60px;
 }
 
 .pro-subname {
-	min-height: 50px;
+    min-height: 50px;
 }
 
 .product-desciption.product-desciption2 {
-	min-height: 475px;
+    min-height: 475px;
 }
 
 .product-desciption.product-desciption3 {
-	min-height: 255px;
+    min-height: 255px;
 }
+
+.breadcrumbs {
+    list-style: none;
+    overflow: hidden;    
+}
+
+.breadcrumb {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #FFFFFF;
+    border-radius: .25rem;
+}
+
+.breadcrumbs li {
+    float: left;
+}
+
+.breadcrumbs li a span {
+    padding-left: 980px;
+}
+

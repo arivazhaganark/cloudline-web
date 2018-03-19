@@ -6,10 +6,12 @@ use App\DataTables\CustomerDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\DemoRequest;
+use Creitive\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use function random_bytes;
 use function redirect;
 use function view;
 
@@ -34,6 +36,12 @@ class CustomerController extends Controller {
 
     public function ruser() {
         $data['Model'] = new Customer();
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Register Users', 'registerusers');
+        $data['breadcrumbs']->addCrumb('Create Register Users', '');
+        $data['breadcrumbs']->setDivider('>');
 //        $this->_append_form_variables($data);
 
         return view('admin.customer.ruser', $data);
@@ -60,12 +68,27 @@ class CustomerController extends Controller {
     }
 
     public function rindex(CustomerDataTable $dataTable) {
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Register Users', '');
+        $data['breadcrumbs']->setDivider('>');
         $dataTable->rUsersOnly = true;
-        return $dataTable->render('admin.customer.rindex');
+        return $dataTable->render('admin.customer.rindex', $data);
     }
 
     public function redit($id) {
         $data['Model'] = Customer::find($id);
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        if ($data['Model']->status == 1) {
+            $data['breadcrumbs']->addCrumb('Register Users', 'registerusers');
+        } elseif ($data['Model']->status == 2) {
+            $data['breadcrumbs']->addCrumb('Customers', 'customers');
+        }
+        $data['breadcrumbs']->addCrumb('Edit Register User', '');
+        $data['breadcrumbs']->setDivider('>');
 
 //        $this->_append_form_variables($data);
         return view('admin.customer.redit', $data);
@@ -87,7 +110,12 @@ class CustomerController extends Controller {
 
     public function index(CustomerDataTable $dataTable) {
         $dataTable->CUserOnly = true;
-        return $dataTable->render('admin.customer.index');
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Customers', '');
+        $data['breadcrumbs']->setDivider('>');
+        return $dataTable->render('admin.customer.index', $data);
     }
 
     protected function _validate($request, $id = null) {
@@ -124,17 +152,34 @@ class CustomerController extends Controller {
         $data['Demoform'] = $data['Customer']->demorequests()->count();
         $data['Demos'] = $data['Customer']->demorequests;
         $data['Demo'] = DemoRequest::where('customer_id', '=', $id)->first();
-        $data['Comments'] = $request->only(['admin_comments']);
-        if ($data['Comments']) {
-            $data['Demo']->fill($data['Comments']);
-            $data['Demo']->save();
+        $data['comments'] = $request->only(['admin_comments']);
+        if ($data['comments']) {
+            $data['Customer']->fill($data['comments']);
+            $data['Customer']->save();
+            return redirect()->back();
         }
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        if ($data['Customer']->status == 1) {
+            $data['breadcrumbs']->addCrumb('Register Users', 'registerusers');
+        } elseif ($data['Customer']->status == 2) {
+            $data['breadcrumbs']->addCrumb('Customers', 'customers');
+        }
+        $data['breadcrumbs']->addCrumb('View', '');
+        $data['breadcrumbs']->setDivider('>');
         return view('admin.customer.view', $data);
     }
 
     public function upgradecustomer($id) {
         $data['Customer'] = Customer::find($id);
         $data['Plan_names'] = Customer::$plan_names;
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Register Users', 'registerusers');
+        $data['breadcrumbs']->addCrumb('Upgrade To Customer', '');
+        $data['breadcrumbs']->setDivider('>');
         return view('admin.customer.upgradecustomer', $data);
     }
 
@@ -163,7 +208,6 @@ class CustomerController extends Controller {
 //
 //        return view('admin.customer.demorequest', $data);
 //    }
-
 //    protected function _dvalidate($request) {
 //
 //        $rules = [
@@ -174,7 +218,6 @@ class CustomerController extends Controller {
 //        ];
 //        $this->validate($request, $rules);
 //    }
-
 //    public function dstore(Request $request) {
 //        $this->_dvalidate($request);
 //
@@ -189,5 +232,4 @@ class CustomerController extends Controller {
 //
 //        return redirect('/admin/registerusers')->with('alert-success', 'Thanks for your Demo request!');
 //    }
-
 }

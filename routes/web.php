@@ -37,6 +37,7 @@ Route::middleware(['web'])->namespace('Backend')->prefix('admin')->group(functio
         Route::match(['get', 'post'], 'demorequest/{id}', 'CustomerController@view');
         Route::get('upgrade_customer/{id}', 'CustomerController@upgradecustomer');
         Route::put('upgrade_customer/{id}', 'CustomerController@upgradecustomerstore');
+        Route::resource('contactus', 'ContactUsController');
         Route::resource('customers', 'CustomerController');
         Route::resource('partners', 'PartnerController');
     });
@@ -63,6 +64,13 @@ Route::namespace('site')->group(function () {
     Route::get('starter', 'SiteController@starter');
     Route::post('starter/store', 'SiteController@starterstore');
     Route::get('partner/home','PartnerController@home');
+    Route::get('partner/home/create','PartnerController@ruser');
+    Route::post('partner/home/store','PartnerController@rstore');
+    Route::get('partner/registerusers/{id}','PartnerController@view');
+    Route::get('partner/registerusers/{id}/edit','PartnerController@redit');
+    Route::put('partner/registerusers/{id}', 'PartnerController@rupdate');
+    Route::delete('partner/registerusers/{id}', 'PartnerController@rdestroy');
+    Route::match(['get', 'post'], 'partner/profile', 'PartnerController@myprofile')->name('profile');
     Route::resource('partner', 'PartnerController');
     Route::get('{page}', 'SiteController@page');
 });

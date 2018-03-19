@@ -16,6 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 plan-quote2"> The Portal is designed to engage with partners for transparent Operations & to support with all our value added services from training to onsite support. We hope this transparency will help in strengthening our channel relationship. </div>
+                @guest
                 <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6  offset-md-2  offset-lg-3 offset-xl-3 partner-login-form">
                     <div class="card-wrapper">
                         <div class="card fat">
@@ -60,12 +61,13 @@
                                     <div class="form-group no-margin">
                                         <button type="submit" class="btn btn-primary btn-block"> Login </button>
                                     </div>
-                                    <div class="margin-top20 text-center"> Don't have an account? <a href="{{ url('partner/create') }}">Create One</a> </div>
+                                    <div class="margin-top20 text-center"> Don't have an account? <a href="{{ url('partner/create') }}">Create One!</a> </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+                @endguest
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-5">
                     <h4> Partnerships </h4>
                 </div>

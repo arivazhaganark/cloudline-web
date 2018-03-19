@@ -78,7 +78,22 @@ class CustomerDataTable extends DataTable {
                     ->addAction(['width' => '250px'])
                     ->parameters([
                 'dom' => 'Bfrtip',
-                'buttons' => ['create', 'export'],
+                'buttons' => ['create'],
+                'select' => true,
+                'initComplete' => 'function () {
+        var r = $("#datatable-buttons tfoot tr");
+        $("#datatable-buttons thead") . append(r);
+        this.api().columns([0,1,2,3,4]).every(function () {
+        var column = this;        
+        var input = document . createElement("input");
+        $(input).addClass("form-control input-lg col-xs-12");
+        $(input).appendTo($(column.footer()).empty())
+        .on("change", function () {
+
+            column.search($(this).val(), false, false, true).draw();
+        });
+        });
+        }'
             ]);
         } else {
             $table = $this->builder()
@@ -86,8 +101,23 @@ class CustomerDataTable extends DataTable {
                     ->minifiedAjax()
                     ->addAction(['width' => '250px'])
                     ->parameters([
-                'dom' => 'Bfrtip',
-                'buttons' => ['export'],
+//                'dom' => 'Bfrtip',
+//                'buttons' => ['export'],
+                'select' => true,
+                'initComplete' => 'function () {
+        var r = $("#datatable-buttons tfoot tr");
+        $("#datatable-buttons thead") . append(r);
+        this.api().columns([0,1,2,3,4]).every(function () {
+        var column = this;        
+        var input = document . createElement("input");
+        $(input).addClass("form-control input-lg col-xs-12");
+        $(input).appendTo($(column.footer()).empty())
+        .on("change", function () {
+
+            column.search($(this).val(), false, false, true).draw();
+        });
+        });
+        }'
             ]);
         }
         return $table;

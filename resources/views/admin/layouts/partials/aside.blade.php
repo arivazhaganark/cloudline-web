@@ -19,6 +19,7 @@
             <li><a href="{{ url('admin/customers') }}"><i class="fa fa-user-circle"></i> <span>Customers</span></a></li>
             @if(Auth::user()->isAdmin)
             <li><a href="{{ url('admin/partners') }}"><i class="fa fa-user-circle"></i> <span>Partners</span></a></li>
+            <li><a href="{{ url('admin/contactus') }}"><i class="fa fa-user-circle"></i> <span>Contact Us</span></a></li>
             <li><a href="{{ url('admin/settings') }}"> <i class="fa fa-cog"></i> <span>Settings</span> </a> </li>
             @endif
             @endauth

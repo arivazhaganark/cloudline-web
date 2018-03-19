@@ -10,7 +10,29 @@
                             <li class="nav-item"> <a class="nav-link" href="{{ url('products') }}"> Products </a> </li>
                             <li class="nav-item"> <a class="nav-link" href="{{ url('cloudplans') }}">Cloud Plans </a> </li>
                             <li class="nav-item"> <a class="nav-link" href="{{ url('partner') }}"> Partners </a> </li>
-                            <li class="nav-item"> <a class="nav-link" target="_blank" href="https://service.cloudline.video/service/wjoin/"> Join meeting </a> </li>                            
+                            <li class="nav-item"> <a class="nav-link" target="_blank" href="https://service.cloudline.video/service/wjoin/"> Join meeting </a> </li>
+                            @auth
+                            <li class="nav-item">
+                                <div class="dropdown show">
+                                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Welcome {{ \Auth::user()->name }}!
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a href="{{ url('partner/profile') }}" class="dropdown-item"> Profile </a>
+                                        <a href="{{ route('logout') }}" class="dropdown-item"
+                                           onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                            @endauth
                         </ul>
                     </div>
                 </nav>

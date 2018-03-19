@@ -10,6 +10,9 @@
             <!-- Left side column. contains the logo and sidebar -->
             @includeIf('admin.layouts.partials.aside')
             <div class="content-wrapper">
+            <div class="container flash-container">
+                @include('layouts.partials.alert')
+            </div>            
             @yield('content')
             </div>
             @includeIf('admin.layouts.partials.footer')

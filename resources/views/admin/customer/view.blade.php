@@ -1,6 +1,14 @@
 @extends('admin.layouts.app')
 
 @section('content')
+<section class="content-header">
+    <h1>
+        Details
+    </h1>
+    <ol class="breadcrumb">
+        <a href="#"><?php echo $breadcrumbs ?></a>
+    </ol>
+</section>
 <section class="content">
     <div class="row">
         <div class="col-md-12">
@@ -47,13 +55,12 @@
                                 <div class="col-sm-10">
                                     {{ $Customer->phone }}
                                 </div>
-                            </div>
-
-                            <hr>
+                            </div>                            
 
                             <!--Demo Request form-->
 
                             @if($Demoform)
+                            <hr>
                             <h4>Demo Request Form</h4>
                             @foreach($Demos as $Demo)
 
@@ -104,33 +111,12 @@
 
                             @endforeach                          
 
-                            @else
-
-                            <a href="{{ url('admin/demorequestform/'.$Customer->access_token) }}" class="btn btn-sm btn-success" type="button"> Demo Request Form </a>
-
-                            {{ Form::open(["url" => ["admin/demorequest",$Customer->id], 'class' => 'form-horizontal']) }}                            
-
-                            @endif
-
-
-                            <div class="form-group">
-                                {{ Form::label('admin_comments','Admin Comment',['class'=>'col-sm-2 control-label']) }}
-                                <div class="col-sm-10">
-                                    {!! Form::textArea('admin_comments', null, array('class'=>'form-control','placeholder' => 'Add your comment', 'rows' => '4')) !!}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-offset-2 col-xs-6">
-                                    {!! Form::submit('Post Comment', array('class'=>'btn btn-primary')) !!}
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
-
-                            <hr> 
+                            @endif                                                                                    
 
                             <!--Upgrade to Customer details-->
 
                             @if($Customer->status == 2)
+                            <hr>
                             <h4>Customer Plan Information</h4>
 
                             <div class="form-group">
@@ -169,11 +155,25 @@
                                 </div>
                             </div>
 
-                            @elseif(Auth::user()->isAdmin)
-
-                            <a href="{{ url('admin/upgrade_customer/'.$Customer->id) }}" class="btn btn-sm btn-info" type="button"> Upgrade to Customer </a>
-
                             @endif
+
+                            <hr>
+
+                            {{ Form::model($Customer,["url" => ["admin/demorequest",$Customer->id], 'class' => 'form-horizontal']) }}                                                        
+
+                            <div class="form-group">
+                                {{ Form::label('admin_comments','Admin Comment',['class'=>'col-sm-2 control-label']) }}
+                                <div class="col-sm-10">
+                                    {{ Form::textarea('admin_comments', old('admin_comments'), array('class'=>'form-control','placeholder' => 'Add your comment', 'rows' => '3')) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-offset-2 col-xs-6">
+                                    {!! Form::submit('Post Comment', array('class'=>'btn btn-primary','id'=>'button')) !!}
+                                </div>
+                            </div>
+                            {!! Form::close() !!} 
+
                         </div>
                     </div>
                 </div>
@@ -182,3 +182,18 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        if (!($('#admin_comments').val() == '')) {
+            $("#admin_comments").click(function () {
+                $('#button').val('Edit Comment');
+            })
+        }
+
+    });
+
+</script>
+@endpush
+

@@ -31,7 +31,7 @@
                                         <h4> Roomy </h4>
                                         <p class="pro-subname"> <span> Board room / integration Camera </span> </p>
                                         <div class="product-desciption text-center eq-h1"> Resolution up to 1920x1080, output frame rate up to 60 frames/sec. Variety of optical zoom lens: with 12x, 20x, 30x. Lens has 72.5° without distoration wide viewing angle. Interfaces-DVI(HDMI), SDI, USB, wired LAN. </div>
-                                        <!--<p> <a href="#" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>-->
+                                        <p> <a href="{{ url('contactus') }}" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 pro">
@@ -40,7 +40,7 @@
                                         <h4> Klick </h4>
                                         <p class="pro-subname"> <span> Huddle Small conference room Camera</span> </p>
                                         <div class="product-desciption text-center eq-h1"> Resolution is up to 1920x1080 with frame rate up to 60fps and 5x/10x optical zoom lens is with 83.7" wide view angle without distortion, supports HDMI, SDI, HD BaseT, USB and LAN. </div>
-                                        <!--<p> <a href="#" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>-->
+                                        <p> <a href="{{ url('contactus') }}" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>
                                     </div>
                                 </div>
 
@@ -54,7 +54,7 @@
                                         <h4> Avermedia 313 </h4>
                                         <div class="product-desciption product-desciption2 text-center"> Light, stylish and wearable, the AW313 Wireless Teacher Microphone is the ideal solution for your daily teaching. With 2.4 GHz wireless technology, noise and speaker buzz reduction, this hands-free system not only gives you total freedom to interact with students, it also delivers your natural voice in great clarity and stability.</div>
 
-                                        <!--<p> <a href="#" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>-->
+                                        <p> <a href="{{ url('contactus') }}" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>
 
 
                                     </div>
@@ -64,7 +64,7 @@
                                         <p> <img src="images/class-pro2.jpg" alt=""></p>
                                         <h4> Avermedia330</h4>
                                         <div class="product-desciption product-desciption2 text-center">The AW330 Wireless Classroom Audio System is a portable sound solution for voice and multimedia both inside and outside the classroom. By utilizing 2.4GHz Wireless radio band, the microphone and speaker are able to maintain a constant 360 degree communication with virtually no signal loss or channel interferences. Our exclusive Speaker Buzz Reduction Technology reduces noise feedbacks from speakers to ensure the best audio quality for learning. Compact and lightweight with a built-in lithium polymer battery, this 20-watt audio system is easy to carry and will provide natural and ample sounds for your day-to-day teaching. </div>
-                                        <!--<p> <a href="#" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>-->
+                                        <p> <a href="{{ url('contactus') }}" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>
                                     </div>
                                 </div>
                             </div>

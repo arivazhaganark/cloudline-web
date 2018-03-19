@@ -31,7 +31,7 @@
                                         <h4> Roomy </h4>
                                         <p class="pro-subname"> <span> Board room / integration Camera </span> </p>
                                         <div class="product-desciption text-center eq-h1"> Resolution up to 1920x1080, output frame rate up to 60 frames/sec. Variety of optical zoom lens: with 12x, 20x, 30x. Lens has 72.5° without distoration wide viewing angle. Interfaces-DVI(HDMI), SDI, USB, wired LAN. </div>
-                                        <!--<p> <a href="#" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>-->
+                                        <p> <a href="{{ url('contactus') }}" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 pro">
@@ -40,7 +40,7 @@
                                         <h4> Klick </h4>
                                         <p class="pro-subname"> <span> Huddle Small conference room Camera</span> </p>
                                         <div class="product-desciption text-center eq-h1"> Resolution is up to 1920x1080 with frame rate up to 60fps and 5x/10x optical zoom lens is with 83.7" wide view angle without distortion, supports HDMI, SDI, HD BaseT, USB and LAN. </div>
-                                        <!--<p> <a href="#" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>-->
+                                        <p> <a href="{{ url('contactus') }}" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>
                                     </div>
                                 </div>
 
@@ -54,7 +54,7 @@
                                         <h4> Voice Tracker I </h4>
                                         <div class="product-desciption text-center product-desciption2"> The Voice Tracker Array Microphone was the original implementation of our patented, automatically and electronically steering, "listening beam" technology. It has an analog audio output at mic level, and is powered by a wall power converter so there is no risk of loss of performance as batteries run out. A USB adapter is an available option for use with MACs, and laptops with low performance sound cards. It has built in ceiling mount capability, which removes the clutter of mics on the conference table. It can be used in conventional and VoIP conferencing systems that need the AEC built into the microphone itself. </div>
 
-                                        <!--<p> <a href="#" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>-->
+                                        <p> <a href="{{ url('contactus') }}" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>
 
 
                                     </div>
@@ -64,7 +64,7 @@
                                         <p> <img src="images/board-pro5.jpg" alt=""></p>
                                         <h4> Voice Tracker 2 </h4>
                                         <div class="product-desciption product-desciption2 text-center"> The Voice Tracker II starts with Acoustic Magic's unique, customer proven, patented scanning beam array microphone technology, which spatially filters undesired sounds and noise over a 360 field of view. But it has been designed to enhance its applicability for video and audio conferencing, while retaining its attributes for meetings and lecture recording, speech recognition, voice control, and security monitoring. </div>
-                                        <!--<p> <a href="#" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>-->
+                                        <p> <a href="{{ url('contactus') }}" class="btn btn1 "> Buy now <i class="fas fa-arrow-right"></i></a></p>
                                     </div>
                                 </div>
                             </div>
