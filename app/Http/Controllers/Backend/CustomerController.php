@@ -64,7 +64,7 @@ class CustomerController extends Controller {
         });
 
 
-        return redirect()->to('admin/registerusers')->with('alert-success', 'Thanks for Registration!Please check your email.');
+        return redirect()->back()->with('alert-success', 'Thanks for Registration!Please check your email.');
     }
 
     public function rindex(CustomerDataTable $dataTable) {

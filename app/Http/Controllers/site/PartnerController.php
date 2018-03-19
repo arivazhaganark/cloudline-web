@@ -225,7 +225,7 @@ class PartnerController extends Controller {
             }
             $data['Model']->fill($userdata);
             $data['Model']->save();
-            return redirect('admin')->with('alert-success', 'successfully updated!');
+            return redirect('partner/home')->with('alert-success', 'successfully updated!');
         }
         $data['breadcrumbs'] = new Breadcrumbs;
         $data['breadcrumbs']->addCrumb('Home', 'partner/home');

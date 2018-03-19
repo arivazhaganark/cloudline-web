@@ -8,8 +8,10 @@ use App\Models\Partner;
 use App\Models\User;
 use Creitive\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Input;
 use Symfony\Component\HttpFoundation\Request;
 use function bcrypt;
+use function random_bytes;
 use function redirect;
 use function view;
 
@@ -26,7 +28,7 @@ class PartnerController extends Controller {
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Partners', '');
         $data['breadcrumbs']->setDivider('>');
-        return $dataTable->render('admin.partner.index',$data);
+        return $dataTable->render('admin.partner.index', $data);
     }
 
     protected function _append_form_variables(&$data) {
@@ -51,9 +53,18 @@ class PartnerController extends Controller {
         $this->_validate($request);
 
         $model = new Partner();
+        $model->confirmation_code = bin2hex(random_bytes(32));
         $this->_save($request, $model);
 
-        return redirect()->to('admin/partners')->with('message', 'Thanks for Registration!');
+        $code = $model['confirmation_code'];
+//        dd($token);
+
+        \Mail::send('site.partner.verify', ['code' => $code], function($message) {
+            $message->to(Input::get('email'), Input::get('name'))
+                    ->subject('Verify your email address');
+        });
+
+        return redirect()->back()->with('alert-success', 'You have successfully verified your account.');
     }
 
     protected function _save($request, $model) {
@@ -99,7 +110,7 @@ class PartnerController extends Controller {
 
     public function destroy($id) {
         $partner = Partner::find($id);
-        $usermodel = User::where('id',$partner->user_id)->delete();
+        $usermodel = User::where('id', $partner->user_id)->delete();
         $partner->delete();
 
         redirect('admin/partners')->with('alert-success', 'successfully deleted!');
