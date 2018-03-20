@@ -12,6 +12,7 @@
                             <li class="nav-item"> <a class="nav-link" href="{{ url('partner') }}"> Partners </a> </li>
                             <li class="nav-item"> <a class="nav-link" target="_blank" href="https://service.cloudline.video/service/wjoin/"> Join meeting </a> </li>
                             @auth
+                                @if(!\Auth::user()->is_admin)
                             <li class="nav-item">
                                 <div class="dropdown show">
                                     <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,6 +33,7 @@
                                     </div>
                                 </div>
                             </li>
+                                    @endif
                             @endauth
                         </ul>
                     </div>
