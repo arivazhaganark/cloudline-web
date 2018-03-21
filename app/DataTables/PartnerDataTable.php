@@ -51,7 +51,8 @@ class PartnerDataTable extends DataTable {
      */
     public function query(Partner $model) {
 
-        $Query = $model->with('user')->select('partners.*')->orderBy('partners.updated_at', 'desc');
+        $Query = $model->select(['partners.*'])->with('user')->leftJoin('users','users.id','=','partners.user_id');
+        $Query->orderBy('updated_at','desc');
 
 //        if (!\Auth::user()->isAdmin) {
 //            $Query->where('partners.user_id', '=', \Auth::user()->id)->orderBy('updated_at', 'desc');
