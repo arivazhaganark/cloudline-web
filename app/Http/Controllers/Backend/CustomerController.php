@@ -98,8 +98,11 @@ class CustomerController extends Controller {
 
         $model = Customer::find($id);
         $this->_save($request, $model);
-
-        return redirect('admin/registerusers')->with('alert-success', 'successfully updated!');
+        if ($model->status == 1) {
+            return redirect('admin/registerusers')->with('alert-success', 'successfully updated!');
+        } else {
+            return redirect('admin/customers')->with('alert-success', 'successfully updated!');
+        }
     }
 
     public function rdestroy($id) {

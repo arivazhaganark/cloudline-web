@@ -64,7 +64,7 @@ class PartnerController extends Controller {
                     ->subject('Verify your email address');
         });
 
-        return redirect()->back()->with('alert-success', 'You have successfully verified your account.');
+        return redirect()->back()->with('alert-success', 'Thanks for Registration!Please check your email.');
     }
 
     protected function _save($request, $model) {

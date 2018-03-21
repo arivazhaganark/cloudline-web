@@ -35,7 +35,13 @@ class PartnerDataTable extends DataTable {
                             return $action;
                         })
                         ->editColumn('partner_type', function ($type) {
-                            return $type->partner_type();
+                            if ($type->partner_type == 'G') {
+                                return "Gold";
+                            } elseif ($type->partner_type == 'S') {
+                                return "Silver";
+                            } else {
+                                return "Express";
+                            }
                         })
                         ->filterColumn('partner_type', function($query, $keyword) {
                             $query->whereRaw("(CASE WHEN partner_type = 'G' THEN 'Gold' WHEN partner_type = 'S' THEN 'Silver' ELSE 'Express' END) like ?", ["%{$keyword}%"]);
@@ -51,8 +57,8 @@ class PartnerDataTable extends DataTable {
      */
     public function query(Partner $model) {
 
-        $Query = $model->select(['partners.*'])->with('user')->leftJoin('users','users.id','=','partners.user_id');
-        $Query->orderBy('updated_at','desc');
+        $Query = $model->select(['partners.*'])->with('user')->leftJoin('users', 'users.id', '=', 'partners.user_id');
+        $Query->orderBy('updated_at', 'desc');
 
 //        if (!\Auth::user()->isAdmin) {
 //            $Query->where('partners.user_id', '=', \Auth::user()->id)->orderBy('updated_at', 'desc');

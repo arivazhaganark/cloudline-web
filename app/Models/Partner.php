@@ -34,13 +34,4 @@ class Partner extends Model
         return $this->hasMany(Customer::class,'created_by','user_id');
     }
     
-    public function partner_type() {
-        if ($this->partner_type == 'G') {
-            return "Gold";
-        } elseif ($this->partner_type == 'S') {
-            return "Silver";
-        } else {
-            return "Express";
-        }
-    }
 }
