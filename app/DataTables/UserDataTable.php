@@ -24,14 +24,13 @@ class UserDataTable extends DataTable {
         return datatables($query)
                         ->addColumn('demo_request_status', function ($customer) {
                             $count = $customer->demorequests()->count();
-                            return $count ? "Requested" : '<a href="' . url('demorequest/' . $customer->access_token) . '" class="btn btn-sm btn-success" type="button"> Demo Request Form </a>';
+                            return $count ? "Requested" : '<a href="' . url('demorequest/' . $customer->access_token) . '" class="btn btn-sm btn-info" type="button"> Demo Request Form </a>';
                         })
-                        ->addColumn('type', function($type) {
-                            if ($type->status == 1) {
-                                return "Register User";
-                            } elseif ($type->status == 2) {
-                                return "Customer";
-                            }
+                        ->editColumn('status', function($type) {
+                            return $type->display_type();
+                        })
+                        ->filterColumn('status', function($query, $keyword) {
+                            $query->whereRaw("(CASE WHEN status = 0 THEN 'NOT VERIFIED' WHEN status = 1 THEN 'Registered User' ELSE 'Customer' END) like ?", ["%{$keyword}%"]);
                         })
                         ->addColumn('action', function ($query) {
                             $action = '<a href="' . url('partner/registerusers/' . $query->id) . '" class="btn btn-sm btn-secondary" type="button"><i class="ion-eye"></i></a>&nbsp;';
@@ -50,12 +49,7 @@ class UserDataTable extends DataTable {
      */
     public function query(Customer $model) {
         $Query = $model->newQuery();
-//        $pid = @request()->pid;
-        $Query->where('customers.created_by', '=', \Auth::user()->id);
-//        if ($pid) {
-//            $cid = ($pid) ?: Auth::user()->id;
-//            $Query->where('created_by', $cid);
-//        }
+        $Query->where('customers.created_by', '=', \Auth::user()->id)->orderBy('updated_at', 'desc');
         return $Query;
     }
 
@@ -66,14 +60,18 @@ class UserDataTable extends DataTable {
      */
     public function html() {
         $table = $this->builder()
-        ->columns($this->getColumns())
-        ->minifiedAjax()
-        ->addAction(['width' => '250px'])
-        ->parameters([
-        'dom' => 'Bfrtip',
-        'buttons' => ['create'],
-        'select' => true,
-        'initComplete' => 'function () {
+                ->columns($this->getColumns())
+                ->minifiedAjax()
+                ->addAction(['width' => '250px'])
+                ->parameters([
+            'dom' => 'Bfrtip',
+            'buttons' => [
+                    ['extend' => 'create', 'className' => 'btn btn-sm btn-success', 'text' => 'Create User', 'init' => 'function(api, node, config) {
+       $(node).removeClass("dt-button buttons-create btn-default")
+    }']
+            ],
+            'select' => true,
+            'initComplete' => 'function () {
         var r = $("#datatable-buttons tfoot tr");
         $("#datatable-buttons thead") . append(r);
         this.api().columns([0,1,2,3]).every(function () {
@@ -86,7 +84,7 @@ class UserDataTable extends DataTable {
             column.search($(this).val(), false, false, true).draw();
         });
         });
-        }'
+        }',
         ]);
         return $table;
     }
@@ -99,10 +97,11 @@ class UserDataTable extends DataTable {
     protected function getColumns() {
         return $columns = [
             'name',
-            'type',
+            'status' => ['title' => 'Type'],
             'email',
             'phone',
-            'demo_request_status'];
+            'demo_request_status'
+        ];
     }
 
     /**

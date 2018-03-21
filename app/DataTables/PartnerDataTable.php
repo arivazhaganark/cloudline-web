@@ -35,12 +35,10 @@ class PartnerDataTable extends DataTable {
                             return $action;
                         })
                         ->editColumn('partner_type', function ($type) {
-                            if ($type->partner_type == 'G') {
-                                return "Gold";
-                            } else if ($type->partner_type == 'S') {
-                                return "Silver";
-                            } else
-                                return "Express";
+                            return $type->partner_type();
+                        })
+                        ->filterColumn('partner_type', function($query, $keyword) {
+                            $query->whereRaw("(CASE WHEN partner_type = 'G' THEN 'Gold' WHEN partner_type = 'S' THEN 'Silver' ELSE 'Express' END) like ?", ["%{$keyword}%"]);
                         })
                         ->rawColumns(['register_users', 'customers', 'action']);
     }
@@ -53,11 +51,11 @@ class PartnerDataTable extends DataTable {
      */
     public function query(Partner $model) {
 
-        $Query = $model->newQuery();
+        $Query = $model->with('user')->select('partners.*')->orderBy('partners.updated_at', 'desc');
 
-        if (!\Auth::user()->isAdmin) {
-            $Query->where('partners.user_id', '=', \Auth::user()->id);
-        }
+//        if (!\Auth::user()->isAdmin) {
+//            $Query->where('partners.user_id', '=', \Auth::user()->id)->orderBy('updated_at', 'desc');
+//        }
 
         return $Query;
     }
@@ -102,13 +100,11 @@ class PartnerDataTable extends DataTable {
         return [
             'partner_type',
             'company_name',
-            'name',
-            'email',
+            'name' => ['name' => 'user.name'],
+            'email' => ['name' => 'user.email'],
             'register_users',
             'customers',
             'phone',
-//            'annual_revenue',
-//            'current_focus',
         ];
     }
 

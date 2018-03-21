@@ -29,6 +29,9 @@ class CustomerDataTable extends DataTable {
                             $count = $customer->demorequests()->count();
                             return $count ? "Requested" : "Not Requested";
                         })
+                        ->filterColumn('demo_request_status', function($query, $keyword) {
+                            $query->whereRaw("(CASE WHEN demorequests() = 0 THEN 'Not Requested' ELSE 'Requested' END) like ?", ["%{$keyword}%"]);
+                        })
                         ->addColumn('action', function ($query) {
                             $action = '<a href="' . url('admin/demorequest/' . $query->id) . '" class="btn btn-sm btn-default" type="button"><i class="la la-eye"></i> View </a>&nbsp;';
                             $action .= '<a href="' . url('admin/registerusers/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="la la-edit"></i> Edit</a>&nbsp;';
@@ -49,7 +52,7 @@ class CustomerDataTable extends DataTable {
      * @return Builder2
      */
     public function query(Customer $model) {
-        $Query = $model->newQuery();
+        $Query = $model->newQuery()->orderBy('updated_at', 'desc');
         $pid = @request()->pid;
         if (!Auth::user()->isAdmin || $pid) {
             $cid = ($pid) ?: Auth::user()->id;

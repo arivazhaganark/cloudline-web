@@ -12,27 +12,37 @@ class Customer extends Model {
     public $timestamps = true;
     public $incrementing = false;
     protected $table = 'customers';
+    protected $types = ['display_type'];
 
-    use Notifiable,SoftDeletes, Uuids;
+    use Notifiable,
+        SoftDeletes,
+        Uuids;
 
-    protected $fillable = ['id', 'name', 'company_name', 'email', 'phone', 'status','access_token','plan_name','plan_price','start_date','end_date','admin_comments'];
-    
+    protected $fillable = ['id', 'name', 'company_name', 'email', 'phone', 'status', 'access_token', 'plan_name', 'plan_price', 'start_date', 'end_date', 'admin_comments'];
 //    public static $statuses = ['0'=>'Un Verified','1'=>'Registered','2'=>'Customer'];
-    
-    public static $plan_names = ['Enterprise' => 'Enterprise', 'Wellness' => 'Wellness', 'Edu' => 'Edu','Starter'=>'Starter'];
-    
-    public function scopeRusers($query)
-    {
+
+    public static $plan_names = ['Enterprise' => 'Enterprise', 'Wellness' => 'Wellness', 'Edu' => 'Edu', 'Starter' => 'Starter'];
+
+    public function scopeRusers($query) {
         return $query->where('status', 1);
     }
-    
-    public function scopeCusers($query)
-    {
+
+    public function scopeCusers($query) {
         return $query->where('status', 2);
     }
-    
-    public function demorequests()
-    {
-        return $this->hasMany(DemoRequest::class,'customer_id','id');
+
+    public function demorequests() {
+        return $this->hasMany(DemoRequest::class, 'customer_id', 'id');
     }
+
+    public function display_type() {
+        if ($this->status == 0) {
+            return "NOT VERIFIED";
+        } elseif ($this->status == 1) {
+            return "Registered User";
+        } else {
+            return "Customer";
+        }
+    }
+
 }

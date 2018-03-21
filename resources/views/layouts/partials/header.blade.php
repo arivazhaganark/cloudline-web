@@ -20,6 +20,7 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a href="{{ url('partner/home') }}" class="dropdown-item"> Dashboard </a>
                                         <a href="{{ url('partner/profile') }}" class="dropdown-item"> Profile </a>
                                         <a href="{{ route('logout') }}" class="dropdown-item"
                                            onclick="event.preventDefault();
