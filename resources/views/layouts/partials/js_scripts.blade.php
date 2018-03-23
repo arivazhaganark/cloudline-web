@@ -49,6 +49,10 @@
     });
 
     $(document).ready(function () {
+        $('.formComplete').hide();
+    })
+
+    $(document).ready(function () {
         $("#first").change(function () {
             if ($(this).val() == "contact_us") {
                 $("#above_selected").val($(this).val());
@@ -73,6 +77,7 @@
             data: formData,
             processData: false,
             contentType: false,
+
             success: function (data) {
                 console.log(data);
                 if (data.errors) {
@@ -95,7 +100,12 @@
                 }
                 if (data.success) {
                     $("#register")[0].reset();
-                    $('#myModal').modal('hide');
+                    setTimeout(function () {
+                        $('.formComplete').show();
+                    }, 3000);
+                    setTimeout(function () {
+                        $('#myModal').modal('hide');
+                    }, 6000);
                 }
             },
         });

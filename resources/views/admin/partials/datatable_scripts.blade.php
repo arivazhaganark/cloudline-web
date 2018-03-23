@@ -32,6 +32,48 @@
                 });
             }
         });
+        
+        $('body').on('click', '#btn-ok', function () {
+            $this = $(this);
+            $.ajax({
+                method: 'POST',
+                url: '/admin/' + $this.data('model') + '/' + $this.data('id'),
+                beforeSend: function () {
+                    $this.button('loading')
+                },
+                complete: function () {
+                    $this.button('reset')                                        
+                },
+                success: function () {
+                    alert("The Partner is Successfully Approved!");
+                    $('#datatable-buttons').DataTable().draw(false);                    
+                },
+                error: function () {
+                    alert('Failed');
+                }
+            });
+        });
+        
+         $('body').on('click', '#btn-remove', function () {
+            $this = $(this);
+            $.ajax({
+                method: 'POST',
+                url: '/admin/' + $this.data('model') + '/' + $this.data('id'),
+                beforeSend: function () {
+                    $this.button('loading')
+                },
+                complete: function () {
+                    $this.button('reset')                                        
+                },
+                success: function () {
+                    alert("The Partner is Successfully Declined!");
+                    $('#datatable-buttons').DataTable().draw(false);
+                },
+                error: function () {
+                    alert('Failed');
+                }
+            });
+        });
     });
 </script>
 @endpush

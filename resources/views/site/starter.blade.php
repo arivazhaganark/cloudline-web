@@ -45,6 +45,7 @@
                                                     </a>
                                                     <div class="panel-collapse collapse" id="collapseExample">
                                                         <ul>
+                                                            <li>HD Video & Audio</li>
                                                             <li>Shedule Unlimited Meetings</li>
                                                             <li> Host Meetings </li>
                                                             <li>Manage Meetings</li> 
@@ -175,7 +176,7 @@
                                 </div>
 
                                 <div class="form-group {{ $errors->has('file_upload') ? ' has-error' : '' }}" id='fileupload'>
-                                    {{ Form::label('file_upload', 'File Upload*') }}
+                                    {{ Form::label('file_upload', 'Please attach supporting documents*') }}
                                     {{ Form::file('file_upload',['class'=>'form-control']) }}
                                     <span class="text-danger">
                                         <strong id="file_upload-error"></strong>
@@ -190,6 +191,7 @@
                                 <div class="form-group no-margin">
                                     {!! Form::submit('Submit', array('id'=>'submitForm','class'=>'btn btn-sec btn-block')) !!}
                                 </div>
+                                <div class="formComplete btn btn1">Thank you for contacting us! We will respond to you as soon as possible.</div>
                                 {!! Form::close() !!}
                             </div>
                         </div>
@@ -217,13 +219,13 @@
                 $('#specifyother').hide();
             }
         });
-        $('#fileupload').hide();
+        $('#fileupload,#submitForm').hide();
 
         $('#start_date,#capital').change(function () {
             if ($('#capital').val() == 'yes' && $('#start_date').val() == 'yes') {
-                $('#fileupload').show();
+                $('#fileupload,#submitForm').show();
             } else {
-                $('#fileupload').hide();
+                $('#fileupload,#submitForm').hide();
             }
         });
 

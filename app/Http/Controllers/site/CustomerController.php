@@ -69,7 +69,7 @@ class CustomerController extends Controller {
         $rules = [
             'name' => 'required',
             'company_name' => 'required',
-            'email' => "required|email",
+            'email' => "required|email|unique:customers",
             'phone' => 'required|numeric',
             'g-recaptcha-response' => 'required|captcha',
         ];
@@ -127,8 +127,11 @@ class CustomerController extends Controller {
         $customer = Customer::find($model->customer_id);
         $customer->access_token = null;
         $customer->save();
-
-        return redirect('/')->with('alert-success', 'Thanks for your Demo request!');
+        if ($customer->created_by == null) {
+            return redirect('/')->with('alert-success', 'Thanks for your Demo request!');
+        } else {
+            return redirect('partner/home')->with('alert-success', 'Thanks for your Demo request!');
+        }
     }
 
 }

@@ -30,12 +30,22 @@ class CustomerDataTable extends DataTable {
                             return $count ? "Requested" : "Not Requested";
                         })
                         ->filterColumn('demo_request_status', function($query, $keyword) {
-                            $query->whereRaw("(CASE WHEN demorequests() = 0 THEN 'Not Requested' ELSE 'Requested' END) like ?", ["%{$keyword}%"]);
+                            if (!empty($keyword)) {
+                                $condition = '';
+                                if ($keyword == "Requested") {
+                                    $condition = '>';
+                                } elseif ($keyword == "Not Requested") {
+                                    $condition = "=";
+                                }
+                                if ($condition) {
+                                    $query->has("demorequests", $condition, 0)->count();
+                                }
+                            }
                         })
                         ->addColumn('action', function ($query) {
-                            $action = '<a href="' . url('admin/demorequest/' . $query->id) . '" class="btn btn-sm btn-default" type="button"><i class="la la-eye"></i> View </a>&nbsp;';
-                            $action .= '<a href="' . url('admin/registerusers/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="la la-edit"></i> Edit</a>&nbsp;';
-                            $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="registerusers" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="la la-trash"></i> Delete</a>';
+                            $action = '<a href="' . url('admin/demorequest/' . $query->id) . '" class="btn btn-sm btn-default" type="button"><i class="	glyphicon glyphicon-eye-open"></i></a>&nbsp;';
+                            $action .= '<a href="' . url('admin/registerusers/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;';
+                            $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="registerusers" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="glyphicon glyphicon-trash"></i></a>';
                             return $action;
                         })
                         ->addColumn('upgrade_to_customer', function ($customer) {
@@ -81,22 +91,38 @@ class CustomerDataTable extends DataTable {
                     ->addAction(['width' => '250px'])
                     ->parameters([
                 'dom' => 'Bfrtip',
-                'buttons' => ['create'],
+                'buttons' => [['extend' => 'create', 'className' => 'btn btn-success', 'text' => 'Create User', 'init' => 'function(api, node, config) {
+       $(node).removeClass("dt-button buttons-create btn-default")
+    }']],
                 'select' => true,
-                'initComplete' => 'function () {
-        var r = $("#datatable-buttons tfoot tr");
-        $("#datatable-buttons thead") . append(r);
-        this.api().columns([0,1,2,3,4]).every(function () {
-        var column = this;        
-        var input = document . createElement("input");
-        $(input).addClass("form-control input-lg col-xs-12");
-        $(input).appendTo($(column.footer()).empty())
-        .on("change", function () {
+                'initComplete' => "function () {
+                        var r = $('#datatable-buttons tfoot tr');
+                        $('#datatable-buttons thead') . append(r);
 
-            column.search($(this).val(), false, false, true).draw();
-        });
-        });
-        }'
+                        this.api().columns([0,1,2,3]).every(function () {
+                            var column = this;        
+                            var input = document . createElement('input');
+                            $(input).addClass('form-control input-lg col-xs-12');
+                            $(input).appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                            column.search($(this).val(), false, false, true).draw();
+                            });
+                        });
+                        this.api().columns(4).every(function () {
+                            var column = this;                        
+                            var select =  $('<select><option value=\"\"></option></select>')
+                            $(select).addClass('form-control input-lg col-xs-12')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                               column
+                                    .search( $(this).val(), false, false )
+                                    .draw();
+                            });
+                             column.data().unique().sort().each( function ( d, j ) {
+                                select.append( '<option value=\"'+d+'\">'+d+'</option>' )
+                             });
+                        });
+                }"
             ]);
         } else {
             $table = $this->builder()
@@ -107,20 +133,34 @@ class CustomerDataTable extends DataTable {
 //                'dom' => 'Bfrtip',
 //                'buttons' => ['export'],
                 'select' => true,
-                'initComplete' => 'function () {
-        var r = $("#datatable-buttons tfoot tr");
-        $("#datatable-buttons thead") . append(r);
-        this.api().columns([0,1,2,3,4]).every(function () {
-        var column = this;        
-        var input = document . createElement("input");
-        $(input).addClass("form-control input-lg col-xs-12");
-        $(input).appendTo($(column.footer()).empty())
-        .on("change", function () {
+                'initComplete' => "function () {
+                        var r = $('#datatable-buttons tfoot tr');
+                        $('#datatable-buttons thead') . append(r);
 
-            column.search($(this).val(), false, false, true).draw();
-        });
-        });
-        }'
+                        this.api().columns([0,1,2,3]).every(function () {
+                            var column = this;        
+                            var input = document . createElement('input');
+                            $(input).addClass('form-control input-lg col-xs-12');
+                            $(input).appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                            column.search($(this).val(), false, false, true).draw();
+                            });
+                        });
+                        this.api().columns(4).every(function () {
+                            var column = this;                        
+                            var select =  $('<select><option value=\"\"></option></select>')
+                            $(select).addClass('form-control input-lg col-xs-12')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                               column
+                                    .search( $(this).val(), false, false )
+                                    .draw();
+                            });
+                             column.data().unique().sort().each( function ( d, j ) {
+                                select.append( '<option value=\"'+d+'\">'+d+'</option>' )
+                             });
+                        });
+                }"
             ]);
         }
         return $table;

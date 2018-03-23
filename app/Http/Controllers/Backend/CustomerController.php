@@ -125,7 +125,7 @@ class CustomerController extends Controller {
         $rules = [
             'name' => 'required',
             'company_name' => 'required',
-            'email' => "required|email",
+            'email' => "required|email|unique:customers",
             'phone' => 'required|numeric',
         ];
         $this->validate($request, $rules);

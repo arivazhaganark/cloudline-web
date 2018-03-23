@@ -29,9 +29,27 @@ class PartnerDataTable extends DataTable {
                             $count = $partner->customers()->cusers()->count();
                             return "<a href='" . url('admin/customers/') . "?pid={$partner->user_id}' class='label label-primary'>{$count}</a>";
                         })
+                        ->addColumn('status', function ($status) {
+                            if ($status->confirmation_code == null && $status->status == null) {
+                                $action = '<button class="btn btn-sm btn-success" id="btn-ok" type="button" data-id="' . $status->id . '" data-model="partners"><i class="glyphicon glyphicon-ok"></i></button>&nbsp;';
+                                $action .= '<button class="btn btn-sm btn-danger" id="btn-remove" type="button"  data-id="' . $status->id . '" data-model="partner"><i class="glyphicon glyphicon-remove"></i></button>&nbsp;';
+                                return $action;
+                            } elseif ($status->confirmation_code == null && $status->status == 1) {
+                                $action = "<span class='label label-default'>Approved</span>&nbsp;";
+                                $action .= '<button class="label label-danger" id="btn-remove" type="button"  data-id="' . $status->id . '" data-model="partner">Declined</button>&nbsp;';
+                                return $action;
+                            } elseif ($status->confirmation_code == null && $status->status == 2) {
+                                $action = "<span class='label label-default'>Declined</span>&nbsp;";
+                                $action .= '<button class="label label-success" id="btn-ok" type="button" data-id="' . $status->id . '" data-model="partners">Approved</button>&nbsp;';
+                                return $action;
+                            } else {
+                                return '<span class="label label-default">NOT VERIFIED</span>';
+                            }
+                        })
                         ->addColumn('action', function ($query) {
-                            $action = '<a href="' . url('admin/partners/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="la la-edit"></i> Edit</a>&nbsp;';
-                            $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="partners" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="la la-trash"></i> Delete</a>';
+                            $action = '<a href="' . url('admin/partners/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;';
+                            $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="partners" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="glyphicon glyphicon-trash"></i></a>';
+
                             return $action;
                         })
                         ->editColumn('partner_type', function ($type) {
@@ -46,7 +64,7 @@ class PartnerDataTable extends DataTable {
                         ->filterColumn('partner_type', function($query, $keyword) {
                             $query->whereRaw("(CASE WHEN partner_type = 'G' THEN 'Gold' WHEN partner_type = 'S' THEN 'Silver' ELSE 'Express' END) like ?", ["%{$keyword}%"]);
                         })
-                        ->rawColumns(['register_users', 'customers', 'action']);
+                        ->rawColumns(['register_users', 'customers', 'status', 'action']);
     }
 
     /**
@@ -78,13 +96,15 @@ class PartnerDataTable extends DataTable {
                         ->minifiedAjax()
                         ->addAction(['width' => '250px'])
                         ->parameters([
-                            'dom' => 'Bfrtip',
-                            'buttons' => ['create'],
+//                            'dom' => 'Bfrtip',
+//                            'buttons' => [['extend' => 'create', 'className' => 'btn btn-success', 'text' => 'Create Partner', 'init' => 'function(api, node, config) {
+//       $(node).removeClass("dt-button buttons-create btn-default")
+//    }']],
                             'select' => true,
                             'initComplete' => 'function () {
         var r = $("#datatable-buttons tfoot tr");
         $("#datatable-buttons thead") . append(r);
-        this.api().columns([0,1,2,3,6]).every(function () {
+        this.api().columns([0,1,2,3]).every(function () {
         var column = this;        
         var input = document . createElement("input");
         $(input).addClass("form-control input-lg col-xs-12");
@@ -93,7 +113,7 @@ class PartnerDataTable extends DataTable {
 
             column.search($(this).val(), false, false, true).draw();
         });
-        });
+        });                
         }'
         ]);
     }
@@ -111,7 +131,7 @@ class PartnerDataTable extends DataTable {
             'email' => ['name' => 'user.email'],
             'register_users',
             'customers',
-            'phone',
+            'status' => ['title' => 'Approve/Decline'],
         ];
     }
 

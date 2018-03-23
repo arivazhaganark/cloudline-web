@@ -160,16 +160,20 @@
                             <hr>
 
                             {{ Form::model($Customer,["url" => ["admin/demorequest",$Customer->id], 'class' => 'form-horizontal']) }}                                                        
-
+                            <i class="glyphicon glyphicon-edit" style="float: right" id="editicon"></i> <br />
                             <div class="form-group">
                                 {{ Form::label('admin_comments','Admin Comment',['class'=>'col-sm-2 control-label']) }}
                                 <div class="col-sm-10">
-                                    {{ Form::textarea('admin_comments', old('admin_comments'), array('class'=>'form-control','placeholder' => 'Add your comment', 'rows' => '3')) }}
+                                    @if(isset($Customer->admin_comments))
+                                    {{ Form::textarea('admin_comments', old('admin_comments'), array('class'=>'form-control','placeholder' => 'Add your comment', 'rows' => '3','readonly' => true)) }}
+                                    @else
+                                    {{ Form::textarea('admin_comments', null, array('class'=>'form-control','placeholder' => 'Add your comment', 'rows' => '3')) }}
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-offset-2 col-xs-6">
-                                    {!! Form::submit('Post Comment', array('class'=>'btn btn-primary','id'=>'button')) !!}
+                                    {!! Form::submit('Submit', array('class'=>'btn btn-primary','id'=>'button')) !!}
                                 </div>
                             </div>
                             {!! Form::close() !!} 
@@ -186,9 +190,14 @@
 @push('scripts')
 <script>
     $(document).ready(function () {
+        $('#editicon').hide();
         if (!($('#admin_comments').val() == '')) {
-            $("#admin_comments").click(function () {
-                $('#button').val('Edit Comment');
+            $('#button').hide();
+            $('#editicon').show();
+            $("#editicon").click(function () {
+                $('#admin_comments').removeAttr('readonly');
+                $('#admin_comments').focus();
+                $('#button').show().val('Submit');
             })
         }
 

@@ -55,6 +55,7 @@
                                                     </a>
                                                     <div class="panel-collapse collapse" id="collapseExample">
                                                         <ul>
+                                                            <li>HD Video & Audio</li>
                                                             <li>Shedule Unlimited Consultation</li>
                                                             <li> Host Consultation </li>
                                                             <li>Manage Consultation</li> 
@@ -156,15 +157,15 @@
                                             </tr>
                                             <tr>
                                                 <td class="option">CME Program</td>
-                                                <td>Contact us</td>
+                                                <td><a href="{{ url('contactus') }}">Contact us</a></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Surgery Broadcasting</td>
-                                                <td>Contact us</td>
+                                                <td><a href="{{ url('contactus') }}">Contact us</a></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Virtual ICU (Doctor to Patient, Patient to Relatives)</td>
-                                                <td>Contact us</td>
+                                                <td><a href="{{ url('contactus') }}">Contact us</a></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Duration</td>
@@ -191,7 +192,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p> <a href="#" class="btn btn1 buynow-btn">Buy Now </a> </p>
+                            <p> <a href="{{ url('contactus') }}" class="btn btn1 buynow-btn">Buy Now </a> </p>
                             <p> <a href="{{ url('medical_device_accessories') }}" class="btn  btn1  buy-acc">Buy Medical Device Accessories </a> </p>
                         </div>
                     </div>

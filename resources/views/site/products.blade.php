@@ -104,6 +104,45 @@
     </section>
 
 
+    <section class="pro-section2"> 
+
+
+        <div class="container"> 
+
+
+            <div class="row"> 
+
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   <h4> Cloudline - On-Premise Solution <br/>  <span>     Create Your Own Video Conferencing Network On Your Premise     </span></h4>  </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 products-txt1"> 
+                    This dedicated software ideally helps set up superb video conferencing system on your own server, innovative, powerful and secure. It meets your conference needs of all kinds, and seamlessly brings you excellent HD video conferencing experience to host online events, like video meeting, webinar, training, and more. Video Conferencing server will locate on your premise and can be controlled by your own IT professional. This will give more flexibility to have best and true HD video conferencing  experience on your own Network. Our solution additionally comes up with optional your own Branding. 
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
+                    <p> <img src="{{ asset('images/on_prem1.png') }}"  alt="" class="on_prem_img"> </p>
+                    <p> <span>Easy Deployment </span> </p>
+                </div>
+                
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
+                    <p> <img src="{{ asset('images/on_prem2.png') }}"  alt="" class="on_prem_img"> </p>
+                    <p> <span>Under Your Control </span> </p>
+                </div>
+                
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
+                    <p> <img src="{{ asset('images/on_prem3.png') }}"  alt="" class="on_prem_img"> </p>
+                    <p> <span>Superb Stability</span> </p>
+                </div>
+                
+                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
+                    <p> <img src="{{ asset('images/on_prem4.png') }}"  alt="" class="on_prem_img"> </p>
+                    <p> <span> Secured & Reliable </span> </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 
     <section class="price-plans-cont pro-section3"> 
 

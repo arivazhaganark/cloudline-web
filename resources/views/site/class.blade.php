@@ -56,6 +56,7 @@
                                                     </a>
                                                     <div class="panel-collapse collapse" id="collapseExample">
                                                         <ul>
+                                                            <li>HD Video & Audio</li>
                                                             <li>Shedule Unlimited  Lectures</li>
                                                             <li> Host Lectures </li>
                                                             <li>Manage Lectures</li> 
@@ -202,7 +203,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <p> <a href="#" class="btn btn1 buynow-btn">Buy Now </a> </p>
+                            <p> <a href="{{ url('contactus') }}" class="btn btn1 buynow-btn">Buy Now </a> </p>
                             <p> <a href="{{ url('virtual_class_room_accessories') }}" class="btn  btn1  buy-acc">Buy Virtual Class Room Accessories </a> </p>
                         </div>
                     </div>

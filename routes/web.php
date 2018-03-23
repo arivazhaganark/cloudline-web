@@ -37,9 +37,12 @@ Route::middleware(['web'])->namespace('Backend')->prefix('admin')->group(functio
         Route::match(['get', 'post'], 'demorequest/{id}', 'CustomerController@view');
         Route::get('upgrade_customer/{id}', 'CustomerController@upgradecustomer');
         Route::put('upgrade_customer/{id}', 'CustomerController@upgradecustomerstore');
+        Route::post('partners/{id}','PartnerController@approve');
+        Route::post('partner/{id}','PartnerController@decline');
         Route::resource('contactus', 'ContactUsController');
         Route::resource('customers', 'CustomerController');
         Route::resource('partners', 'PartnerController');
+        Route::resource('cms', 'CmsController');
     });
 });
 

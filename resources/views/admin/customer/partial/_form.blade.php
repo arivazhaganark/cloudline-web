@@ -15,7 +15,11 @@
 <div class="form-group">
     {{ Form::label('email','Email*',['class'=>'col-sm-2 control-label']) }}
     <div class="col-sm-10">
-        {!! Form::text('email', old('email'),['class'=>'form-control']) !!}
+        @if(isset($Model->id))
+        {!! Form::text('email', old('email'),['class'=>'form-control','readonly'=>true]) !!}
+        @else
+        {!! Form::text('email', null,['class'=>'form-control']) !!}
+        @endif
     </div>
 </div>
 

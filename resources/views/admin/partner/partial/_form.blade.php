@@ -2,7 +2,7 @@
     {!! Form::label('partner_type','Partner Type*',['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         @foreach ($types as $id=>$partner_type)
-            <label>{!! Form::radio('partner_type', $id, (old('partner_type')==$id) ); !!} {{$partner_type}} </label>
+        <label>{!! Form::radio('partner_type', $id, (old('partner_type')==$id) ); !!} {{$partner_type}} </label>
         @endforeach
     </div>
 </div>
@@ -24,7 +24,11 @@
 <div class="form-group">
     {{ Form::label('email','Email*',['class'=>'col-sm-2 control-label']) }}
     <div class="col-sm-10">
-        {!! Form::text('email', @$User->email,['class'=>'form-control']) !!}
+        @if(isset($User))
+        {!! Form::text('email', @$User->email,['class'=>'form-control', 'readonly' => true]) !!}
+        @else
+        {!! Form::text('email',null,['class'=>'form-control']) !!}
+        @endif
     </div>
 </div>
 
@@ -98,7 +102,7 @@
     {!! Form::label('current_focus','Current Focus Segment*',['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         @foreach ($focus as $id=>$current_focus)
-            <label>{!! Form::checkbox('current_focus[]', $id, in_array($id, @$Model->current_focus?:[])); !!} {{$current_focus}}</label>
+        <label>{!! Form::checkbox('current_focus[]', $id, in_array($id, @$Model->current_focus?:[])); !!} {{$current_focus}}</label>
         @endforeach
     </div>
 </div>

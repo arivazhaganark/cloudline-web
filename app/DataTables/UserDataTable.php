@@ -66,7 +66,7 @@ class UserDataTable extends DataTable {
                 ->parameters([
             'dom' => 'Bfrtip',
             'buttons' => [
-                    ['extend' => 'create', 'className' => 'btn btn-sm btn-success', 'text' => 'Create User', 'init' => 'function(api, node, config) {
+                    ['extend' => 'create', 'className' => 'btn btn-success', 'text' => 'Create User', 'init' => 'function(api, node, config) {
        $(node).removeClass("dt-button buttons-create btn-default")
     }']
             ],

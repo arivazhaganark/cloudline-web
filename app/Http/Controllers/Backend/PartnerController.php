@@ -140,4 +140,36 @@ class PartnerController extends Controller {
         $this->validate($request, $rules);
     }
 
+    public function approve($id) {
+        $model = Partner::find($id);
+        $model->status = 1;                 
+        $model->save();
+        
+        $status = $model['status'];
+        $name = $model->user->name;
+        
+        \Mail::send('admin.partner.mail', ['status' => $status,'name'=>$name], function($message) use($model) {
+            $message->to($model->user->email)
+                    ->subject('Cloudline');
+        });
+        
+        return redirect('admin/partners')->with('alert-success','Partner is Successfully Approved!');
+    }
+    
+    public function decline($id) {
+        $model = Partner::find($id);
+        $model->status = 2;        
+        $model->save();
+        
+        $status = $model['status'];
+        $name = $model->user->name;
+        
+        \Mail::send('admin.partner.mail', ['status' => $status,'name'=>$name], function($message) use($model) {
+            $message->to($model->user->email)
+                    ->subject('Cloudline');
+        });
+        
+        return redirect('admin/partners')->with('alert-success','Partner is Successfully Declined!');
+    }
+
 }

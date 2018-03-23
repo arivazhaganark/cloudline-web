@@ -20,7 +20,11 @@
 
 <div class="form-group">
     {{ Form::label('email','Email*') }}
-    {!! Form::text('email', old('email'),['class'=>'form-control']) !!}
+    @if(isset($Model->id))
+    {!! Form::text('email', old('email'),['class'=>'form-control','readonly'=>true]) !!}
+    @else
+    {!! Form::text('email', null,['class'=>'form-control']) !!}
+    @endif
     @if ($errors->has('email'))
     <span class="text-danger">
         <strong>{{ $errors->first('email') }}</strong>
