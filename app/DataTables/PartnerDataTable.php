@@ -35,12 +35,12 @@ class PartnerDataTable extends DataTable {
                                 $action .= '<button class="btn btn-sm btn-danger" id="btn-remove" type="button"  data-id="' . $status->id . '" data-model="partner"><i class="glyphicon glyphicon-remove"></i></button>&nbsp;';
                                 return $action;
                             } elseif ($status->confirmation_code == null && $status->status == 1) {
-                                $action = "<span class='label label-default'>Approved</span>&nbsp;";
-                                $action .= '<button class="label label-danger" id="btn-remove" type="button"  data-id="' . $status->id . '" data-model="partner">Declined</button>&nbsp;';
+                                $action = "<span class='text-success'>Approved</span>&nbsp;";
+                                $action .= '<button class="label label-danger" id="btn-remove" type="button"  data-id="' . $status->id . '" data-model="partner">Decline</button>&nbsp;';
                                 return $action;
                             } elseif ($status->confirmation_code == null && $status->status == 2) {
-                                $action = "<span class='label label-default'>Declined</span>&nbsp;";
-                                $action .= '<button class="label label-success" id="btn-ok" type="button" data-id="' . $status->id . '" data-model="partners">Approved</button>&nbsp;';
+                                $action = "<span class='text-danger'>Declined</span>&nbsp;";
+                                $action .= '<button class="label label-success" id="btn-ok" type="button" data-id="' . $status->id . '" data-model="partners">Approve</button>&nbsp;';
                                 return $action;
                             } else {
                                 return '<span class="label label-default">NOT VERIFIED</span>';
