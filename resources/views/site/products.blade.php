@@ -11,7 +11,7 @@
     </div>
 </section>
 <div class="innerpage-cont">
-    <section class="home-part1 partners-page-cont my-login-page">
+<!--    <section class="home-part1 partners-page-cont my-login-page">
         <div class="container">
             <div class="row">
 
@@ -101,7 +101,7 @@
 
 
 
-    </section>
+    </section>-->
 
 
     <section class="pro-section2"> 
@@ -140,9 +140,9 @@
                 </div>
 
             </div>
-        </div>
+        </div> <br/> 
+        <div align="center"><a href="{{ url('contactus') }}" class="btn btn1 btn2">Contact Us</a></div>
     </section>
-
 
     <section class="price-plans-cont pro-section3"> 
 

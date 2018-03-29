@@ -111,14 +111,14 @@
                                             <tr>
                                                 <td class="option">Live Webcasting to third party <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Your Meeting can be streamed to third parties like Youtube, Dcast, Ncast & Etc.,">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td><i class="fa fa-check"></i></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">No of Simultaneous Meeting room  <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Total number of Concurrent Meetings can be happened on your account">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select  name="select" id="select">
                                                         <option>1</option>
@@ -136,7 +136,7 @@ Total number of Concurrent Meetings can be happened on your account">
                                             <tr>
                                                 <td class="option">Total no of max participants  <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Total number of Maximum participants allocated to your account">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select" id="select">
                                                         <option>1</option>
@@ -154,7 +154,7 @@ Total number of Maximum participants allocated to your account">
                                             <tr>
                                                 <td class="option">Board room devices  <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Incorporate Legacy Video Conferencing Hardware Devices like Polycom, Avaya, Lifesize, Aver & Etc., in the meeting room.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td><select name="select2" id="select2">
                                                         <option>0</option>
@@ -168,7 +168,7 @@ Incorporate Legacy Video Conferencing Hardware Devices like Polycom, Avaya, Life
                                             <tr>
                                                 <td class="option">Recording / Storage (In hours)  <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Meeting can be recorded and stored on cloud. Can be accessed and download on demand.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select2" id="select2">
                                                         <option>10</option>
@@ -181,7 +181,7 @@ Meeting can be recorded and stored on cloud. Can be accessed and download on dem
                                             <tr>
                                                 <td class="option">Cloudline Broadcasting (In hours)  <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Built-in cloudline broadcasting for better Video & Audio quality for better experience.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select2" id="select2">
                                                         <option>0</option>
@@ -195,7 +195,7 @@ Built-in cloudline broadcasting for better Video & Audio quality for better expe
                                             <tr>
                                                 <td class="option">Branding  <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 You can have your own domain and brand name instead of our domain and brand.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select3" id="select3">
                                                         <option>No</option>
@@ -205,7 +205,7 @@ You can have your own domain and brand name instead of our domain and brand.">
                                             <tr>
                                                 <td class="option">Skype For Business <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Incorporate Skype for business users in the meeting room.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td><select name="select4" id="select4">
                                                         <option>No</option>
@@ -215,7 +215,7 @@ Incorporate Skype for business users in the meeting room.">
                                             <tr>
                                                 <td class="option">Webinar  <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 A seminar conducted over the meeting room.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><a href="{{ url('contactus') }}">Contact us</a></td>
                                             </tr>

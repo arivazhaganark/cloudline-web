@@ -108,7 +108,7 @@
                                             <tr>
                                                 <td class="option">Webinar <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 A Seminar over Cloudline Video conferencing.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><i class="fa fa-check"></i></td>
                                             </tr>
@@ -119,7 +119,7 @@ A Seminar over Cloudline Video conferencing.">
                                             <tr>
                                                 <td class="option">No of Simultaneous online class room <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Total number of Concurrent Online Classes can be happened on your account.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select" id="select">
                                                         <option>1</option>
@@ -137,7 +137,7 @@ Total number of Concurrent Online Classes can be happened on your account.">
                                             <tr>
                                                 <td class="option">No of Maximum students <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Total number of Maximum Online Students are allocated on your account.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select2" id="select2">
                                                         <option>5</option>
@@ -151,7 +151,7 @@ Total number of Maximum Online Students are allocated on your account.">
                                             <tr>
                                                 <td class="option">Virtual class room devices <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Incorporate Legacy Video Conferencing Hardware Devices like Polycom, Avaya, Lifesize, Aver & Etc., in the online class room.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select3" id="select3">
                                                         <option>1</option>
@@ -164,7 +164,7 @@ Incorporate Legacy Video Conferencing Hardware Devices like Polycom, Avaya, Life
                                             <tr>
                                                 <td class="option">Lecture Recording / Storage (In hours) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Online classes can be recorded and stored on cloud. It can be accessed and download on demand.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select6" id="select6">
                                                         <option>0</option>
@@ -178,7 +178,7 @@ Online classes can be recorded and stored on cloud. It can be accessed and downl
                                             <tr>
                                                 <td class="option">Live Webcasting / Cloudline Broadcasting (In Hours) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Online class room can be streamed to third parties like Youtube, Dcast, Ncast & Etc., Built-in cloudline broadcasting for better Video & Audio quality for better experience.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select7" id="select7">
                                                         <option>0</option>
@@ -192,7 +192,7 @@ Online class room can be streamed to third parties like Youtube, Dcast, Ncast & 
                                             <tr>
                                                 <td class="option">Your Own Brand <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Online classes an webinars can be happened on your own domain and brand instead of our domain.">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
                                                 <td><select name="select4" id="select4">
                                                         <option>No</option>

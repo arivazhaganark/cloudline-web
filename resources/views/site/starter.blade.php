@@ -98,14 +98,14 @@
                                             <tr>
                                                 <td class="option">No of Simultaneous Meeting room <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Total number of Concurrent Meetings can be happened on your account">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>                                                
                                                 <td>1</i></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Total no of max participants <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
 Total number of Maximum participants allocated to your account">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td>5</i></td>
                                             </tr>
