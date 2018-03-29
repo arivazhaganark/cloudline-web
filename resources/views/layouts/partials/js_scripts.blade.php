@@ -22,7 +22,7 @@
             $("header").removeClass("shrink");
         }
 
-        $("data-toggle=tooltip").tooltip();
+        $("data-toggle='tooltip'").tooltip();
 
     });
     $('.panel-collapse').on('show.bs.collapse', function () {
