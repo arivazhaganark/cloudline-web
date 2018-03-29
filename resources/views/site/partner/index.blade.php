@@ -60,6 +60,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group no-margin">
+                                        <input type="hidden" name="status" />
+                                        @if ($errors->has('status'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('status') }}</strong>
+                                        </span>
+                                        @endif
                                         <button type="submit" class="btn btn-primary btn-block"> Login </button>
                                     </div>
                                     <div class="margin-top20 text-center"> Don't have an account? <a href="{{ url('partner/create') }}">Create One!</a> </div>

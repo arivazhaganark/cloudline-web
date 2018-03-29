@@ -16,7 +16,7 @@ class ContactUsDataTable extends DataTable {
     public function dataTable($query) {
         return datatables($query)
                         ->addColumn('action', function ($query) {
-                            $action = '<a href="' . url('admin/contactus/' . $query->id) . '" class="btn btn-sm btn-warning" type="button"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;';
+                            $action = '<a href="' . url('admin/contactus/' . $query->id) . '" class="btn btn-sm btn-default" type="button"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;';
                             $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="contactus" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="glyphicon glyphicon-trash"></i></a>';
                             return $action;
                         });

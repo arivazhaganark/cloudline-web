@@ -41,7 +41,7 @@ class CustomerController extends Controller {
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Register Users', 'registerusers');
         $data['breadcrumbs']->addCrumb('Create Register Users', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
 //        $this->_append_form_variables($data);
 
         return view('admin.customer.ruser', $data);
@@ -72,7 +72,7 @@ class CustomerController extends Controller {
         $data['breadcrumbs']->setListElement('breadcrumb-item');
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Register Users', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
         $dataTable->rUsersOnly = true;
         return $dataTable->render('admin.customer.rindex', $data);
     }
@@ -88,7 +88,7 @@ class CustomerController extends Controller {
             $data['breadcrumbs']->addCrumb('Customers', 'customers');
         }
         $data['breadcrumbs']->addCrumb('Edit Register User', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
 
 //        $this->_append_form_variables($data);
         return view('admin.customer.redit', $data);
@@ -117,7 +117,7 @@ class CustomerController extends Controller {
         $data['breadcrumbs']->setListElement('breadcrumb-item');
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Customers', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
         return $dataTable->render('admin.customer.index', $data);
     }
 
@@ -170,7 +170,7 @@ class CustomerController extends Controller {
             $data['breadcrumbs']->addCrumb('Customers', 'customers');
         }
         $data['breadcrumbs']->addCrumb('View', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
         return view('admin.customer.view', $data);
     }
 
@@ -182,7 +182,7 @@ class CustomerController extends Controller {
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Register Users', 'registerusers');
         $data['breadcrumbs']->addCrumb('Upgrade To Customer', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
         return view('admin.customer.upgradecustomer', $data);
     }
 

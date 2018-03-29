@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use function redirect;
@@ -34,6 +35,30 @@ use AuthenticatesUsers;
         }
     }
 
+    public function authenticate(Request $request) {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'status' => [function ($attribute, $value, $fail) use($request) {
+                    $user = User::whereEmail($request->email)->first();
+                    if ($user) {
+                        if (@$user->partner->status == 2) {
+                            return $fail('Your account was declined.Contact administrator');
+                        }
+                    }
+                }]
+        ]);
+
+        $email = $request->email;
+        $password = $request->password;
+        if (\Auth::attempt(['email' => $email, 'password' => $password]) && !\Auth::user()->is_admin) {
+            // Authentication passed...
+            return redirect()->intended('partner/home');
+        } else {
+            return redirect()->intended('admin');
+        }
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -42,9 +67,8 @@ use AuthenticatesUsers;
     public function __construct() {
         $this->middleware('guest')->except('logout');
     }
-    
-    public function logout(Request $request)
-    {
+
+    public function logout(Request $request) {
         $this->guard()->logout();
 
         $request->session()->invalidate();

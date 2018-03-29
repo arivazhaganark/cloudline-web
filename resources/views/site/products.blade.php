@@ -120,22 +120,22 @@
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
-                    <p> <img src="{{ asset('images/on_prem1.png') }}"  alt="" class="on_prem_img"> </p>
+                    <p> <img src="images/on_prem1.png"  alt="" class="on_prem_img"> </p>
                     <p> <span>Easy Deployment </span> </p>
                 </div>
                 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
-                    <p> <img src="{{ asset('images/on_prem2.png') }}"  alt="" class="on_prem_img"> </p>
+                    <p> <img src="images/on_prem2.png"  alt="" class="on_prem_img"> </p>
                     <p> <span>Under Your Control </span> </p>
                 </div>
                 
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
-                    <p> <img src="{{ asset('images/on_prem3.png') }}"  alt="" class="on_prem_img"> </p>
+                    <p> <img src="images/on_prem3.png"  alt="" class="on_prem_img"> </p>
                     <p> <span>Superb Stability</span> </p>
                 </div>
                 
                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 feature1">
-                    <p> <img src="{{ asset('images/on_prem4.png') }}"  alt="" class="on_prem_img"> </p>
+                    <p> <img src="images/on_prem4.png"  alt="" class="on_prem_img"> </p>
                     <p> <span> Secured & Reliable </span> </p>
                 </div>
 

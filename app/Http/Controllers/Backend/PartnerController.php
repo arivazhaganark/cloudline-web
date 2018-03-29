@@ -27,7 +27,7 @@ class PartnerController extends Controller {
         $data['breadcrumbs']->setListElement('breadcrumb-item');
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Partners', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
         return $dataTable->render('admin.partner.index', $data);
     }
 
@@ -44,7 +44,7 @@ class PartnerController extends Controller {
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Partners', 'partners');
         $data['breadcrumbs']->addCrumb('Create Partner', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
 
         return view('admin.partner.create', $data);
     }
@@ -93,7 +93,7 @@ class PartnerController extends Controller {
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Partners', 'partners');
         $data['breadcrumbs']->addCrumb('Edit Partner', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
 
         $this->_append_form_variables($data);
         return view('admin.partner.edit', $data);
@@ -150,7 +150,7 @@ class PartnerController extends Controller {
         
         \Mail::send('admin.partner.mail', ['status' => $status,'name'=>$name], function($message) use($model) {
             $message->to($model->user->email)
-                    ->subject('Cloudline');
+                    ->subject('Cloudline Partner Registration');
         });
         
         return redirect('admin/partners')->with('alert-success','Partner is Successfully Approved!');
@@ -166,7 +166,7 @@ class PartnerController extends Controller {
         
         \Mail::send('admin.partner.mail', ['status' => $status,'name'=>$name], function($message) use($model) {
             $message->to($model->user->email)
-                    ->subject('Cloudline');
+                    ->subject('Cloudline Partner Registration');
         });
         
         return redirect('admin/partners')->with('alert-success','Partner is Successfully Declined!');

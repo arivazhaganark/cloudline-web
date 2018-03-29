@@ -43,12 +43,13 @@ Route::middleware(['web'])->namespace('Backend')->prefix('admin')->group(functio
         Route::resource('customers', 'CustomerController');
         Route::resource('partners', 'PartnerController');
         Route::resource('cms', 'CmsController');
+        Route::resource('demorequests', 'DemoRequestController');
     });
 });
 
 Route::namespace('site')->group(function () {
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-    Route::post('login', 'Auth\LoginController@login');
+    Route::post('login', 'Auth\LoginController@authenticate');
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -67,12 +68,16 @@ Route::namespace('site')->group(function () {
     Route::get('starter', 'SiteController@starter');
     Route::post('starter/store', 'SiteController@starterstore');
     Route::get('partner/home','PartnerController@home');
+    Route::get('partner/home/{token}','PartnerController@home');
     Route::get('partner/home/create','PartnerController@ruser');
     Route::post('partner/home/store','PartnerController@rstore');
     Route::get('partner/registerusers/{id}','PartnerController@view');
     Route::get('partner/registerusers/{id}/edit','PartnerController@redit');
     Route::put('partner/registerusers/{id}', 'PartnerController@rupdate');
     Route::delete('partner/registerusers/{id}', 'PartnerController@rdestroy');
+    Route::get('partner/reseller','ResellerController@index');
+    Route::get('partner/reseller/create','ResellerController@create');
+    Route::post('partner/reseller/store','ResellerController@store');
     Route::match(['get', 'post'], 'partner/profile', 'PartnerController@myprofile')->name('profile');
     Route::resource('partner', 'PartnerController');
     Route::get('{page}', 'SiteController@page');

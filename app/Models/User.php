@@ -35,8 +35,8 @@ class User extends Authenticatable {
     ];
     public $roles = ['A' => 'Admin', 'P' => 'Partner'];
 
-    public function partners() {
-        return $this->hasMany(Partner::class);
+    public function partner() {
+        return $this->hasOne(Partner::class);
     }
 
     public function getIsAdminAttribute() {
@@ -45,6 +45,10 @@ class User extends Authenticatable {
 
     public function sendPasswordResetNotification($token) {
         $this->notify(new MailResetPasswordToken($token));
+    }
+
+    public function reseller() {
+        return $this->hasMany(Reseller::class);
     }
 
 }

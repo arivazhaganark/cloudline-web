@@ -19,7 +19,7 @@
                     <p> <img src="{{ asset('images/footer-icon3.png') }}"  alt=""></p>
                     <p><span> Address</span></p>
                     <p>8B, Abdul Gaffer Khan Road, Chinna Chokkikulam, Madurai – 625002. India</p>
-                    <p> <a href="#" class="btn btn1 btn2"> Get Directions </a></p>
+                    <p> <a href="{{ url('contactus') }}" class="btn btn1 btn2"> Get Directions </a></p>
                 </div>
             </div>
         </div>
@@ -71,6 +71,6 @@
         </div>
     </div>
     <div class="footer-row3">
-        <div class="container"> Copyright © {{date("Y")}} Cloudline.  All rights reserved. </div>
+        <div class="container"> Copyright © {{date("Y")}} Cloudline.  All rights reserved.<a class="footer_a" href="{{ url('terms') }}" target="_blank">Terms of service.</a> </div>
     </div>
 </footer>

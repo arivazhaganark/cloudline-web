@@ -29,7 +29,7 @@ class HomeController extends Controller {
         $data['breadcrumbs']->setListElement('breadcrumb-item');
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Dashboard', '');
-        $data['breadcrumbs']->setDivider('>');        
+        $data['breadcrumbs']->setDivider('');        
         return view('admin.home', $data);
     }
 
@@ -44,7 +44,7 @@ class HomeController extends Controller {
         $data['breadcrumbs']->setListElement('breadcrumb-item');
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('My Profile', '');
-        $data['breadcrumbs']->setDivider('>'); 
+        $data['breadcrumbs']->setDivider(''); 
 
         return view('admin.my_profile', $data);
     }
@@ -75,7 +75,7 @@ class HomeController extends Controller {
         $data['breadcrumbs']->setListElement('breadcrumb-item');
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Settings', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
 
         return view('admin.settings', $data);
     }

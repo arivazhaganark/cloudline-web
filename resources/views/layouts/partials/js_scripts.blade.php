@@ -22,7 +22,7 @@
             $("header").removeClass("shrink");
         }
 
-        $('[data-toggle="tooltip"]').tooltip()
+        $("data-toggle=tooltip").tooltip();
 
     });
     $('.panel-collapse').on('show.bs.collapse', function () {
@@ -52,8 +52,9 @@
         $('.formComplete').hide();
     })
 
-    $(document).ready(function () {
+    $(document).ready(function () {        
         $("#first").change(function () {
+            $("#above_selected").prop("disabled", false);
             if ($(this).val() == "contact_us") {
                 $("#above_selected").val($(this).val());
             } else

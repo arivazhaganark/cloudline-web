@@ -24,7 +24,7 @@ class ContactUsController extends Controller
         $data['breadcrumbs']->setListElement('breadcrumb-item');
         $data['breadcrumbs']->addCrumb('Home', 'admin');
         $data['breadcrumbs']->addCrumb('Contact Us', '');
-        $data['breadcrumbs']->setDivider('>');
+        $data['breadcrumbs']->setDivider('');
         return $dataTable->render('admin.contactus.index',$data);
     }
 
@@ -42,7 +42,7 @@ class ContactUsController extends Controller
         $contact['breadcrumbs']->addCrumb('Home', 'admin');
         $contact['breadcrumbs']->addCrumb('Contact Us', 'contactus');
         $contact['breadcrumbs']->addCrumb('View', '');
-        $contact['breadcrumbs']->setDivider('>');
+        $contact['breadcrumbs']->setDivider('');
         return view('admin.contactus.view',$contact);
     }
 
