@@ -45,7 +45,7 @@
                     $this.button('reset')                                        
                 },
                 success: function () {
-                    alert("The Partner is Successfully Approved!");
+                    $("#thankyouModal1").modal('show');
                     $('#datatable-buttons').DataTable().draw(false);                    
                 },
                 error: function () {
@@ -66,7 +66,7 @@
                     $this.button('reset')                                        
                 },
                 success: function () {
-                    alert("The Partner is Successfully Declined!");
+                    $("#thankyouModal2").modal('show');
                     $('#datatable-buttons').DataTable().draw(false);
                 },
                 error: function () {
