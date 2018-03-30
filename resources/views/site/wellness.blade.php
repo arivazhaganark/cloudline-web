@@ -106,15 +106,13 @@
                                                 <td><i class="fa fa-check"></i></td>
                                             </tr>
                                             <tr>
-                                                <td class="option">Free Consultation Recording <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
- Consultation can be recorded and stored on cloud. It can be accessed and download on demand.">
+                                                <td class="option">Free Consultation Recording <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Consultation can be recorded and stored on cloud. It can be accessed and download on demand.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td>5 Hours</td>
                                             </tr>
                                             <tr>
-                                                <td class="option">No of Simultaneous Tele consulation Room <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
-Total number of Concurrent Consultation  can be happened on your account">
+                                                <td class="option">No of Simultaneous Tele consulation Room <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Total number of Concurrent Consultation  can be happened on your account">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td><select  name="select" id="first">
@@ -133,8 +131,7 @@ Total number of Concurrent Consultation  can be happened on your account">
                                                     </select></td>
                                             </tr>
                                             <tr>
-                                                <td class="option">No of Patients / Telemedicine Center <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
-Total number of maximum online Patients or Doctors allocated to your account.">
+                                                <td class="option">No of Patients / Telemedicine Center <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Total number of maximum online Patients or Doctors allocated to your account.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td><select name="select" id="above_selected" disabled="on">
@@ -153,8 +150,7 @@ Total number of maximum online Patients or Doctors allocated to your account.">
                                                     </select></td>
                                             </tr>
                                             <tr>
-                                                <td class="option">Consulation Recording / Storage (In hours) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
-Apart from free recording, Extra Consultation hours can be recorded and stored on cloud. It can be accessed and download on demand.">
+                                                <td class="option">Consulation Recording / Storage (In hours) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Apart from free recording, Extra Consultation hours can be recorded and stored on cloud. It can be accessed and download on demand.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td><select name="select2" id="select2">
@@ -168,22 +164,19 @@ Apart from free recording, Extra Consultation hours can be recorded and stored o
                                                     </select></td>
                                             </tr>
                                             <tr>
-                                                <td class="option">CME Program <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
-Continuing Medical Education Program over Cloudline videoconferencing.">
+                                                <td class="option">CME Program <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Continuing Medical Education Program over Cloudline videoconferencing.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td><a href="{{ url('contactus') }}">Contact us</a></td>
                                             </tr>
                                             <tr>
-                                                <td class="option">Surgery Broadcasting <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
-Built-in cloudline broadcasting can be used for Surgery or CME program for better Video & Audio quality and better performance.">
+                                                <td class="option">Surgery Broadcasting <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Built-in cloudline broadcasting can be used for Surgery or CME program for better Video & Audio quality and better performance.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td><a href="{{ url('contactus') }}">Contact us</a></td>
                                             </tr>
                                             <tr>
-                                                <td class="option">Virtual ICU (Doctor to Patient, Patient to Relatives) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="ATNET:
-Doctor to Patient & Patient to Relatives">
+                                                <td class="option">Virtual ICU (Doctor to Patient, Patient to Relatives) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Doctor to Patient & Patient to Relatives">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
                                                 <td><a href="{{ url('contactus') }}">Contact us</a></td>

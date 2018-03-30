@@ -68,7 +68,6 @@ Route::namespace('site')->group(function () {
     Route::get('starter', 'SiteController@starter');
     Route::post('starter/store', 'SiteController@starterstore');
     Route::get('partner/home','PartnerController@home');
-    Route::get('partner/home/{token}','PartnerController@home');
     Route::get('partner/home/create','PartnerController@ruser');
     Route::post('partner/home/store','PartnerController@rstore');
     Route::get('partner/registerusers/{id}','PartnerController@view');
