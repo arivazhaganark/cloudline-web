@@ -107,7 +107,7 @@ class PartnerController extends Controller {
             'partner_type' => 'required',
             'company_name' => 'required',
             'name' => 'required',
-            'email' => "required|email|unique:users,email,{$uid},id",
+            'email' => "required|email|unique:users,email,{$uid},id,deleted_at,NULL",
             'phone' => 'required|numeric',
             'address' => 'required',
             'state' => 'required',
@@ -131,7 +131,7 @@ class PartnerController extends Controller {
     }
 
     public function home(UserDataTable $dataTable) {
-        return $dataTable->render('site.partner.home', compact('breadcrumbs'));
+        return $dataTable->render('site.partner.home');
     }
 
     public function ruser() {

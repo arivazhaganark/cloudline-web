@@ -30,9 +30,9 @@
                 <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
                     <h6>Products </h6>
                     <ul>
-                        <li><a href="#"> Cloudline Platform </a></li>
-                        <li><a href="#"> On Prem</a></li>
-                        <li><a href="#"> Cloud Service </a></li>
+                        <li><a href="{{ url('video_conferencing') }}"> Cloudline Platform </a></li>
+                        <li><a href="{{ url('products') }}"> On Prem</a></li>
+                        <li><a href="{{ url('cloudplans') }}"> Cloud Service </a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">

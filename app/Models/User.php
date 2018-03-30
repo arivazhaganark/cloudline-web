@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Notifications\MailResetPasswordToken;
 use App\Traits\Uuids;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -14,6 +15,7 @@ class User extends Authenticatable {
     public $incrementing = false;
 
     use Notifiable,
+        SoftDeletes,
         Uuids;
 
     /**
