@@ -35,7 +35,7 @@
                                         <label for="email">E-Mail Address</label>
                                         <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
                                         @if ($errors->has('email'))
-                                        <span class="help-block">
+                                        <span class="text-danger">
                                             <strong>{{ $errors->first('email') }}</strong>
                                         </span>
                                         @endif
@@ -44,7 +44,7 @@
                                         <label for="password">Password  </label>
                                         <input id="password" type="password" class="form-control" name="password" required data-eye>
                                         @if ($errors->has('password'))
-                                        <span class="help-block">
+                                        <span class="text-danger">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                         @endif
@@ -62,7 +62,7 @@
                                     <div class="form-group no-margin">
                                         <input type="hidden" name="status" />
                                         @if ($errors->has('status'))
-                                        <span class="help-block">
+                                        <span class="text-danger">
                                             <strong>{{ $errors->first('status') }}</strong>
                                         </span>
                                         @endif

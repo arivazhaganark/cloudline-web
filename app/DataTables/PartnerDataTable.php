@@ -73,6 +73,7 @@ class PartnerDataTable extends DataTable {
                         })
                         ->addColumn('action', function ($query) {
                             $action = '<a href="' . url('admin/partners/' . $query->id . '/edit') . '" class="btn btn-sm btn-warning btn-edit" type="button"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;';
+                            $action .= '<a href="' . url('admin/partners/' . $query->id) . '" class="btn btn-sm btn-default btn-view" type="button"><i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;';
 //                            $action .= ' <button class="btn btn-sm btn-danger btn-delete" type="button" data-id="' . $query->id . '" data-model="partners" data-loading-text="<i class=\'fa fa-spin fa-spinner\'></i> Please Wait..."><i class="glyphicon glyphicon-trash"></i></a>';
 
                             return $action;

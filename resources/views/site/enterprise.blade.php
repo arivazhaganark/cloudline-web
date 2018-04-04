@@ -135,17 +135,19 @@
                                                 <td class="option">Total no of max participants  <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Total number of Maximum participants allocated to your account">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
-                                                <td><select name="select" id="select">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
+                                                <td><select name="select" id="select" onChange="if (this.selectedIndex == 10)
+                                                            self.location = this.options[this.selectedIndex].value">
                                                         <option>10</option>
+                                                        <option>20</option>
+                                                        <option>30</option>
+                                                        <option>40</option>
+                                                        <option>50</option>
+                                                        <option>60</option>
+                                                        <option>70</option>
+                                                        <option>80</option>
+                                                        <option>90</option>
+                                                        <option>100</option>
+                                                        <option value="contactus">Contact us for More</option>
                                                     </select></td>
                                             </tr>
                                             <tr>

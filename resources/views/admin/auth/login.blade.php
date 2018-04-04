@@ -17,7 +17,7 @@
             <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" required autofocus>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             @if ($errors->has('email'))
-            <span class="help-block">
+            <span class="text-danger">
                 <strong>{{ $errors->first('email') }}</strong>
             </span>
             @endif
@@ -31,7 +31,7 @@
             <input id="password" type="password" placeholder="password" class="form-control" name="password" required>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             @if ($errors->has('password'))
-            <span class="help-block">
+            <span class="text-danger">
                 <strong>{{ $errors->first('password') }}</strong>
             </span>
             @endif

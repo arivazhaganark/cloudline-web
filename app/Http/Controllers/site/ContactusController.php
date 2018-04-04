@@ -26,7 +26,7 @@ class ContactusController extends Controller {
 
     public function store(Request $request) {
         $this->_validate($request);
-        $contact = Setting::where('name', '=', 'CONTACT')->first();
+        $contact = Setting::fetch('contact_email');
         $model = new ContactUs();
         $this->_save($request, $model);
 
@@ -36,7 +36,7 @@ class ContactusController extends Controller {
 
         \Mail::send('site.contactus.email', ['data' => $data], function($message) use ($request, $contact) {
             $message->from($request->get('email'));
-            $message->to($contact->meta_value, 'Admin')->subject('Cloudline Web Development');
+            $message->to($contact, 'Admin')->subject('Cloudline Web Development');
         });
 
         return back()->with('alert-success', 'Thanks for contacting us!');

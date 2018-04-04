@@ -30,5 +30,22 @@
         </div>
     </section>
 </div>
+
+
+<!--<div class="modal fade bs-example-modal-lg" id="demoModal"tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document" style="padding-top: 60px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Demo Request Form</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
 @endsection
 @include('site.partials.datatable_scripts')

@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\DataTables\PartnerDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
+use App\Models\Reseller;
+use App\Models\ResellerBankDetail;
+use App\Models\ResellerContactDetail;
+use App\Models\ResellerOfficeDetail;
+use App\Models\ResellerTradeDetail;
 use App\Models\User;
 use Creitive\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Response;
@@ -108,6 +113,34 @@ class PartnerController extends Controller {
         return redirect('admin/partners')->with('alert-success', 'successfully updated!');
     }
 
+    public function show($id) {
+        $data['breadcrumbs'] = new Breadcrumbs;
+        $data['breadcrumbs']->setListElement('breadcrumb-item');
+        $data['breadcrumbs']->addCrumb('Home', 'admin');
+        $data['breadcrumbs']->addCrumb('Partners', 'partners');
+        $data['breadcrumbs']->addCrumb('View Partner', '');
+        $data['breadcrumbs']->setDivider('');
+        $data['Model'] = Partner::find($id);
+        $user_id = $data['Model']->user_id;
+        $data['User'] = User::where('id', '=', $user_id)->first();
+        $data['reseller'] = Reseller::where('user_id', '=', $user_id)->first();
+        if ($data['reseller']) {
+            $reseller_id = $data['reseller']->id;
+            $data['proprietor'] = ResellerContactDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'proprietor']])->first();
+            $data['partner'] = ResellerContactDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'partner']])->first();
+            $data['director'] = ResellerContactDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'director']])->first();
+            $data['sales'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'sales']])->first();
+            $data['accounts'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'accounts']])->first();
+            $data['logistics'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'logistics']])->first();
+            $data['tech'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'tech']])->first();
+            $data['support'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'support']])->first();
+            $data['bank_ref'] = ResellerBankDetail::where('reseller_id', '=', $reseller_id)->first();
+            $data['trade_ref1'] = ResellerTradeDetail::where([['type', '=', 1], ['reseller_id', '=', $reseller_id]])->first();
+            $data['trade_ref2'] = ResellerTradeDetail::where([['type', '=', 2], ['reseller_id', '=', $reseller_id]])->first();
+        }
+        return view('admin.partner.view', $data);
+    }
+
     public function destroy($id) {
         $partner = Partner::find($id);
         $usermodel = User::where('id', $partner->user_id)->delete();
@@ -142,34 +175,34 @@ class PartnerController extends Controller {
 
     public function approve($id) {
         $model = Partner::find($id);
-        $model->status = 1;                 
+        $model->status = 1;
         $model->save();
-        
+
         $status = $model['status'];
         $name = $model->user->name;
-        
-        \Mail::send('admin.partner.mail', ['status' => $status,'name'=>$name], function($message) use($model) {
+
+        \Mail::send('admin.partner.mail', ['status' => $status, 'name' => $name], function($message) use($model) {
             $message->to($model->user->email)
                     ->subject('Cloudline Partner Registration');
         });
-        
-        return redirect('admin/partners')->with('alert-success','Partner is Successfully Approved!');
+
+        return redirect('admin/partners')->with('alert-success', 'Partner is Successfully Approved!');
     }
-    
+
     public function decline($id) {
         $model = Partner::find($id);
-        $model->status = 2;        
+        $model->status = 2;
         $model->save();
-        
+
         $status = $model['status'];
         $name = $model->user->name;
-        
-        \Mail::send('admin.partner.mail', ['status' => $status,'name'=>$name], function($message) use($model) {
+
+        \Mail::send('admin.partner.mail', ['status' => $status, 'name' => $name], function($message) use($model) {
             $message->to($model->user->email)
                     ->subject('Cloudline Partner Registration');
         });
-        
-        return redirect('admin/partners')->with('alert-success','Partner is Successfully Declined!');
+
+        return redirect('admin/partners')->with('alert-success', 'Partner is Successfully Declined!');
     }
 
 }

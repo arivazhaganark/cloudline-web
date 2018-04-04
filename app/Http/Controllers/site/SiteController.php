@@ -18,7 +18,13 @@ class SiteController extends Controller {
     }
 
     public function page($Page) {
-        if (View::exists("site.$Page")) {
+//        $pageinfo = \App\Models\Cms::where("slug", $Page)->first();
+//        if ($pageinfo) {
+//            $data['Page'] = $pageinfo;
+//            return view("site.cms-page", $data);
+//        } else
+            
+            if (View::exists("site.$Page")) {
             return view("site.$Page");
         } else {
             abort(404);

@@ -24,6 +24,7 @@ class UserDataTable extends DataTable {
         return datatables($query)
                         ->addColumn('demo_request_status', function ($customer) {
                             $count = $customer->demorequests()->count();
+//                            return $count ? "Requested" : "<a href='' class='btn btn-sm btn-info' data-toggle='modal' data-target='#demoModal' data-uid='{$customer->id}' type='button'> Demo Request Form </a>";                            
                             return $count ? "Requested" : '<a href="' . url('demorequest/' . $customer->access_token) . '" class="btn btn-sm btn-info" type="button"> Demo Request Form </a>';
                         })
                         ->editColumn('status', function($type) {

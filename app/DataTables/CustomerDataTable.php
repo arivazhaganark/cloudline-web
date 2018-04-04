@@ -110,8 +110,8 @@ class CustomerDataTable extends DataTable {
                         });
                         this.api().columns(4).every(function () {
                             var column = this;                        
-                            var select =  $('<select><option value=\"\"></option></select>')
-                            $(select).addClass('form-control input-lg col-xs-12')
+                            var select =  $('<select><option value=\"All\">All</option></select>')
+//                            $(select).addClass('form-control input-lg col-xs-12')
                             .appendTo($(column.footer()).empty())
                             .on('change', function () {
                                column
@@ -148,7 +148,7 @@ class CustomerDataTable extends DataTable {
                         });
                         this.api().columns(4).every(function () {
                             var column = this;                        
-                            var select =  $('<select><option value=\"\"></option></select>')
+                            var select =  $('<select><option value=\"All\">All</option></select>')
                             $(select).addClass('form-control input-lg col-xs-12')
                             .appendTo($(column.footer()).empty())
                             .on('change', function () {

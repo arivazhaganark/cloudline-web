@@ -77,6 +77,8 @@ Route::namespace('site')->group(function () {
     Route::get('partner/reseller','ResellerController@index');
     Route::get('partner/reseller/create','ResellerController@create');
     Route::post('partner/reseller/store','ResellerController@store');
+    Route::get('partner/reseller/edit/{id}','ResellerController@edit');
+    Route::put('partner/reseller/{id}','ResellerController@update');
     Route::match(['get', 'post'], 'partner/profile', 'PartnerController@myprofile')->name('profile');
     Route::resource('partner', 'PartnerController');
     Route::get('{page}', 'SiteController@page');

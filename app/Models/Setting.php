@@ -17,4 +17,13 @@ class Setting extends Model
 
     protected $fillable = ['name', 'meta_key', 'meta_value'];
     
+    public static function fetch($key, $default = null){
+        $setting = self::where('meta_key',$key)->first();
+        if($setting){
+            return $setting->meta_value ?: $default;
+        }
+        
+        return $default;
+    }
+    
 }

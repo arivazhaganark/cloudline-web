@@ -115,7 +115,9 @@
                                                 <td class="option">No of Simultaneous Tele consulation Room <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Total number of Concurrent Consultation  can be happened on your account">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
-                                                <td><select  name="select" id="first">
+                                                <td><select  name="select" id="first" onChange="if (this.selectedIndex == 11)
+                                                            self.location = this.options[this.selectedIndex].value">
+                                                        
                                                         <option value="">Select</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -127,14 +129,15 @@
                                                         <option value="8">8</option>
                                                         <option value="9">9</option>
                                                         <option value="10">10</option>
-                                                        <option value="contact_us">Contact us</option>
+                                                        <option value="contactus">Contact us</option>
                                                     </select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">No of Patients / Telemedicine Center <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Total number of maximum online Patients or Doctors allocated to your account.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
-                                                <td><select name="select" id="above_selected" disabled="on">
+                                                <td><select name="select" id="above_selected" disabled="on"onChange="if (this.selectedIndex == 11)
+                                                            self.location = this.options[this.selectedIndex].value">
                                                         <option value="">Select</option>
                                                         <option value="2">2</option>
                                                         <option value="4">4</option>
@@ -146,7 +149,7 @@
                                                         <option value="16">16</option>
                                                         <option value="18">18</option>
                                                         <option value="20">20</option>
-                                                        <option value="contact_us">Contact us</option>
+                                                        <option value="contactus">Contact us</option>
                                                     </select></td>
                                             </tr>
                                             <tr>
