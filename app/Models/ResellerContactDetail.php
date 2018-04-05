@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\TrackableReseller;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -12,10 +13,12 @@ class ResellerContactDetail extends Model {
     public $timestamps = true;
     public $incrementing = false;
     protected $table = 'reseller_contact_details';
+    public static $trackchanges = [];
 
     use Notifiable,
         SoftDeletes,
-        Uuids;
+        Uuids,
+        TrackableReseller;
 
     protected $fillable = ['reseller_id', 'name', 'address', 'city', 'mobile','type'];
     

@@ -46,7 +46,7 @@ class Reseller extends Model {
         foreach ($datas as $key => $data) {
             $model = ResellerContactDetail::updateOrCreate(['reseller_id' => $this->id, 'type' => $key], $data);
             if (!$model->wasRecentlyCreated) {
-                $changes[$key] = $model->getDirty();
+                $changes[$key] = $model::$trackchanges;
             }
         }
         return $changes;
@@ -77,7 +77,6 @@ class Reseller extends Model {
         foreach ($datas as $key => $data) {
             if (!empty($data['firm_name'])) {
                 $model = ResellerTradeDetail::updateOrCreate(['reseller_id' => $this->id, 'type' => $key], $data);
-//                dd($model);
                 if (!$model->wasRecentlyCreated) {
                     $changes[$key] = $model->getDirty();
                 }
@@ -104,7 +103,7 @@ class Reseller extends Model {
             foreach ($docs as $key => $files) {
                 foreach ($files as $file) {
                     $pathToFile = $this->_uploadfile($file);
-                    $model = ResellerFile::create(['reseller_id' => $this->id, 'file_type' => $key,'file_path' => $pathToFile]);
+                    ResellerFile::create(['reseller_id' => $this->id, 'file_type' => $key,'file_path' => $pathToFile]);
                     $changes[$key][] = $pathToFile;
                 }
             }
