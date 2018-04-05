@@ -101,7 +101,6 @@ class Reseller extends Model {
                 $file_name = $file->getClientOriginalName();
                 $model = ResellerFile::updateOrCreate(['reseller_id' => $this->id, 'file_type' => $key], ['file_path' => $pathToFile,'file_name'=>$file_name]);
                 $changes[$key] = $pathToFile;
-                $model::$trackchanges = null;
             }
         }
         return $changes;
@@ -116,7 +115,6 @@ class Reseller extends Model {
                     $file_name = $file->getClientOriginalName();
                     $model = ResellerFile::create(['reseller_id' => $this->id, 'file_type' => $key,'file_path' => $pathToFile,'file_name'=>$file_name]);
                     $changes[$key][] = $pathToFile;
-                    $model::$trackchanges = null;
                 }
             }
         }

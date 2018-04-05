@@ -734,7 +734,9 @@
 <div class="form-row">
     <div class="form-group col-md-3">
         {!! Form::file("supportdocs[ltd][]",['multiple']) !!}
-        {{ @$ResellerFiles['ltd'][0]['file_name'] }}
+        @foreach(@$ResellerFiles['ltd'] as $ltd)
+        {{ $ltd['file_name'] }}
+        @endforeach
     </div>
     @if ($errors->has('supportdocs.ltd.*'))
     <span class="text-danger">
@@ -749,7 +751,11 @@
 <div class="form-row">
     <div class="form-group col-md-3">
         {!! Form::file("supportdocs[partnership][]",['multiple']) !!}
-        {{ @$ResellerFiles['partnership'][0]['file_name'] }}
+        @if(@$ResellerFiles['partnership'])
+        @foreach(@$ResellerFiles['partnership'] as $partnership)
+        {{ $partnership['file_name'] }}
+        @endforeach
+        @endif
     </div>
     @if ($errors->has('supportdocs.partnership.*'))
     <span class="text-danger">
@@ -764,7 +770,11 @@
 <div class="form-row">
     <div class="form-group col-md-3">
         {!! Form::file("supportdocs[sole][]",['multiple']) !!}
-        {{ @$ResellerFiles['sole'][0]['file_name'] }}
+        @if(@$ResellerFiles['sole'])
+        @foreach(@$ResellerFiles['sole'] as $supportdoc)
+        {{ $supportdoc['file_name'] }}
+        @endforeach
+        @endif
     </div>
     @if ($errors->has('supportdocs.sole.*'))
     <span class="text-danger">
