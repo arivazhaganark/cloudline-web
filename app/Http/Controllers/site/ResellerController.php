@@ -93,19 +93,19 @@ class ResellerController extends Controller {
             'bank_ref.ac_no' => 'required',
             'bank_ref.type' => 'required',
             'bank_ref.collateral' => 'required',
-            'trade_ref.1.firm_name' => 'required',
-            'trade_ref.1.address' => 'required',
-            'trade_ref.1.city' => 'required',
-            'trade_ref.1.phone' => 'required',
-            'trade_ref.1.state' => 'required',
-            'trade_ref.1.fax_no' => 'required',
+            'trade_ref.trade_ref1.firm_name' => 'required',
+            'trade_ref.trade_ref1.address' => 'required',
+            'trade_ref.trade_ref1.city' => 'required',
+            'trade_ref.trade_ref1.phone' => 'required',
+            'trade_ref.trade_ref1.state' => 'required',
+            'trade_ref.trade_ref1.fax_no' => 'required',
             'attachment.roc' => 'mimes:doc,pdf,xls',
             'attachment.gst' => 'mimes:doc,pdf,xls',
             'attachment.pan' => 'mimes:doc,pdf,xls',
             'attachment.bank_check' => 'mimes:doc,pdf,xls',
-            'supportdocs.ltd' => 'mimes:doc,pdf,xls',
-            'supportdocs.partner' => 'mimes:doc,pdf,xls',
-            'supportdocs.sole' => 'mimes:doc,pdf,xls',
+            'supportdocs.ltd.*' => 'mimes:doc,pdf,xls',
+            'supportdocs.partnership.*' => 'mimes:doc,pdf,xls',
+            'supportdocs.sole.*' => 'mimes:doc,pdf,xls',
         ];
 
         if (!$id) {
@@ -146,15 +146,23 @@ class ResellerController extends Controller {
             'bank_ref.ac_no.required' => 'Account Number is Required',
             'bank_ref.type.required' => 'Type is Required',
             'bank_ref.collateral.required' => 'Collateral is Required',
-            'trade_ref.1.firm_name.required' => 'Firm Name is Required',
-            'trade_ref.1.address.required' => 'Address is Required',
-            'trade_ref.1.city.required' => 'City is Required',
-            'trade_ref.1.phone.required' => 'Mobile Number is Required',
-            'trade_ref.1.state.required' => 'State is Required',
-            'trade_ref.1.fax_no.required' => 'Fax is Required',
+            'trade_ref.trade_ref1.firm_name.required' => 'Firm Name is Required',
+            'trade_ref.trade_ref1.address.required' => 'Address is Required',
+            'trade_ref.trade_ref1.city.required' => 'City is Required',
+            'trade_ref.trade_ref1.phone.required' => 'Mobile Number is Required',
+            'trade_ref.trade_ref1.state.required' => 'State is Required',
+            'trade_ref.trade_ref1.fax_no.required' => 'Fax is Required',
             'resellers.trade_date.required' => 'Date is Required',
             'resellers.place.required' => 'Place is Required',
             'attachment.sign.required' => 'File is Required',
+            'attachment.roc.mimes' => 'Only pdf,xls and doc files are allowed',
+            'attachment.gst.mimes' => 'Only pdf,xls and doc files are allowed',
+            'attachment.pan.mimes' => 'Only pdf,xls and doc files are allowed',
+            'attachment.bank_check.mimes' => 'Only pdf,xls and doc files are allowed',
+            'attachment.sign.mimes' => 'Only pdf,xls and doc files are allowed',
+            'supportdocs.ltd.*' => 'Only pdf,xls and doc files are allowed',
+            'supportdocs.partnership.*' => 'Only pdf,xls and doc files are allowed',
+            'supportdocs.sole.*' => 'Only pdf,xls and doc files are allowed',
         ];
 
         $this->validate($request, $rules, $nice_names);
@@ -163,16 +171,17 @@ class ResellerController extends Controller {
     protected function _save($request, $model) {
         $changes = [];
         $changes['reseller'] = $this->_resellersave($request->resellers, $model);
-        $changes['contact'] = $this->_contactsave($request->contacts, $model);
-        $this->_officedetailsave($request->office_details, $model);
-        $this->_bankdetailsave($request->bank_ref, $model);
-        $this->_tradedetailsave($request->trade_ref, $model);
-        $this->_attachment($request->attachment, $model);
+        $changes['contact'] = $model->_contactsave($request->contacts);
+        $changes['office'] = $model->_officedetailsave($request->office_details);
+        $changes['bank'] = $model->_bankdetailsave($request->bank_ref);
+        $changes['trade'] = $model->_tradedetailsave($request->trade_ref);
+        $changes['attachment'] = $model->_attachment($request->attachment);
+        $changes['supportdocs'] = $model->_supportdocs($request->supportdocs);
 
         return $changes;
     }
 
-    protected function _resellersave($data, &$model)
+    protected function _resellersave($data, $model)
     {
         $changes = [];
         $model->user_id = \Auth::user()->id;
@@ -185,59 +194,6 @@ class ResellerController extends Controller {
         return $changes;
     }
 
-    protected function _contactsave($datas, $model) {
-        $changes = [];
-        foreach ($datas as $key => $data) {
-            ResellerContactDetail::where([['reseller_id', '=', $id], ['type', '=', $key]])->first();
-            $reseller_contact = new ResellerContactDetail();
-            $reseller_contact->type = $key;
-            $reseller_contact->fill($data);
-            $contact_changes[$key] = $model->getDirty();
-            $reseller_contact->reseller_id = $model->id;
-            $reseller_contact->save();
-        }
-    }
-
-    protected function _officedetailsave($datas, $model) {
-        foreach ($datas as $key => $data) {
-            $reseller_office_details = new ResellerOfficeDetail();
-            $reseller_office_details->type = $key;
-            $reseller_office_details->fill($data);
-            $reseller_office_details->reseller_id = $model->id;
-            $reseller_office_details->save();
-        }
-    }
-
-    protected function _bankdetailsave($data, $model) {
-        $reseller_bank_details = new ResellerBankDetail();
-        $reseller_bank_details->fill($data);
-        $reseller_bank_details->reseller_id = $model->id;
-        $reseller_bank_details->save();
-    }
-
-    protected function _tradedetailsave($datas, $model) {
-        foreach ($datas as $key => $data) {
-            if (!empty($data5['firm_name'])) {
-                $reseller_office_details = new ResellerTradeDetail();
-                $reseller_office_details->type = $key;
-                $reseller_office_details->fill($data);
-                $reseller_office_details->reseller_id = $model->id;
-                $reseller_office_details->save();
-            }
-        }
-    }
-
-    protected function _attachment($files, $model) {
-        foreach ($files as $key => $file) {
-            $pathToFile = $this->_uploadfile($file);
-            $reseller_files = new ResellerFile();
-            $reseller_files->file_type = $key;
-            $reseller_files->file_path = $pathToFile;
-            $reseller_files->reseller_id = $model->id;
-            $reseller_files->save();
-        }
-    }
-
     public function edit($id) {
         $data['breadcrumbs'] = new Breadcrumbs;
         $data['breadcrumbs']->addCrumb('Reseller', 'partner/reseller');
@@ -245,7 +201,7 @@ class ResellerController extends Controller {
         $data['breadcrumbs']->setDivider('»');
         $data['Reseller'] = Reseller::find($id);
         $reseller_id = $data['Reseller']['id'];
-
+//echo \Illuminate\Support\Facades\Storage::disk('public')->url('uploads/hEAyauTynHEVe1xdfFfAYZB5zRuNgDb3JeH7hiCL.pdf'); exit;
         $data['prop'] = ResellerContactDetail::where(['type' => 'proprietor', 'reseller_id' => $reseller_id])->first();
         $data['partner'] = ResellerContactDetail::where(['type' => 'partner', 'reseller_id' => $reseller_id])->first();
         $data['director'] = ResellerContactDetail::where(['type' => 'director', 'reseller_id' => $reseller_id])->first();
@@ -258,86 +214,38 @@ class ResellerController extends Controller {
 
         $data['ResellerBankDetail'] = ResellerBankDetail::where('reseller_id', '=', $reseller_id)->first();
 
-        $data['trade_ref1'] = ResellerTradeDetail::where(['type' => 1, 'reseller_id' => $reseller_id])->first();
-        $data['trade_ref2'] = ResellerTradeDetail::where(['type' => 2, 'reseller_id' => $reseller_id])->first();
+        $data['trade_ref1'] = ResellerTradeDetail::where(['type' => 'trade_ref1', 'reseller_id' => $reseller_id])->first();
+        $data['trade_ref2'] = ResellerTradeDetail::where(['type' => 'trade_ref2', 'reseller_id' => $reseller_id])->first();
 
         $data['file_roc'] = ResellerFile::where(['file_type' => 'roc', 'reseller_id' => $reseller_id])->first();
         $data['file_gst'] = ResellerFile::where(['file_type' => 'gst', 'reseller_id' => $reseller_id])->first();
         $data['file_pan'] = ResellerFile::where(['file_type' => 'pan', 'reseller_id' => $reseller_id])->first();
         $data['file_bank_check'] = ResellerFile::where(['file_type' => 'bank_check', 'reseller_id' => $reseller_id])->first();
         $data['sign'] = ResellerFile::where(['file_type' => 'sign', 'reseller_id' => $reseller_id])->first();
+        $data['ltds'] = ResellerFile::where(['file_type' => 'ltd', 'reseller_id' => $reseller_id])->get();
+        $data['partnerships'] = ResellerFile::where(['file_type' => 'partnership', 'reseller_id' => $reseller_id])->get();
+        $data['soles'] = ResellerFile::where(['file_type' => 'sole', 'reseller_id' => $reseller_id])->get();
         $this->_append_form_variables($data);
         return view('site.reseller.edit', $data);
     }
 
     public function update(Request $request, $id) {
-        $this->_validate($request, $id);
+//        $this->_validate($request, $id);
         $model = Reseller::find($id);
         $changes = $this->_save($request, $model);
-        dd($changes);
-        $this->_resellersave($request->resellers, $model);
-
-        $datas = $request->resellers;
-        if ($datas) {
-            $data1['Reseller']->fill($datas);
-            $reseller_changes = $data1['Reseller']->getDirty();
-            $data1['Reseller']->save();
-        }
-        $contact_datas = $request->contacts;
-        if ($contact_datas) {
-            foreach ($contact_datas as $key => $contact) {
-                $model = ResellerContactDetail::where([['reseller_id', '=', $id], ['type', '=', $key]])->first();
-                $model->fill($contact);
-                $contact_changes[$key] = $model->getDirty();
-                $model->save();
-            }
-        }
-
-        $office_details = $request->office_details;
-        if ($office_details) {
-            foreach ($office_details as $key => $office_detail) {
-                $model = ResellerOfficeDetail::where([['reseller_id', '=', $id], ['type', '=', $key]])->first();
-                $model->fill($office_detail);
-                $office_detail_changes[$key] = $model->getDirty();
-                $model->save();
-            }
-        }
-
-        $bank_details = $request->bank_ref;
-        if ($bank_details) {
-            $data4['bank_ref'] = ResellerBankDetail::where('reseller_id', '=', $id)->first();
-            $data4['bank_ref']->fill($bank_details);
-            $bank_ref_changes = $data4['bank_ref']->getDirty();
-            $data4['bank_ref']->save();
-        }
-
-        $trade_details = $request->trade_ref;
-        if ($trade_details) {
-            foreach ($trade_details as $key => $trade_detail) {
-                $model = ResellerTradeDetail::where([['reseller_id', '=', $id], ['type', '=', $key]])->first();
-                $model->fill($trade_detail);
-                $trade_changes[$key] = $model->getDirty();
-                $model->save();
-            }
-        }
-
-        $files = $request->files;
-        if ($files) {
-            foreach ($files as $key => $file) {
-                $pathToFile = $this->_uploadfile($file);
-                $reseller_files = ResellerFile::updateOrCreate(['reseller_id' => $id, 'file_type' => $key], ['file_path' => $pathToFile]);
-                $changes[] = $reseller_files->getDirty();
-            }
-        }
+        
         $data = [
             'partner_name' => \Auth::user()->name,
-            'resellers' => $reseller_changes,
-            'contacts' => $contact_changes,
-            'office_details' => $office_detail_changes,
-            'bank_ref' => $bank_ref_changes,
-            'trade_ref' => $trade_changes,
-            'files' => $files,
+            'resellers' => @$changes['reseller'],
+            'contacts' => @$changes['contact'],
+            'office_details' => @$changes['office'],
+            'bank_ref' => @$changes['bank'],
+            'trade_ref' => @$changes['trade'],
+            'files' => @$changes['attachment'],
+            'supportdocs' => @$changes['supportdocs'],
         ];
+        
+        dd($changes);
 
 //        $attachments = [
 //            'changes' => $changes,
@@ -356,11 +264,6 @@ class ResellerController extends Controller {
         return redirect('partner/reseller')->with('alert-success', 'successfully updated!');
     }
 
-    public function _uploadfile($file) {
-        $destinationPath = base_path() . '/uploads';
-        $pathname = $file->getClientOriginalName();
-        $pathToFile = $file->move($destinationPath, $pathname);
-        return $pathToFile;
-    }
+    
 
 }

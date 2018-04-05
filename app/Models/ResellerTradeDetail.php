@@ -17,7 +17,7 @@ class ResellerTradeDetail extends Model {
         SoftDeletes,
         Uuids;
 
-    protected $fillable = ['reseller_id', 'firm_name', 'address','city', 'phone','state','fax_no'];
+    protected $fillable = ['reseller_id', 'firm_name', 'address','city', 'phone','state','fax_no','type'];
     
     public function reseller() {
         return $this->belongsTo(Reseller::class);

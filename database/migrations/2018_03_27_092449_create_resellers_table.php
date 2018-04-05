@@ -14,7 +14,7 @@ class CreateResellersTable extends Migration
     public function up()
     {
         Schema::create('resellers', function (Blueprint $table) {
-           $table->uuid('id');
+            $table->uuid('id');
             $table->timestamps();
             $table->softDeletes();
             $table->string('user_id', 36);

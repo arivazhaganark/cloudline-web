@@ -50,7 +50,7 @@ Following fields were edited by Partner ({{ $data['partner_name'] }}) <br/>
 @endforeach
 @endif
 
-@if($data['trade_ref'][1] || $data['trade_ref'][2])
+@if(@$data['trade_ref'][trade_ref1] || @$data['trade_ref'][trade_ref2])
 <h3>Trade References:</h3>
 
 @foreach ($data['trade_ref'] as $key=>$trade_refs)

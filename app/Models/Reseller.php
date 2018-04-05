@@ -41,4 +41,81 @@ class Reseller extends Model {
         return $this->hasMany(ResellerTradeDetail::class);
     }
 
+    public function _contactsave($datas) {
+        $changes = [];        
+        foreach ($datas as $key => $data) {
+            $model = ResellerContactDetail::updateOrCreate(['reseller_id' => $this->id, 'type' => $key], $data);
+            if (!$model->wasRecentlyCreated) {
+                $changes[$key] = $model->getDirty();
+            }
+        }
+        return $changes;
+    }
+
+    public function _officedetailsave($datas) {
+        $changes = [];
+        foreach ($datas as $key => $data) {
+            $model = ResellerOfficeDetail::updateOrCreate(['reseller_id' => $this->id, 'type' => $key], $data);
+            if (!$model->wasRecentlyCreated) {
+                $changes[$key] = $model->getDirty();
+            }
+        }
+        return $changes;
+    }
+
+    public function _bankdetailsave($data) {
+        $changes = [];
+        $model = ResellerBankDetail::updateOrCreate(['reseller_id' => $this->id], $data);
+        if (!$model->wasRecentlyCreated) {
+            $changes = $model->getDirty();
+        }
+        return $changes;
+    }
+
+    public function _tradedetailsave($datas) {
+        $changes = [];
+        foreach ($datas as $key => $data) {
+            if (!empty($data['firm_name'])) {
+                $model = ResellerTradeDetail::updateOrCreate(['reseller_id' => $this->id, 'type' => $key], $data);
+//                dd($model);
+                if (!$model->wasRecentlyCreated) {
+                    $changes[$key] = $model->getDirty();
+                }
+            }
+        }
+        return $changes;
+    }
+
+    public function _attachment($files) {
+        $changes = [];
+        if ($files) {
+            foreach ($files as $key => $file) {
+                $pathToFile = $this->_uploadfile($file);
+                $model = ResellerFile::updateOrCreate(['reseller_id' => $this->id, 'file_type' => $key], ['file_path' => $pathToFile]);
+                $changes[$key] = $pathToFile;
+            }
+        }
+        return $changes;
+    }
+
+    public function _supportdocs($docs) {
+        $changes = [];
+        if ($docs) {
+            foreach ($docs as $key => $files) {
+                foreach ($files as $file) {
+                    $pathToFile = $this->_uploadfile($file);
+                    $model = ResellerFile::create(['reseller_id' => $this->id, 'file_type' => $key,'file_path' => $pathToFile]);
+                    $changes[$key][] = $pathToFile;
+                }
+            }
+        }
+        return $changes;
+    }
+
+    public function _uploadfile($file) {
+        $path = \Illuminate\Support\Facades\Storage::disk('public')->putFile('uploads', $file);
+        
+        return $path;
+    }
+
 }
