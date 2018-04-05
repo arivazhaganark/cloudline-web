@@ -30,7 +30,11 @@ class Reseller extends Model {
     }
 
     public function reseller_contact_details() {
-        return $this->hasMany(ResellerContact::class);
+        return $this->hasMany(ResellerContactDetail::class);
+    }
+    
+    public function reseller_bank_details() {
+        return $this->hasOne(ResellerBankDetail::class);
     }
 
     public function reseller_office_details() {
@@ -47,6 +51,7 @@ class Reseller extends Model {
             $model = ResellerContactDetail::updateOrCreate(['reseller_id' => $this->id, 'type' => $key], $data);
             if (!$model->wasRecentlyCreated) {
                 $changes[$key] = $model::$trackchanges;
+                $model::$trackchanges = null;
             }
         }
         return $changes;
@@ -57,7 +62,8 @@ class Reseller extends Model {
         foreach ($datas as $key => $data) {
             $model = ResellerOfficeDetail::updateOrCreate(['reseller_id' => $this->id, 'type' => $key], $data);
             if (!$model->wasRecentlyCreated) {
-                $changes[$key] = $model->getDirty();
+                $changes[$key] = $model::$trackchanges;
+                $model::$trackchanges = null;
             }
         }
         return $changes;
@@ -67,7 +73,8 @@ class Reseller extends Model {
         $changes = [];
         $model = ResellerBankDetail::updateOrCreate(['reseller_id' => $this->id], $data);
         if (!$model->wasRecentlyCreated) {
-            $changes = $model->getDirty();
+            $changes = $model::$trackchanges;
+            $model::$trackchanges = null;
         }
         return $changes;
     }
@@ -78,7 +85,8 @@ class Reseller extends Model {
             if (!empty($data['firm_name'])) {
                 $model = ResellerTradeDetail::updateOrCreate(['reseller_id' => $this->id, 'type' => $key], $data);
                 if (!$model->wasRecentlyCreated) {
-                    $changes[$key] = $model->getDirty();
+                    $changes[$key] = $model::$trackchanges;
+                    $model::$trackchanges = null;
                 }
             }
         }
@@ -90,8 +98,10 @@ class Reseller extends Model {
         if ($files) {
             foreach ($files as $key => $file) {
                 $pathToFile = $this->_uploadfile($file);
-                $model = ResellerFile::updateOrCreate(['reseller_id' => $this->id, 'file_type' => $key], ['file_path' => $pathToFile]);
+                $file_name = $file->getClientOriginalName();
+                $model = ResellerFile::updateOrCreate(['reseller_id' => $this->id, 'file_type' => $key], ['file_path' => $pathToFile,'file_name'=>$file_name]);
                 $changes[$key] = $pathToFile;
+                $model::$trackchanges = null;
             }
         }
         return $changes;
@@ -103,8 +113,10 @@ class Reseller extends Model {
             foreach ($docs as $key => $files) {
                 foreach ($files as $file) {
                     $pathToFile = $this->_uploadfile($file);
-                    ResellerFile::create(['reseller_id' => $this->id, 'file_type' => $key,'file_path' => $pathToFile]);
+                    $file_name = $file->getClientOriginalName();
+                    $model = ResellerFile::create(['reseller_id' => $this->id, 'file_type' => $key,'file_path' => $pathToFile,'file_name'=>$file_name]);
                     $changes[$key][] = $pathToFile;
+                    $model::$trackchanges = null;
                 }
             }
         }

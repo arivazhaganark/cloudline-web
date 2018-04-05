@@ -181,12 +181,11 @@ class ResellerController extends Controller {
         return $changes;
     }
 
-    protected function _resellersave($data, $model)
-    {
+    protected function _resellersave($data, $model) {
         $changes = [];
         $model->user_id = \Auth::user()->id;
         $model->fill($data);
-        if($model->exists){
+        if ($model->exists) {
             $changes = $model->getDirty();
         }
         $model->save();
@@ -201,39 +200,20 @@ class ResellerController extends Controller {
         $data['breadcrumbs']->setDivider('»');
         $data['Reseller'] = Reseller::find($id);
         $reseller_id = $data['Reseller']['id'];
-//echo \Illuminate\Support\Facades\Storage::disk('public')->url('uploads/hEAyauTynHEVe1xdfFfAYZB5zRuNgDb3JeH7hiCL.pdf'); exit;
-        $data['prop'] = ResellerContactDetail::where(['type' => 'proprietor', 'reseller_id' => $reseller_id])->first();
-        $data['partner'] = ResellerContactDetail::where(['type' => 'partner', 'reseller_id' => $reseller_id])->first();
-        $data['director'] = ResellerContactDetail::where(['type' => 'director', 'reseller_id' => $reseller_id])->first();
-
-        $data['sales'] = ResellerOfficeDetail::where(['type' => 'sales', 'reseller_id' => $reseller_id])->first();
-        $data['accounts'] = ResellerOfficeDetail::where(['type' => 'accounts', 'reseller_id' => $reseller_id])->first();
-        $data['logistics'] = ResellerOfficeDetail::where(['type' => 'logistics', 'reseller_id' => $reseller_id])->first();
-        $data['tech'] = ResellerOfficeDetail::where(['type' => 'tech', 'reseller_id' => $reseller_id])->first();
-        $data['support'] = ResellerOfficeDetail::where(['type' => 'support', 'reseller_id' => $reseller_id])->first();
-
-        $data['ResellerBankDetail'] = ResellerBankDetail::where('reseller_id', '=', $reseller_id)->first();
-
-        $data['trade_ref1'] = ResellerTradeDetail::where(['type' => 'trade_ref1', 'reseller_id' => $reseller_id])->first();
-        $data['trade_ref2'] = ResellerTradeDetail::where(['type' => 'trade_ref2', 'reseller_id' => $reseller_id])->first();
-
-        $data['file_roc'] = ResellerFile::where(['file_type' => 'roc', 'reseller_id' => $reseller_id])->first();
-        $data['file_gst'] = ResellerFile::where(['file_type' => 'gst', 'reseller_id' => $reseller_id])->first();
-        $data['file_pan'] = ResellerFile::where(['file_type' => 'pan', 'reseller_id' => $reseller_id])->first();
-        $data['file_bank_check'] = ResellerFile::where(['file_type' => 'bank_check', 'reseller_id' => $reseller_id])->first();
-        $data['sign'] = ResellerFile::where(['file_type' => 'sign', 'reseller_id' => $reseller_id])->first();
-        $data['ltds'] = ResellerFile::where(['file_type' => 'ltd', 'reseller_id' => $reseller_id])->get();
-        $data['partnerships'] = ResellerFile::where(['file_type' => 'partnership', 'reseller_id' => $reseller_id])->get();
-        $data['soles'] = ResellerFile::where(['file_type' => 'sole', 'reseller_id' => $reseller_id])->get();
+        $data['ResellerContact'] = $data['Reseller']->reseller_contact_details->groupBy('type');
+        $data['ResellerOffice'] = $data['Reseller']->reseller_office_details->groupBy('type');
+        $data['ResellerBankDetail'] = $data['Reseller']->reseller_bank_details;
+        $data['ResellerTrade'] = $data['Reseller']->reseller_trade_details->groupBy('type');
+        $data['ResellerFiles'] = $data['Reseller']->reseller_files->groupBy('file_type');
         $this->_append_form_variables($data);
         return view('site.reseller.edit', $data);
     }
 
     public function update(Request $request, $id) {
-//        $this->_validate($request, $id);
+        $this->_validate($request, $id);
         $model = Reseller::find($id);
         $changes = $this->_save($request, $model);
-        
+
         $data = [
             'partner_name' => \Auth::user()->name,
             'resellers' => @$changes['reseller'],
@@ -244,26 +224,14 @@ class ResellerController extends Controller {
             'files' => @$changes['attachment'],
             'supportdocs' => @$changes['supportdocs'],
         ];
-        
-        dd($changes);
-
-//        $attachments = [
-//            'changes' => $changes,
-//        ];
-
 
         $Toemail = Setting::fetch('contact_email');
 
         \Mail::send('site.reseller.email', ['data' => $data], function($message) use ($Toemail) {
             $message->from('noreply@gmail.com');
             $message->to($Toemail, 'Admin')->subject('Cloudline Reseller Account Opening Form');
-//            foreach ($attachments as $attachment) {
-//                $message->attach($attachment);
-//            }
         });
         return redirect('partner/reseller')->with('alert-success', 'successfully updated!');
     }
-
-    
 
 }

@@ -18,11 +18,13 @@ Following fields were edited by Partner ({{ $data['partner_name'] }}) <br/>
 @if($contacts)
 <h3> {{ ucwords($key)}} </h3>
 @endif
+@if (is_array($contacts) || is_object($contacts))
 @foreach ($contacts as $key=>$contact)
 <p>
     {{ ucwords(str_replace("_", " ",$key)) }}: {{ $contact }}
 </p>
 @endforeach
+@endif
 @endforeach
 @endif
 
@@ -33,11 +35,13 @@ Following fields were edited by Partner ({{ $data['partner_name'] }}) <br/>
 @if($office_details)
 <h3> {{ ucwords($key)}} </h3>
 @endif
+@if (is_array($office_details) || is_object($office_details))
 @foreach ($office_details as $key=>$office_detail)
 <p>
     {{ ucwords(str_replace("_", " ",$key)) }}: {{ $office_detail }}
 </p>
 @endforeach
+@endif
 @endforeach
 @endif
 
@@ -55,13 +59,15 @@ Following fields were edited by Partner ({{ $data['partner_name'] }}) <br/>
 
 @foreach ($data['trade_ref'] as $key=>$trade_refs)
 @if($trade_refs)
-<h3> Trade Referece #{{ ucwords($key)}} </h3>
+<h3> {{ ucwords($key)}} </h3>
 @endif
+@if (is_array($trade_refs) || is_object($trade_refs))
 @foreach ($trade_refs as $key=>$trade_ref)
 <p>
     {{ ucwords(str_replace("_", " ",$key)) }}: {{ $trade_ref }}
 </p>
 @endforeach
+@endif
 @endforeach
 @endif
 

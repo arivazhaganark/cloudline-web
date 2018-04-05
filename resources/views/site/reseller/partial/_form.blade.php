@@ -170,7 +170,7 @@
 
     <div class="form-group col-md-4">
         {!! Form::file("attachment[roc]") !!}
-        {{ $file_name = basename(@$file_roc['file_path']) }}
+        {{ @$ResellerFiles['roc'][0]['file_name'] }}
         @if ($errors->has('attachment.roc'))
         <span class="text-danger">
             <strong>{{ $errors->first('attachment.roc') }}</strong> 
@@ -180,7 +180,7 @@
 
     <div class="form-group col-md-4">
         {!! Form::file("attachment[gst]") !!}
-        {{ $file_name = basename(@$file_gst['file_path']) }}
+        {{ @$ResellerFiles['gst'][0]['file_name'] }}
         @if ($errors->has('attachment.gst'))
         <span class="text-danger">
             <strong>{{ $errors->first('attachment.gst') }}</strong> 
@@ -190,7 +190,7 @@
 
     <div class="form-group col-md-4">
         {!! Form::file("attachment[pan]") !!}
-        {{ $file_name = basename(@$file_pan['file_path']) }}
+        {{ @$ResellerFiles['pan'][0]['file_name'] }}
         @if ($errors->has('attachment.pan'))
         <span class="text-danger">
             <strong>{{ $errors->first('attachment.pan') }}</strong> 
@@ -202,11 +202,10 @@
 
 <h5>2. Contact Information</h5>
 <span>(Name& Residential Address of Proprietor/Partner /Directors)</span>
-
 <div class="form-row">
     <div class="form-group col-md-3">
         {{ Form::label("contacts[proprietor][name]",'Name*') }}
-        {!! Form::text("contacts[proprietor][name]", @$prop->name, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[proprietor][name]", @$ResellerContact['proprietor'][0]['name'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.proprietor.name'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.proprietor.name') }}</strong>
@@ -216,7 +215,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[proprietor][address]",'Address*') }}
-        {!! Form::text("contacts[proprietor][address]", @$prop->address, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[proprietor][address]", @$ResellerContact['proprietor'][0]['address'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.proprietor.address'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.proprietor.address') }}</strong>
@@ -226,7 +225,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[proprietor][city]",'City*') }}
-        {!! Form::text("contacts[proprietor][city]", @$prop->city, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[proprietor][city]", @$ResellerContact['proprietor'][0]['city'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.proprietor.city'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.proprietor.city') }}</strong>
@@ -236,7 +235,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[proprietor][mobile]",'Mobile*') }}
-        {!! Form::text("contacts[proprietor][mobile]", @$prop->mobile, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[proprietor][mobile]", @$ResellerContact['proprietor'][0]['mobile'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.proprietor.mobile'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.proprietor.mobile') }}</strong>
@@ -246,7 +245,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[partner][name]",'Name*') }}
-        {!! Form::text("contacts[partner][name]", @$partner->name, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[partner][name]", @$ResellerContact['partner'][0]['name'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.partner.name'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.partner.name') }}</strong>
@@ -256,7 +255,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[partner][address]",'Address*') }}
-        {!! Form::text("contacts[partner][address]", @$partner->address, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[partner][address]", @$ResellerContact['partner'][0]['address'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.partner.address'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.partner.address') }}</strong>
@@ -266,7 +265,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[partner][city]",'City*') }}
-        {!! Form::text("contacts[partner][city]", @$partner->city, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[partner][city]", @$ResellerContact['partner'][0]['city'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.partner.city'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.partner.city') }}</strong>
@@ -276,7 +275,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[partner][mobile]",'Mobile*') }}
-        {!! Form::text("contacts[partner][mobile]", @$partner->mobile, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[partner][mobile]", @$ResellerContact['partner'][0]['mobile'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.partner.mobile'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.partner.mobile') }}</strong>
@@ -286,7 +285,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[director][name]",'Name*') }}
-        {!! Form::text("contacts[director][name]", @$director->name, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[director][name]", @$ResellerContact['director'][0]['name'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.director.name'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.director.name') }}</strong>
@@ -296,7 +295,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[director][address]",'Address*') }}
-        {!! Form::text("contacts[director][address]", @$director->address, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[director][address]", @$ResellerContact['director'][0]['address'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.director.address'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.director.address') }}</strong>
@@ -306,7 +305,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[director][city]",'City*') }}
-        {!! Form::text("contacts[director][city]", @$director->city, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[director][city]", @$ResellerContact['director'][0]['city'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.director.city'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.director.city') }}</strong>
@@ -316,7 +315,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("contacts[director][mobile]",'Mobile*') }}
-        {!! Form::text("contacts[director][mobile]", @$director->mobile, array('class'=>'form-control')) !!}
+        {!! Form::text("contacts[director][mobile]", @$ResellerContact['director'][0]['mobile'], array('class'=>'form-control')) !!}
         @if ($errors->has('contacts.director.mobile'))
         <span class="text-danger">
             <strong>{{ $errors->first('contacts.director.mobile') }}</strong>
@@ -347,7 +346,7 @@
         {{ Form::label('type','Sales*') }}
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[sales][name]", @$sales->name,['class'=>'form-control','placeholder'=>'Enter Sales Name']) !!}
+        {!! Form::text("office_details[sales][name]", @$ResellerOffice['sales'][0]['name'],['class'=>'form-control','placeholder'=>'Enter Sales Name']) !!}
         @if ($errors->has('office_details.sales.name'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.sales.name') }}</strong>
@@ -355,7 +354,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[sales][contact_no]", @$sales->contact_no,['class'=>'form-control','placeholder'=>'Enter Sales Contact']) !!}
+        {!! Form::text("office_details[sales][contact_no]", @$ResellerOffice['sales'][0]['contact_no'],['class'=>'form-control','placeholder'=>'Enter Sales Contact']) !!}
         @if ($errors->has('office_details.sales.contact_no'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.sales.contact_no') }}</strong>
@@ -363,7 +362,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[sales][email]",@$sales->email,['class'=>'form-control','placeholder'=>'Enter Sales Email']) !!}
+        {!! Form::text("office_details[sales][email]",@$ResellerOffice['sales'][0]['email'],['class'=>'form-control','placeholder'=>'Enter Sales Email']) !!}
         @if ($errors->has('office_details.sales.email'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.sales.email') }}</strong>
@@ -374,7 +373,7 @@
         {{ Form::label('type','Accounts *') }}
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[accounts][name]", @$accounts->name,['class'=>'form-control','placeholder'=>'Enter Accounts Name']) !!}
+        {!! Form::text("office_details[accounts][name]", @$ResellerOffice['accounts'][0]['name'],['class'=>'form-control','placeholder'=>'Enter Accounts Name']) !!}
         @if ($errors->has('office_details.accounts.name'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.accounts.name') }}</strong>
@@ -382,7 +381,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[accounts][contact_no]", @$accounts->contact_no,['class'=>'form-control','placeholder'=>'Enter Accounts Contact']) !!}
+        {!! Form::text("office_details[accounts][contact_no]", @$ResellerOffice['accounts'][0]['contact_no'],['class'=>'form-control','placeholder'=>'Enter Accounts Contact']) !!}
         @if ($errors->has('office_details.accounts.contact_no'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.accounts.contact_no') }}</strong>
@@ -390,7 +389,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[accounts][email]", @$accounts->email,['class'=>'form-control','placeholder'=>'Enter Accounts Email']) !!}
+        {!! Form::text("office_details[accounts][email]", @$ResellerOffice['accounts'][0]['email'],['class'=>'form-control','placeholder'=>'Enter Accounts Email']) !!}
         @if ($errors->has('office_details.accounts.email'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.accounts.email') }}</strong>
@@ -401,7 +400,7 @@
         {{ Form::label('type','Logistics *') }}
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[logistics][name]", @$logistics->name,['class'=>'form-control','placeholder'=>'Enter Logistics Name']) !!}
+        {!! Form::text("office_details[logistics][name]", @$ResellerOffice['logistics'][0]['name'],['class'=>'form-control','placeholder'=>'Enter Logistics Name']) !!}
         @if ($errors->has('office_details.logistics.name'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.logistics.name') }}</strong>
@@ -409,7 +408,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[logistics][contact_no]", @$logistics->contact_no,['class'=>'form-control','placeholder'=>'Enter Logistics Contact']) !!}
+        {!! Form::text("office_details[logistics][contact_no]", @$ResellerOffice['logistics'][0]['contact_no'],['class'=>'form-control','placeholder'=>'Enter Logistics Contact']) !!}
         @if ($errors->has('office_details.logistics.contact_no'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.logistics.contact_no') }}</strong>
@@ -417,7 +416,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[logistics][email]", @$logistics->email,['class'=>'form-control','placeholder'=>'Enter Logistics Email']) !!}
+        {!! Form::text("office_details[logistics][email]", @$ResellerOffice['logistics'][0]['email'],['class'=>'form-control','placeholder'=>'Enter Logistics Email']) !!}
         @if ($errors->has('office_details.logistics.email'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.logistics.email') }}</strong>
@@ -429,7 +428,7 @@
         {{ Form::label('type','Technical *') }}
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[tech][name]", @$tech->name,['class'=>'form-control','placeholder'=>'Enter Logistics Name']) !!}
+        {!! Form::text("office_details[tech][name]", @$ResellerOffice['tech'][0]['name'],['class'=>'form-control','placeholder'=>'Enter Logistics Name']) !!}
         @if ($errors->has('office_details.tech.name'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.tech.name') }}</strong>
@@ -437,7 +436,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[tech][contact_no]", @$tech->contact_no,['class'=>'form-control','placeholder'=>'Enter Logistics Contact']) !!}
+        {!! Form::text("office_details[tech][contact_no]", @$ResellerOffice['tech'][0]['contact_no'],['class'=>'form-control','placeholder'=>'Enter Logistics Contact']) !!}
         @if ($errors->has('office_details.tech.contact_no'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.tech.contact_no') }}</strong>
@@ -445,7 +444,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[tech][email]", @$tech->email,['class'=>'form-control','placeholder'=>'Enter Logistics Email']) !!}
+        {!! Form::text("office_details[tech][email]", @$ResellerOffice['tech'][0]['email'],['class'=>'form-control','placeholder'=>'Enter Logistics Email']) !!}
         @if ($errors->has('office_details.tech.email'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.tech.email') }}</strong>
@@ -457,7 +456,7 @@
         {{ Form::label('type','Support *') }}
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[support][name]", @$support->name,['class'=>'form-control','placeholder'=>'Enter Logistics Name']) !!}
+        {!! Form::text("office_details[support][name]", @$ResellerOffice['support'][0]['name'],['class'=>'form-control','placeholder'=>'Enter Logistics Name']) !!}
         @if ($errors->has('office_details.support.name'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.support.name') }}</strong>
@@ -465,7 +464,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[support][contact_no]", @$support->contact_no,['class'=>'form-control','placeholder'=>'Enter Logistics Contact']) !!}
+        {!! Form::text("office_details[support][contact_no]", @$ResellerOffice['support'][0]['contact_no'],['class'=>'form-control','placeholder'=>'Enter Logistics Contact']) !!}
         @if ($errors->has('office_details.support.contact_no'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.support.contact_no') }}</strong>
@@ -473,7 +472,7 @@
         @endif
     </div>
     <div class="form-group col-md-3">
-        {!! Form::text("office_details[support][email]", @$support->email,['class'=>'form-control','placeholder'=>'Enter Logistics Email']) !!}
+        {!! Form::text("office_details[support][email]", @$ResellerOffice['support'][0]['email'],['class'=>'form-control','placeholder'=>'Enter Logistics Email']) !!}
         @if ($errors->has('office_details.support.email'))
         <span class="text-danger">
             <strong>{{ $errors->first('office_details.support.email') }}</strong>
@@ -485,7 +484,7 @@
 <div class="form-row">
     <div class="form-group col-md-4">
         {{ Form::label("bank_ref[bank_name]",'Bank Name*') }}
-        {!! Form::text("bank_ref[bank_name]", @$ResellerBankDetail->bank_name, array('class'=>'form-control')) !!}
+        {!! Form::text("bank_ref[bank_name]", @$ResellerBankDetail['bank_name'], array('class'=>'form-control')) !!}
         @if ($errors->has('bank_ref.bank_name'))
         <span class="text-danger">
             <strong>{{ $errors->first('bank_ref.bank_name') }}</strong>
@@ -495,7 +494,7 @@
 
     <div class="form-group col-md-4">
         {{ Form::label("bank_ref[contact_no]",'Contact*') }}
-        {!! Form::text("bank_ref[contact_no]", @$ResellerBankDetail->contact_no, array('class'=>'form-control')) !!}
+        {!! Form::text("bank_ref[contact_no]", @$ResellerBankDetail['contact_no'], array('class'=>'form-control')) !!}
         @if ($errors->has('bank_ref.contact_no'))
         <span class="text-danger">
             <strong>{{ $errors->first('bank_ref.contact_no') }}</strong>
@@ -505,7 +504,7 @@
 
     <div class="form-group col-md-4">
         {{ Form::label("bank_ref[ifsc_code]",'IFSC Code/MICR Code/SWIFT Code*') }}
-        {!! Form::text("bank_ref[ifsc_code]", @$ResellerBankDetail->ifsc_code, array('class'=>'form-control')) !!}
+        {!! Form::text("bank_ref[ifsc_code]", @$ResellerBankDetail['ifsc_code'], array('class'=>'form-control')) !!}
         @if ($errors->has('bank_ref.ifsc_code'))
         <span class="text-danger">
             <strong>{{ $errors->first('bank_ref.ifsc_code') }}</strong>
@@ -515,7 +514,7 @@
 
     <div class="form-group col-md-4">
         {{ Form::label("bank_ref[address]",'Address*') }}
-        {!! Form::text("bank_ref[address]", @$ResellerBankDetail->address, array('class'=>'form-control')) !!}
+        {!! Form::text("bank_ref[address]", @$ResellerBankDetail['address'], array('class'=>'form-control')) !!}
         @if ($errors->has('bank_ref.address'))
         <span class="text-danger">
             <strong>{{ $errors->first('bank_ref.address') }}</strong>
@@ -525,7 +524,7 @@
 
     <div class="form-group col-md-4">
         {{ Form::label("bank_ref[phone]",'Phone*') }}
-        {!! Form::text("bank_ref[phone]", @$ResellerBankDetail->phone, array('class'=>'form-control')) !!}
+        {!! Form::text("bank_ref[phone]", @$ResellerBankDetail['phone'], array('class'=>'form-control')) !!}
         @if ($errors->has('bank_ref.phone'))
         <span class="text-danger">
             <strong>{{ $errors->first('bank_ref.phone') }}</strong>
@@ -536,7 +535,7 @@
     <div class="form-group col-md-4">
         {!! Form::file("attachment[bank_check]", old('file_path'), array('class'=>'form-control')) !!}
         <span class="font-12" style="font-size: 15px !important;">Cancelled Cheque (Scanned copy to be attached)</span>
-        {{ $file_name = basename(@$file_bank_check['file_path']) }}
+        {{ @$ResellerFiles['bank_check'][0]['file_name'] }}
         @if ($errors->has('attachment.bank_check'))
         <span class="text-danger">
             <strong>{{ $errors->first('attachment.bank_check') }}</strong>
@@ -546,7 +545,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("bank_ref[credit_limit]",'Credit Limit *') }}
-        {!! Form::text("bank_ref[credit_limit]", @$ResellerBankDetail->credit_limit, array('class'=>'form-control')) !!}
+        {!! Form::text("bank_ref[credit_limit]", @$ResellerBankDetail['credit_limit'], array('class'=>'form-control')) !!}
         @if ($errors->has('bank_ref.credit_limit'))
         <span class="text-danger">
             <strong>{{ $errors->first('bank_ref.credit_limit') }}</strong>
@@ -556,7 +555,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("bank_ref[ac_no]",'A/C. No*') }}
-        {!! Form::text("bank_ref[ac_no]", @$ResellerBankDetail->ac_no, array('class'=>'form-control')) !!}
+        {!! Form::text("bank_ref[ac_no]", @$ResellerBankDetail['ac_no'], array('class'=>'form-control')) !!}
         @if ($errors->has('bank_ref.ac_no'))
         <span class="text-danger">
             <strong>{{ $errors->first('bank_ref.ac_no') }}</strong>
@@ -566,7 +565,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("bank_ref[type]",'Type*') }}
-        {!! Form::text("bank_ref[type]", @$ResellerBankDetail->type, array('class'=>'form-control')) !!}
+        {!! Form::text("bank_ref[type]",@$ResellerBankDetail['type'], array('class'=>'form-control')) !!}
         @if ($errors->has('bank_ref.type'))
         <span class="text-danger">
             <strong>{{ $errors->first('bank_ref.type') }}</strong>
@@ -576,7 +575,7 @@
 
     <div class="form-group col-md-3">
         {{ Form::label("bank_ref[amount]",'Amount') }}
-        {!! Form::text("bank_ref[amount]", @$ResellerBankDetail->amount, array('class'=>'form-control')) !!}
+        {!! Form::text("bank_ref[amount]", @$ResellerBankDetail['amount'], array('class'=>'form-control')) !!}
     </div>
 
     <div class="form-group col-md-3">
@@ -602,7 +601,7 @@
 <div class="form-row">
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref1][firm_name]",'Firm Name*') }}
-        {!! Form::text("trade_ref[trade_ref1][firm_name]",@$trade_ref1->firm_name, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref1][firm_name]",@$ResellerTrade['trade_ref1'][0]['firm_name'], array('class'=>'form-control')) !!}
         @if ($errors->has('trade_ref.trade_ref1.firm_name'))
         <span class="text-danger">
             <strong>{{ $errors->first('trade_ref.trade_ref1.firm_name') }}</strong>
@@ -612,7 +611,7 @@
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref1][address]",'Address*') }}
-        {!! Form::text("trade_ref[trade_ref1][address]", @$trade_ref1->address, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref1][address]", @$ResellerTrade['trade_ref1'][0]['address'], array('class'=>'form-control')) !!}
         @if ($errors->has('trade_ref.trade_ref1.address'))
         <span class="text-danger">
             <strong>{{ $errors->first('trade_ref.trade_ref1.address') }}</strong>
@@ -622,7 +621,7 @@
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref1][city]",'City*') }}
-        {!! Form::text("trade_ref[trade_ref1][city]",@$trade_ref1->city, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref1][city]",@$ResellerTrade['trade_ref1'][0]['city'], array('class'=>'form-control')) !!}
         @if ($errors->has('trade_ref.trade_ref1.city'))
         <span class="text-danger">
             <strong>{{ $errors->first('trade_ref.trade_ref1.city') }}</strong>
@@ -632,7 +631,7 @@
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref1][phone]",'Phone*') }}
-        {!! Form::text("trade_ref[trade_ref1][phone]", @$trade_ref1->phone, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref1][phone]", @$ResellerTrade['trade_ref1'][0]['phone'], array('class'=>'form-control')) !!}
         @if ($errors->has('trade_ref.trade_ref1.phone'))
         <span class="text-danger">
             <strong>{{ $errors->first('trade_ref.trade_ref1.phone') }}</strong>
@@ -642,7 +641,7 @@
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref1][state]",'State*') }}
-        {!! Form::text("trade_ref[trade_ref1][state]", @$trade_ref1->state, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref1][state]", @$ResellerTrade['trade_ref1'][0]['state'], array('class'=>'form-control')) !!}
         @if ($errors->has('trade_ref.trade_ref1.state'))
         <span class="text-danger">
             <strong>{{ $errors->first('trade_ref.trade_ref1.state') }}</strong>
@@ -652,7 +651,7 @@
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref1][fax_no]",'Fax*') }}
-        {!! Form::text("trade_ref[trade_ref1][fax_no]", @$trade_ref1->fax_no, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref1][fax_no]", @$ResellerTrade['trade_ref1'][0]['fax_no'], array('class'=>'form-control')) !!}
         @if ($errors->has('trade_ref.trade_ref1.fax_no'))
         <span class="text-danger">
             <strong>{{ $errors->first('trade_ref.trade_ref1.fax_no') }}</strong>
@@ -664,32 +663,32 @@
 <div class="form-row">  
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref2][firm_name]",'Firm Name') }}
-        {!! Form::text("trade_ref[trade_ref2][firm_name]", @$trade_ref2->firm_name, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref2][firm_name]", @$ResellerTrade['trade_ref2'][0]['firm_name'], array('class'=>'form-control')) !!}
     </div>
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref2][address]",'Address') }}
-        {!! Form::text("trade_ref[trade_ref2][address]", @$trade_ref2->address, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref2][address]", @$ResellerTrade['trade_ref2'][0]['address'], array('class'=>'form-control')) !!}
     </div>
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref2][city]",'City') }}
-        {!! Form::text("trade_ref[trade_ref2][city]", @$trade_ref2->city, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref2][city]", @$ResellerTrade['trade_ref2'][0]['city'], array('class'=>'form-control')) !!}
     </div>
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref2][phone]",'Phone') }}
-        {!! Form::text("trade_ref[trade_ref2][phone]", @$trade_ref2->phone, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref2][phone]", @$ResellerTrade['trade_ref2'][0]['phone'], array('class'=>'form-control')) !!}
     </div>
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref2][state]",'State') }}
-        {!! Form::text("trade_ref[trade_ref2][state]", @$trade_ref2->state, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref2][state]", @$ResellerTrade['trade_ref2'][0]['state'], array('class'=>'form-control')) !!}
     </div>
 
     <div class="form-group col-md-2">
         {{ Form::label("trade_ref[trade_ref2][fax_no]",'Fax') }}
-        {!! Form::text("trade_ref[trade_ref2][fax_no]", @$trade_ref2->fax_no, array('class'=>'form-control')) !!}
+        {!! Form::text("trade_ref[trade_ref2][fax_no]", @$ResellerTrade['trade_ref2'][0]['fax_no'], array('class'=>'form-control')) !!}
     </div>
 
 </div>
@@ -719,7 +718,7 @@
     <div class="form-group col-md-3">
         {{ Form::label("attachment[sign]",'Signature with Seal*') }}
         {!! Form::file("attachment[sign]") !!}
-        {{ $file_name = basename(@$sign['file_path']) }}
+        {{ @$ResellerFiles['sign'][0]['file_name'] }}
         @if ($errors->has('attachment.sign'))
         <span class="text-danger">
             <strong>{{ $errors->first('attachment.sign') }}</strong>
@@ -735,7 +734,7 @@
 <div class="form-row">
     <div class="form-group col-md-3">
         {!! Form::file("supportdocs[ltd][]",['multiple']) !!}
-        {{ $file_name = basename(@$ltd['file_path']) }}
+        {{ @$ResellerFiles['ltd'][0]['file_name'] }}
     </div>
     @if ($errors->has('supportdocs.ltd.*'))
     <span class="text-danger">
@@ -750,7 +749,7 @@
 <div class="form-row">
     <div class="form-group col-md-3">
         {!! Form::file("supportdocs[partnership][]",['multiple']) !!}
-        {{ $file_name = basename(@$partnership['file_path']) }}
+        {{ @$ResellerFiles['partnership'][0]['file_name'] }}
     </div>
     @if ($errors->has('supportdocs.partnership.*'))
     <span class="text-danger">
@@ -765,7 +764,7 @@
 <div class="form-row">
     <div class="form-group col-md-3">
         {!! Form::file("supportdocs[sole][]",['multiple']) !!}
-        {{ $file_name = basename(@$sole['file_path']) }}
+        {{ @$ResellerFiles['sole'][0]['file_name'] }}
     </div>
     @if ($errors->has('supportdocs.sole.*'))
     <span class="text-danger">
