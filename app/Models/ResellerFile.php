@@ -13,7 +13,6 @@ class ResellerFile extends Model {
     public $timestamps = true;
     public $incrementing = false;
     protected $table = 'reseller_files';
-    public static $trackchanges = null;
 
     use Notifiable,
         SoftDeletes,

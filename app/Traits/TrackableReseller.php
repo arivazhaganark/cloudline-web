@@ -4,10 +4,12 @@ namespace App\Traits;
 
 trait TrackableReseller
 {
+    public $trackchanges = [];
+
     public static function bootTrackableReseller()
     {
         static::updating(function ($model) {
-            self::$trackchanges = $model->getDirty();
+            $model->trackchanges = $model->getDirty();
         });
     }
 }

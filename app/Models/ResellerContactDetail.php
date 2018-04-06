@@ -13,7 +13,6 @@ class ResellerContactDetail extends Model {
     public $timestamps = true;
     public $incrementing = false;
     protected $table = 'reseller_contact_details';
-    public static $trackchanges = [];
 
     use Notifiable,
         SoftDeletes,
