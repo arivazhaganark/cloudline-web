@@ -93,7 +93,7 @@ class Reseller extends Model {
         $changes = [];
         if ($files) {
             foreach ($files as $key => $file) {
-                $pathToFile = $this->_uploadfile($file,['reseller_id' => $this->id, 'file_type' => $key], true);
+                $pathToFile = ResellerFile::uploadFile($file,['reseller_id' => $this->id, 'file_type' => $key], true);
                 $changes[$key] = $pathToFile;
             }
         }
@@ -105,24 +105,11 @@ class Reseller extends Model {
         if ($docs) {
             foreach ($docs as $key => $files) {
                 foreach ($files as $file) {
-                    $pathToFile = $this->_uploadfile($file, ['reseller_id' => $this->id, 'file_type' => $key]);
+                    $pathToFile = ResellerFile::uploadFile($file, ['reseller_id' => $this->id, 'file_type' => $key]);
                     $changes[$key][] = $pathToFile;
                 }
             }
         }
         return $changes;
     }
-
-    public function _uploadfile($file,$data = [],$exists = false) {
-        $file_name = $file->getClientOriginalName();
-        $path = \Illuminate\Support\Facades\Storage::disk('public')->putFile('uploads', $file);
-        $upload_data = ['file_path' => $path,'file_name'=> $file_name];
-        if($exists){
-            ResellerFile::updateOrCreate($data, $upload_data);
-        }else{
-            ResellerFile::create(array_merge($upload_data, $data));
-        }
-        return $path;
-    }
-
 }
