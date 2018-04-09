@@ -164,12 +164,14 @@
                                                     <strong>Type:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    @if($reseller->type == "proprietor")                                    
-                                                    {{ "Proprietor" }}                                    
-                                                    @elseif($reseller->type == "partner")
-                                                    {{ "Partner" }}
-                                                    @else 
-                                                    {{ "Sole Proprietor" }}
+                                                    @if($reseller->type == "sole_proprietor")                                    
+                                                    {{ "Sole Proprietor" }}                                    
+                                                    @elseif($reseller->type == "partnership_firm")
+                                                    {{ "Partnership Firm" }}
+                                                    @elseif($reseller->type == "private_limited_company")
+                                                    {{ "Private Limited Company" }}
+                                                    @else
+                                                    {{ "Public Limited Company" }}
                                                     @endif
                                                 </div>
                                             </div>
@@ -235,7 +237,37 @@
                                                 <div class="col-sm-10">
                                                     {{ $reseller->pan_no }}
                                                 </div>
-                                            </div>                                            
+                                            </div> 
+                                            @if(@$ResellerFiles['roc'])
+                                            <div class="form-group">
+                                                <div class="col-sm-2 control-label">
+                                                    <strong>ROC File:</strong>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url(@$ResellerFiles['roc'][0]['file_path']) }}" target="_blank">{{ @$ResellerFiles['roc'][0]['file_name'] }}</a>
+                                                </div>
+                                            </div> 
+                                            @endif
+                                            @if(@$ResellerFiles['gst'])
+                                            <div class="form-group">
+                                                <div class="col-sm-2 control-label">
+                                                    <strong>GST File:</strong>
+                                                </div>
+                                                <div class="col-sm-10">                                                    
+                                                    <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url(@$ResellerFiles['roc'][0]['file_path']) }}" target="_blank">{{ @$ResellerFiles['gst'][0]['file_name'] }}</a>
+                                                </div>
+                                            </div> 
+                                            @endif
+                                            @if(@$ResellerFiles['pan'])
+                                            <div class="form-group">
+                                                <div class="col-sm-2 control-label">
+                                                    <strong>PAN File:</strong>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url(@$ResellerFiles['roc'][0]['file_path']) }}" target="_blank">{{ @$ResellerFiles['pan'][0]['file_name'] }}</a>
+                                                </div>
+                                            </div> 
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -261,7 +293,7 @@
                                                     <strong>Proprietor Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $proprietor->name }}
+                                                    {{ @$ResellerContact['proprietor'][0]['name'] }}
                                                 </div>
                                             </div>
 
@@ -270,7 +302,7 @@
                                                     <strong>Proprietor Address:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $proprietor->address }}
+                                                    {{ @$ResellerContact['proprietor'][0]['address'] }}
                                                 </div>
                                             </div>
 
@@ -279,7 +311,7 @@
                                                     <strong>Proprietor City:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $proprietor->city }}
+                                                    {{ @$ResellerContact['proprietor'][0]['city'] }}
                                                 </div>
                                             </div>
 
@@ -288,7 +320,7 @@
                                                     <strong>Proprietor Mobile:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $proprietor->mobile }}
+                                                    {{ @$ResellerContact['proprietor'][0]['mobile'] }}
                                                 </div>
                                             </div>
 
@@ -299,7 +331,7 @@
                                                     <strong>Partner Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $partner->name }}
+                                                    {{ @$ResellerContact['partner'][0]['name'] }}
                                                 </div>
                                             </div>
 
@@ -308,7 +340,7 @@
                                                     <strong>Partner Address:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $partner->address }}
+                                                    {{ @$ResellerContact['partner'][0]['address'] }}
                                                 </div>
                                             </div>
 
@@ -317,7 +349,7 @@
                                                     <strong>Partner City:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $partner->city }}
+                                                    {{ @$ResellerContact['partner'][0]['city'] }}
                                                 </div>
                                             </div>
 
@@ -326,7 +358,7 @@
                                                     <strong>Partner Mobile:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $partner->mobile }}
+                                                    {{ @$ResellerContact['partner'][0]['mobile'] }}
                                                 </div>
                                             </div>
 
@@ -337,7 +369,7 @@
                                                     <strong>Director Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $director->name }}
+                                                    {{ @$ResellerContact['director'][0]['name'] }}
                                                 </div>
                                             </div>
 
@@ -346,7 +378,7 @@
                                                     <strong>Director Address:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $director->address }}
+                                                    {{ @$ResellerContact['director'][0]['address'] }}
                                                 </div>
                                             </div>
 
@@ -355,7 +387,7 @@
                                                     <strong>Director City:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $director->city }}
+                                                    {{ @$ResellerContact['director'][0]['city'] }}
                                                 </div>
                                             </div>
 
@@ -364,7 +396,7 @@
                                                     <strong>Director Mobile:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $director->mobile }}
+                                                    {{ @$ResellerContact['director'][0]['mobile'] }}
                                                 </div>
                                             </div>
                                         </div>
@@ -392,7 +424,7 @@
                                                     <strong>Sales Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $sales->name }}
+                                                    {{ @$ResellerOffice['sales'][0]['name'] }}
                                                 </div>
                                             </div>
 
@@ -401,7 +433,7 @@
                                                     <strong>Sales Contact Number:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $sales->contact_no }}
+                                                    {{ @$ResellerOffice['sales'][0]['contact_no'] }}
                                                 </div>
                                             </div>
 
@@ -410,7 +442,7 @@
                                                     <strong>Sales Email:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $sales->email }}
+                                                    {{ @$ResellerOffice['sales'][0]['email'] }}
                                                 </div>
                                             </div>
 
@@ -421,7 +453,7 @@
                                                     <strong>Accounts Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $accounts->name }}
+                                                    {{ @$ResellerOffice['accounts'][0]['name'] }}
                                                 </div>
                                             </div>
 
@@ -430,7 +462,7 @@
                                                     <strong>Accounts Contact Number:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $accounts->contact_no }}
+                                                    {{ @$ResellerOffice['accounts'][0]['contact_no'] }}
                                                 </div>
                                             </div>
 
@@ -439,7 +471,7 @@
                                                     <strong>Accounts Email:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $accounts->email }}
+                                                    {{ @$ResellerOffice['accounts'][0]['email'] }}
                                                 </div>
                                             </div>
 
@@ -450,7 +482,7 @@
                                                     <strong>Logistics Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $accounts->name }}
+                                                    {{ @$ResellerOffice['logistics'][0]['name'] }}
                                                 </div>
                                             </div>
 
@@ -459,7 +491,7 @@
                                                     <strong>Logistics Contact Number:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $logistics->contact_no }}
+                                                    {{ @$ResellerOffice['logistics'][0]['contact_no'] }}
                                                 </div>
                                             </div>
 
@@ -468,7 +500,7 @@
                                                     <strong>Logistics Email:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $logistics->email }}
+                                                    {{ @$ResellerOffice['logistics'][0]['email'] }}
                                                 </div>
                                             </div>
                                             <hr>
@@ -477,7 +509,7 @@
                                                     <strong>Technical Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $tech->name }}
+                                                    {{ @$ResellerOffice['tech'][0]['name'] }}
                                                 </div>
                                             </div>
 
@@ -486,7 +518,7 @@
                                                     <strong>Technical Contact Number:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $tech->contact_no }}
+                                                    {{ @$ResellerOffice['tech'][0]['contact_no'] }}
                                                 </div>
                                             </div>
 
@@ -495,7 +527,7 @@
                                                     <strong>Technical Email:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $tech->email }}
+                                                    {{ @$ResellerOffice['tech'][0]['email'] }}
                                                 </div>
                                             </div>                                            
                                             <hr>
@@ -504,7 +536,7 @@
                                                     <strong>Support Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $support->name }}
+                                                    {{ @$ResellerOffice['support'][0]['name'] }}
                                                 </div>
                                             </div>
 
@@ -513,7 +545,7 @@
                                                     <strong>Support Contact Number:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $support->contact_no }}
+                                                    {{ @$ResellerOffice['support'][0]['contact_no'] }}
                                                 </div>
                                             </div>
 
@@ -522,7 +554,7 @@
                                                     <strong>Support Email:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $support->email }}
+                                                    {{ @$ResellerOffice['support'][0]['email'] }}
                                                 </div>
                                             </div>
                                         </div>
@@ -550,7 +582,7 @@
                                                     <strong>Bank Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $bank_ref->bank_name }}
+                                                    {{ @$ResellerBankDetail['bank_name'] }}
                                                 </div>
                                             </div>
 
@@ -559,7 +591,7 @@
                                                     <strong>Contact Number:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $bank_ref->contact_no }}
+                                                    {{ @$ResellerBankDetail['contact_no'] }}
                                                 </div>
                                             </div>
 
@@ -568,7 +600,7 @@
                                                     <strong>IFSC Code/MICR Code/SWIFT Code:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $bank_ref->ifsc_code }}
+                                                    {{ @$ResellerBankDetail['ifsc_code'] }}
                                                 </div>
                                             </div>
 
@@ -577,7 +609,7 @@
                                                     <strong>Address:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $bank_ref->address }}
+                                                    {{ @$ResellerBankDetail['address'] }}
                                                 </div>
                                             </div>
 
@@ -586,16 +618,27 @@
                                                     <strong>Phone:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $bank_ref->phone }}
+                                                    {{ @$ResellerBankDetail['phone'] }}
                                                 </div>
                                             </div>
+
+                                            @if(@$ResellerFiles['bank_check'])
+                                            <div class="form-group">
+                                                <div class="col-sm-2 control-label">
+                                                    <strong>Cancelled Cheque:</strong>
+                                                </div>
+                                                <div class="col-sm-10">                                                    
+                                                    <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url(@$ResellerFiles['bank_check'][0]['file_path']) }}" target="_blank">{{ @$ResellerFiles['bank_check'][0]['file_name'] }}</a>
+                                                </div>
+                                            </div> 
+                                            @endif
 
                                             <div class="form-group">
                                                 <div class="col-sm-2 control-label">
                                                     <strong>Credit Limit:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $bank_ref->credit_limit }}
+                                                    {{ @$ResellerBankDetail['credit_limit'] }}
                                                 </div>
                                             </div>
 
@@ -604,7 +647,7 @@
                                                     <strong>A/C. No Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $bank_ref->ac_no }}
+                                                    {{ @$ResellerBankDetail['ac_no'] }}
                                                 </div>
                                             </div>
 
@@ -613,7 +656,11 @@
                                                     <strong>Type:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $bank_ref->type }}
+                                                    @if(@$ResellerBankDetail->type == "no")                                    
+                                                    {{ "No" }}                                    
+                                                    @else
+                                                    {{ "Yes" }}
+                                                    @endif
                                                 </div>
                                             </div>
 
@@ -622,7 +669,7 @@
                                                     <strong>Amount:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $bank_ref->amount }}
+                                                    {{ @$ResellerBankDetail['amount'] }}
                                                 </div>
                                             </div>                                                                                        
                                         </div>
@@ -645,12 +692,13 @@
                                 <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                     <div class="panel-body">
                                         <div class="form-horizontal">
+                                            Trade Reference #1
                                             <div class="form-group">
                                                 <div class="col-sm-2 control-label">
                                                     <strong>Firm Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref1->firm_name }}
+                                                    {{ @$ResellerTrade['trade_ref1'][0]['firm_name'] }}
                                                 </div>
                                             </div>
 
@@ -659,7 +707,7 @@
                                                     <strong>Address:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref1->address }}
+                                                    {{ @$ResellerTrade['trade_ref1'][0]['address'] }}
                                                 </div>
                                             </div>
 
@@ -668,7 +716,7 @@
                                                     <strong>City:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref1->city }}
+                                                    {{ @$ResellerTrade['trade_ref1'][0]['city'] }}
                                                 </div>
                                             </div>
 
@@ -677,7 +725,7 @@
                                                     <strong>Phone:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref1->phone }}
+                                                    {{ @$ResellerTrade['trade_ref1'][0]['phone'] }}
                                                 </div>
                                             </div>                                            
 
@@ -686,7 +734,7 @@
                                                     <strong>State:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref1->state }}
+                                                    {{ @$ResellerTrade['trade_ref1'][0]['state'] }}
                                                 </div>
                                             </div>
 
@@ -695,17 +743,18 @@
                                                     <strong>Fax:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref1->fax_no }}
+                                                    {{ @$ResellerTrade['trade_ref1'][0]['fax_no'] }}
                                                 </div>
                                             </div>
-                                            @if($trade_ref2)  
+                                            @if(@$ResellerTrade['trade_ref2'])  
                                             <hr>
+                                            Trade Reference #2
                                             <div class="form-group">
                                                 <div class="col-sm-2 control-label">
                                                     <strong>Firm Name:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref2->firm_name }}
+                                                    {{ @$ResellerTrade['trade_ref2'][0]['firm_name'] }}
                                                 </div>
                                             </div>
 
@@ -714,7 +763,7 @@
                                                     <strong>Address:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref2->address }}
+                                                    {{ @$ResellerTrade['trade_ref2'][0]['address'] }}
                                                 </div>
                                             </div>
 
@@ -723,7 +772,7 @@
                                                     <strong>City:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref2->city }}
+                                                    {{ @$ResellerTrade['trade_ref2'][0]['city'] }}
                                                 </div>
                                             </div>
 
@@ -732,7 +781,7 @@
                                                     <strong>Phone:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref2->phone }}
+                                                    {{ @$ResellerTrade['trade_ref2'][0]['phone'] }}
                                                 </div>
                                             </div>                                            
 
@@ -741,7 +790,7 @@
                                                     <strong>State:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref2->state }}
+                                                    {{ @$ResellerTrade['trade_ref2'][0]['state'] }}
                                                 </div>
                                             </div>
 
@@ -750,7 +799,7 @@
                                                     <strong>Fax:</strong>
                                                 </div>
                                                 <div class="col-sm-10">
-                                                    {{ $trade_ref2->fax_no }}
+                                                    {{ @$ResellerTrade['trade_ref2'][0]['fax_no'] }}
                                                 </div>
                                             </div> 
                                             @endif
@@ -770,12 +819,81 @@
                                                     {{ $reseller->place }}
                                                 </div>
                                             </div>
+
+                                            @if(@$ResellerFiles['sign'])
+                                            <div class="form-group">
+                                                <div class="col-sm-2 control-label">
+                                                    <strong>Signature with Seal:</strong>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url(@$ResellerFiles['sign'][0]['file_path']) }}" target="_blank">{{ @$ResellerFiles['sign'][0]['file_name'] }}</a>
+                                                </div>
+                                            </div> 
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @if(@$ResellerFiles['ltd'] || @$ResellerFiles['partnership'] || @$ResellerFiles['sole'])
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                            <i class="fa fa-plus"></i>
+                                            <i class="fa fa-minus" style="display: none"></i>
+                                            Supporting Documents
+                                        </a>
+                                    </h4>                                        
+                                </div>
+                                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="form-horizontal">                                            
+                                            @if(@$ResellerFiles['ltd'])
+                                            <div class="form-group">
+                                                <div class="col-sm-2 control-label">
+                                                    <strong>Limited Company:</strong>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    @foreach(@$ResellerFiles['ltd'] as $ltd)
+                                                     <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($ltd['file_path']) }}" target="_blank">{{ $ltd['file_name'] }}</a> <br/>
+                                                    @endforeach
+                                                </div>
+                                            </div> 
+                                            @endif
 
+                                            @if(@$ResellerFiles['partnership'])
+                                            <div class="form-group">
+                                                <div class="col-sm-2 control-label">
+                                                    <strong>Partnership Firm:</strong>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    @foreach(@$ResellerFiles['partnership'] as $partnership)
+                                                    <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($partnership['file_path']) }}" target="_blank">{{ $partnership['file_name'] }}</a> <br/>
+                                                    @endforeach
+                                                </div>
+                                            </div> 
+                                            @endif
+
+                                            @if(@$ResellerFiles['sole'])
+                                            <div class="form-group">
+                                                <div class="col-sm-2 control-label">
+                                                    <strong>Sole Proprietor:</strong>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    @foreach(@$ResellerFiles['sole'] as $sole)
+                                                    <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($sole['file_path']) }}" target="_blank">{{ $sole['file_name'] }}</a> <br/>
+                                                    @endforeach
+                                                </div>
+                                            </div> 
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                     @endif
                 </div>

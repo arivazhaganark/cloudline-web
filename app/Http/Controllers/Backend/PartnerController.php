@@ -39,6 +39,8 @@ class PartnerController extends Controller {
     protected function _append_form_variables(&$data) {
         $data['types'] = Partner::$types;
         $data['focus'] = Partner::$focuses;
+        $data['reseller_types'] = Reseller::$types;
+        $data['collaterals'] = ResellerBankDetail::$collaterals;
     }
 
     public function create() {
@@ -62,7 +64,6 @@ class PartnerController extends Controller {
         $this->_save($request, $model);
 
         $code = $model['confirmation_code'];
-//        dd($token);
 
         \Mail::send('site.partner.verify', ['code' => $code], function($message) {
             $message->to(Input::get('email'), Input::get('name'))
@@ -72,7 +73,7 @@ class PartnerController extends Controller {
         return redirect()->back()->with('alert-success', 'Thanks for Registration!Please check your email.');
     }
 
-    protected function _save($request, $model) {
+    protected function _save($request, $model, $reseller) {
         $user = (!$model->exists) ? new User() : User::find($model->user_id);
         $userdata = $request->only(['name', 'email', 'password']);
         if (!empty($userdata['password'])) {
@@ -88,6 +89,30 @@ class PartnerController extends Controller {
         $data['user_id'] = $user->id;
         $model->fill($data);
         $model->save();
+        if ($request->resellers) {
+            $reseller_datas = $request->resellers;
+            $reseller->fill($reseller_datas);
+            $reseller->save();
+        }
+        $changes = [];
+        if ($request->contacts) {
+            $changes['contact'] = $reseller->_contactsave($request->contacts);
+        }
+        if ($request->office_details) {
+            $changes['office'] = $reseller->_officedetailsave($request->office_details);
+        }
+        if ($request->bank_ref) {
+            $changes['bank'] = $reseller->_bankdetailsave($request->bank_ref);
+        }
+        if ($request->trade_ref) {
+            $changes['trade'] = $reseller->_tradedetailsave($request->trade_ref);
+        }
+        if ($request->attachment) {
+            $changes['attachment'] = $reseller->_attachment($request->attachment);
+        }
+        if ($request->supportdocs) {
+            $changes['supportdocs'] = $reseller->_supportdocs($request->supportdocs);
+        }
     }
 
     public function edit($id) {
@@ -99,6 +124,17 @@ class PartnerController extends Controller {
         $data['breadcrumbs']->addCrumb('Partners', 'partners');
         $data['breadcrumbs']->addCrumb('Edit Partner', '');
         $data['breadcrumbs']->setDivider('');
+        $data['Reseller'] = Reseller::find($id);
+        $user_id = $data['Model']->user_id;
+        $data['reseller'] = Reseller::where('user_id', '=', $user_id)->first();
+        if ($data['reseller']) {
+            $reseller_id = $data['reseller']->id;
+            $data['ResellerContact'] = $data['reseller']->reseller_contact_details->groupBy('type');
+            $data['ResellerOffice'] = $data['reseller']->reseller_office_details->groupBy('type');
+            $data['ResellerBankDetail'] = $data['reseller']->reseller_bank_details;
+            $data['ResellerTrade'] = $data['reseller']->reseller_trade_details->groupBy('type');
+            $data['ResellerFiles'] = $data['reseller']->reseller_files->groupBy('file_type');
+        }
 
         $this->_append_form_variables($data);
         return view('admin.partner.edit', $data);
@@ -108,7 +144,8 @@ class PartnerController extends Controller {
         $this->_validate($request, $id, $request->uid);
 
         $model = Partner::find($id);
-        $this->_save($request, $model);
+        $reseller = Reseller::where('user_id', '=', $model->user_id)->first();
+        $this->_save($request, $model, $reseller);
 
         return redirect('admin/partners')->with('alert-success', 'successfully updated!');
     }
@@ -126,17 +163,11 @@ class PartnerController extends Controller {
         $data['reseller'] = Reseller::where('user_id', '=', $user_id)->first();
         if ($data['reseller']) {
             $reseller_id = $data['reseller']->id;
-            $data['proprietor'] = ResellerContactDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'proprietor']])->first();
-            $data['partner'] = ResellerContactDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'partner']])->first();
-            $data['director'] = ResellerContactDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'director']])->first();
-            $data['sales'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'sales']])->first();
-            $data['accounts'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'accounts']])->first();
-            $data['logistics'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'logistics']])->first();
-            $data['tech'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'tech']])->first();
-            $data['support'] = ResellerOfficeDetail::where([['reseller_id', '=', $reseller_id], ['type', '=', 'support']])->first();
-            $data['bank_ref'] = ResellerBankDetail::where('reseller_id', '=', $reseller_id)->first();
-            $data['trade_ref1'] = ResellerTradeDetail::where([['type', '=', 1], ['reseller_id', '=', $reseller_id]])->first();
-            $data['trade_ref2'] = ResellerTradeDetail::where([['type', '=', 2], ['reseller_id', '=', $reseller_id]])->first();
+            $data['ResellerContact'] = $data['reseller']->reseller_contact_details->groupBy('type');
+            $data['ResellerOffice'] = $data['reseller']->reseller_office_details->groupBy('type');
+            $data['ResellerBankDetail'] = $data['reseller']->reseller_bank_details;
+            $data['ResellerTrade'] = $data['reseller']->reseller_trade_details->groupBy('type');
+            $data['ResellerFiles'] = $data['reseller']->reseller_files->groupBy('file_type');
         }
         return view('admin.partner.view', $data);
     }
