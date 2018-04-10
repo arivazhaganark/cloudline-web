@@ -43,6 +43,7 @@ Route::middleware(['web'])->namespace('Backend')->prefix('admin')->group(functio
         Route::resource('customers', 'CustomerController');
         Route::resource('partners', 'PartnerController');
         Route::resource('cms', 'CmsController');
+        Route::resource('products', 'ProductController');
         Route::resource('demorequests', 'DemoRequestController');
     });
 });

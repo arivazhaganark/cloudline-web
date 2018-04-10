@@ -158,6 +158,8 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Yajra\Datatables\ButtonsServiceProvider::class,    
         Creitive\Breadcrumbs\BreadcrumbsServiceProvider::class,
+        Webwizo\Shortcodes\ShortcodesServiceProvider::class,
+        App\Providers\ShortcodesServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------
@@ -208,5 +210,6 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
         'Breadcrumbs' => Creitive\Breadcrumbs\Facades\Breadcrumbs::class,
+        'Shortcode' => Webwizo\Shortcodes\Facades\Shortcode::class,
     ],
 ];

@@ -21,7 +21,13 @@
             <li><a href="{{ url('admin/partners') }}"><i class="fa fa-user-circle"></i> <span>Partners</span></a></li>
             <li><a href="{{ url('admin/demorequests') }}"><i class="fa fa-files-o"></i> <span>Demo Requests</span></a></li>
             <li><a href="{{ url('admin/contactus') }}"><i class="fa fa-user-circle"></i> <span>Contact Us</span></a></li>
-            <li><a href="{{ url('admin/cms') }}"><i class="fa fa-files-o"></i> <span>Cms</span></a></li>
+            <li  class="treeview"><a href="{{ url('admin/cms') }}"><i class="fa fa-files-o"></i> <span>Cms</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('admin/products') }}"><i class="fa fa-circle-o"></i> Products</a></li>
+                </ul></li>
             <li><a href="{{ url('admin/settings') }}"> <i class="fa fa-cog"></i> <span>Settings</span> </a> </li>
             @endif
             @endauth

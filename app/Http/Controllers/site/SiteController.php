@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cms;
 use App\Models\Setting;
+use App\Shortcodes\ProductsShortcode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use function abort;
-use function back;
+use function base_path;
+use function response;
 use function view;
 
 class SiteController extends Controller {
@@ -18,13 +21,12 @@ class SiteController extends Controller {
     }
 
     public function page($Page) {
-//        $pageinfo = \App\Models\Cms::where("slug", $Page)->first();
-//        if ($pageinfo) {
-//            $data['Page'] = $pageinfo;
-//            return view("site.cms-page", $data);
-//        } else
-            
-            if (View::exists("site.$Page")) {
+        $pageinfo = Cms::where("slug", $Page)->first();
+        if ($pageinfo) {
+            $data['Page'] = $pageinfo;
+            $data['products'] = ProductsShortcode::register();
+            return view("site.cms-page", $data)->withShortcodes();
+        } elseif (View::exists("site.$Page")) {
             return view("site.$Page");
         } else {
             abort(404);
