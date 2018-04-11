@@ -16,15 +16,16 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $breadcrumbs; ?></li>
             </ol>
-        </nav>
+        </nav>        
         <div class="container">
             <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 offset-md-1 offset-lg-1 offset-xl-1 partner-login-form">
+                @include('site.partials.alert')
                 <div class="card-wrapper">
                     <div class="card fat">
                         <div class="card-body">
                             <h4 class="card-title"> Reseller Account Opening </h4>
                             @if($Reseller)
-                            <div align="center"> <button class="btn btn-primary" type="button" onclick="window.location = '{{ url('partner/reseller/edit/'.$Reseller->id) }}'">Click here to Open Re-Seller Account</button></div>
+                            <div align="center"> <button class="btn btn-primary" type="button" onclick="window.location = '{{ url('partner/reseller/edit/'.$Reseller->id) }}'">Click here to Edit Re-Seller Account</button></div>
                             @else
                             <div align="center"> <button class="btn btn-primary" type="button" onclick="window.location = '{{ url('partner/reseller/create') }}'">Click here to Open Re-Seller Account</button></div>
                             @endif

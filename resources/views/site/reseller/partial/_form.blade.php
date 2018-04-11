@@ -139,7 +139,7 @@
     </div>
 
     <div class="form-group col-md-4">
-        {{ Form::label("resellers[roc_no]",'ROC Reg. No.( If Company)') }}
+        {{ Form::label("resellers[roc_no]",'ROC Reg. No.( If Company)*') }}
         {!! Form::text("resellers[roc_no]", @$Reseller->roc_no,['class'=>'form-control']) !!}
         @if ($errors->has('resellers.roc_no'))
         <span class="text-danger">
@@ -782,9 +782,6 @@
     </span>
     @endif
 </div>
-
-<strong>Note: Please upload file in .xls,.doc,pdf Format. All the documents need to be signed and sealed.</strong> <br/> 
-<br/>
 
 <div class="form-group" align="center">
     {!! Form::submit('Submit', array('class'=>'btn btn-sec')) !!}

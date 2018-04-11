@@ -187,8 +187,8 @@
                     <div class="form-group">
                         {{ Form::label('resellers[reseller_type]','Type*',['class'=>'col-sm-2 control-label']) }}
                         <div class="col-sm-10">
-                            @foreach ($reseller_types as $id => $reseller_type)
-                            <label>{!! Form::radio('resellers[reseller_type]', $id, (@$reseller->type==$id) ); !!} {{$reseller_type}} </label>
+                            @foreach ($reseller_types as $id => $type)
+                            <label>{!! Form::radio('resellers[type]', $id, (@$reseller->type==$id) ); !!} {{$type}} </label>
                             @endforeach
                         </div>
                     </div>

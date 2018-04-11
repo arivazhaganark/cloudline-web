@@ -19,8 +19,9 @@
         </nav>
         <div class="container">
             <h4 class="card-title"> Reseller Registration </h4>
-            <span>(Instructions: Kindly fill this form by giving complete details. If a question does not apply to you mention “NA”)</span>
-            <br /> <br />
+            <span><strong>(Instructions: Kindly fill this form by giving complete details. If a question does not apply to you mention “NA”)</strong></span>
+            <br />
+            <span class="text-danger"><strong>Note: Please upload file in .xls,.doc,pdf Format. All the documents need to be signed and sealed.</strong><br/><br/></span>
             <!--@include('site.partials.alert')-->            
             <div class="card-wrapper">
                 <div class="card fat">
