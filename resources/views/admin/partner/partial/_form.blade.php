@@ -235,21 +235,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('roc','ROC*',['class'=>'col-sm-2 control-label']) }}
+                        {{ Form::label('roc','ROC',['class'=>'col-sm-2 control-label']) }}
                         <div class="col-sm-10">
                             {!! Form::file("attachment[roc]") !!}
                         </div>
                         {{ @$ResellerFiles['roc'][0]['file_name'] }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('gst','GST*',['class'=>'col-sm-2 control-label']) }}
+                        {{ Form::label('gst','GST',['class'=>'col-sm-2 control-label']) }}
                         <div class="col-sm-10">
                             {!! Form::file("attachment[gst]") !!}
                         </div>
                         {{ @$ResellerFiles['gst'][0]['file_name'] }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('pan','PAN*',['class'=>'col-sm-2 control-label']) }}
+                        {{ Form::label('pan','PAN',['class'=>'col-sm-2 control-label']) }}
                         <div class="col-sm-10">
                             {!! Form::file("attachment[pan]") !!}
                         </div>
@@ -521,7 +521,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('bank_check','Cancelled Cheque*',['class'=>'col-sm-2 control-label']) }}
+                        {{ Form::label('bank_check','Cancelled Cheque',['class'=>'col-sm-2 control-label']) }}
                         <div class="col-sm-10">
                             {!! Form::file("attachment[bank_check]") !!}
                         </div>
@@ -546,7 +546,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('bank_ref[amount]','Amount*',['class'=>'col-sm-2 control-label']) }}
+                        {{ Form::label('bank_ref[amount]','Amount',['class'=>'col-sm-2 control-label']) }}
                         <div class="col-sm-10">
                             {!! Form::text('bank_ref[amount]', @$ResellerBankDetail['amount'], array('class'=>'form-control')) !!}
                         </div>
