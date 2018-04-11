@@ -8,7 +8,8 @@ use DB;
 class ProductsShortcode {
 
     public static function register() {
-        return Product::all();
+        $products = Product::all();
+        return view("site.partials.product_shortcode",compact('products'));
     }
 
 }

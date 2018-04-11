@@ -24,7 +24,6 @@ class SiteController extends Controller {
         $pageinfo = Cms::where("slug", $Page)->first();
         if ($pageinfo) {
             $data['Page'] = $pageinfo;
-            $data['products'] = ProductsShortcode::register();
             return view("site.cms-page", $data)->withShortcodes();
         } elseif (View::exists("site.$Page")) {
             return view("site.$Page");
