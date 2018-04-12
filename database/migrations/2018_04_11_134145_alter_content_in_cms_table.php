@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class AlterContentInCmsTable extends Migration
 {
@@ -13,9 +14,7 @@ class AlterContentInCmsTable extends Migration
      */
     public function up()
     {
-        Schema::table('cms', function (Blueprint $table) {
-            $table->longText('content')->nullable()->change();
-        });
+        DB::statement('ALTER TABLE cms CHANGE `content` `content` LONGTEXT;');
     }
 
     /**
@@ -25,8 +24,6 @@ class AlterContentInCmsTable extends Migration
      */
     public function down()
     {
-        Schema::table('cms', function (Blueprint $table) {
-            $table->text('content')->nullable()->change();
-        });
+        DB::statement('ALTER TABLE cms CHANGE `content` `content` TEXT;');
     }
 }
