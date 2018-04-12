@@ -987,3 +987,10 @@ li {
 .footer_a {
     color: #FFFFFF;
 }
+
+.error {
+    color: #dc3545!important;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bolder;
+}

@@ -77,6 +77,7 @@ Route::namespace('site')->group(function () {
     Route::delete('partner/registerusers/{id}', 'PartnerController@rdestroy');
     Route::get('partner/reseller','ResellerController@index');
     Route::get('partner/reseller/create','ResellerController@create');
+    Route::post('partner/reseller/email_exists','ResellerController@email_exists');
     Route::post('partner/reseller/store','ResellerController@store');
     Route::get('partner/reseller/edit/{id}','ResellerController@edit');
     Route::put('partner/reseller/{id}','ResellerController@update');

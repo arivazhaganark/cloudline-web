@@ -784,6 +784,6 @@
 </div>
 
 <div class="form-group" align="center">
-    {!! Form::submit('Submit', array('class'=>'btn btn-sec')) !!}
+    {!! Form::submit('Submit', array('class'=>'btn btn-sec','id'=>'button')) !!}
 </div>
 

@@ -54,8 +54,10 @@ use AuthenticatesUsers;
         if (\Auth::attempt(['email' => $email, 'password' => $password]) && !\Auth::user()->is_admin) {
             // Authentication passed...
             return redirect()->intended('partner/home');
-        } else {
+        } elseif (\Auth::attempt(['email' => $email, 'password' => $password]) && \Auth::user()->is_admin) {
             return redirect()->intended('admin');
+        } else {
+            return back()->with('alert-danger', 'Please check your email and password');
         }
     }
 

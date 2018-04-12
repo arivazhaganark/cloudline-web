@@ -233,5 +233,15 @@ class ResellerController extends Controller {
         });
         return redirect('partner/reseller')->with('alert-success', 'successfully updated!');
     }
+    
+    public function email_exists(Request $request) {
+        $user_email = $request['resellers']['email'];
+        $user_exist_count = Reseller::where('email', $user_email)->count();
+        if($user_exist_count==1) {
+            return "false";
+        } else {
+            return "true";
+        }
+    }
 
 }

@@ -114,4 +114,7 @@
     });
 
 </script>
+<script src="{{ asset('js/jquery.validate.js') }}"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.js"></script>
+<script src="{{ asset('js/reseller.js?v='.File::lastModified('js/reseller.js')) }}"></script>
 <script src="{{ asset('js/app.js?v=1.0.0') }}"></script>

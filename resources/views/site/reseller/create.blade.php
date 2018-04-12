@@ -26,7 +26,8 @@
             <div class="card-wrapper">
                 <div class="card fat">
                     <div class="card-body">
-                        {{ Form::open(['url' => [ 'partner/reseller/store' ],'method' => 'POST', 'class' => 'form-horizontal','files'=>true]) }}
+                        {!! Form::hidden('reseller_id', '',['id'=>'reseller_id']) !!}
+                        {{ Form::open(['url' => [ 'partner/reseller/store' ],'method' => 'POST','id'=>'resel_form','name'=>'resel_form', 'class' => 'form-horizontal','files'=>true]) }}
                         @include('site.reseller.partial._form')
                         {!! Form::close() !!}
                     </div>
