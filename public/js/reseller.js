@@ -1,6 +1,5 @@
 var app_root = $('#app_url').val();
 var app_url = $('#resel_form').val();
-
 $(document).ready(function () {
 
     $('#resel_form').validate({
@@ -25,12 +24,12 @@ $(document).ready(function () {
                 required: true,
                 email: true,
                 remote:
-                    {
-                        type: 'POST',
-                        url: app_url + "/partner/reseller/email_exists",
-                        data: {_token: $('input[name=_token]').val(), id: $('#reseller_id').val()},
-                        async: false
-                    }
+                        {
+                            type: 'POST',
+                            url: app_url + "/partner/reseller/email_exists",
+                            data: {_token: $('input[name=_token]').val(), id: $('#reseller_id').val()},
+                            async: false
+                        }
             },
             'resellers[state]': {
                 required: true
@@ -232,7 +231,13 @@ $(document).ready(function () {
                 required: true
             },
             'attachment[sign]': {
-                required: true,
+                required: function (element) {
+                    if ($("#attachment[sign]").attr('src') !== '') {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                },
                 accept: "pdf,xls,doc"
             },
         },
@@ -463,7 +468,6 @@ $(document).ready(function () {
         }
     });
 });
-
 $("#button").click(function () {
     $('#resel_form').validate();
     var validated = $('#resel_form').valid();
@@ -472,8 +476,6 @@ $("#button").click(function () {
         window.resel_form.submit();
     }
 });
-
-
 var dashCount = 0;
 function isNumberKey(evt)
 {
