@@ -83,4 +83,24 @@ class SiteController extends Controller {
         return \Response::json(['errors' => $validator->errors()]);
     }
 
+    public function videocall() {
+        return view('layouts.partials.videocall');
+    }
+
+    public function videocallstore(Request $request) {
+        $data = $request->only('name');
+
+        $Toemail = Setting::fetch('contact_email');
+        \Mail::send('site.videocallemail', ['data' => $data], function($message) use ($request, $Toemail) {
+            $message->from('noreply@gmail.com');
+            $message->to($Toemail, 'Admin')->subject('Join Video Call Request');
+        });
+
+        return redirect('guideline');
+    }
+    
+    public function guideline() {
+        return view('site.guideline');
+    }
+
 }

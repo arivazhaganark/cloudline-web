@@ -82,6 +82,9 @@ Route::namespace('site')->group(function () {
     Route::get('partner/reseller/edit/{id}','ResellerController@edit');
     Route::put('partner/reseller/{id}','ResellerController@update');
     Route::match(['get', 'post'], 'partner/profile', 'PartnerController@myprofile')->name('profile');
+    Route::get('videocall', 'SiteController@videocall');
+    Route::post('videocall/store', 'SiteController@videocallstore');
+    Route::get('guideline', 'SiteController@guideline');
     Route::resource('partner', 'PartnerController');
     Route::get('{page}', 'SiteController@page');
 });

@@ -994,3 +994,18 @@ li {
     font-style: italic;
     font-weight: bolder;
 }
+
+.join_call {
+    position:fixed;
+    right:12px;
+    bottom:12px;
+    display: none;
+    width: 320px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #1cb18f !important;
+    color: #ffffff;
+}
