@@ -21,6 +21,11 @@ class HomeController extends Controller {
      *
      * @return Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
     public function index() {
         $data['partners_count'] = Partner::count();
         $data['registerusers_count'] = Customer::where('status', '=', 1)->count();

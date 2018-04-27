@@ -36,12 +36,18 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip({
         'container': 'body'
     });
-
-    var show = localStorage.getItem('show');
-    if (show === 'true') {
-        $('#videocall').show();
+//videocall popup
+    if (videocallEnable = localStorage.getItem("videocallEnable")) {
+        var timeremain = (videocallEnable != 'true') ? moment(videocallEnable).diff(moment(), 'seconds') : 0;
     } else {
-        setTimeout(showvideocall, 1 * 60 * 1000);
+        var timeremain = 60;
+        localStorage.setItem("videocallEnable", moment().add(1, 'minutes').toString());
+    }
+    setTimeout(showvideocall, timeremain * 1000);
+
+    function showvideocall() {
+        localStorage.setItem('videocallEnable', 'true');
+        $('#videocall').show();
     }
 
     $('.formComplete').hide();
@@ -113,8 +119,3 @@ $(document).on("scroll", function () {
         $("header").removeClass("shrink");
     }
 });
-
-function showvideocall() {
-    localStorage.setItem('show', 'true');
-    $('#videocall').show();
-}

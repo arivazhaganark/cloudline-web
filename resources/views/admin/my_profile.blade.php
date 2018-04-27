@@ -16,7 +16,7 @@
                 <div class="box-header with-border">
                     <!--<h3 class="box-title">My Profile</h3>-->
                     <div class="box-body">
-                        {{ Form::model($Model, ['route' => [ 'profile' ],'method' => 'POST', 'class' => 'form-horizontal']) }}
+                        {{ Form::model($Model, ['route' => [ 'myprofile' ],'method' => 'POST', 'class' => 'form-horizontal']) }}
 
                         <div class="form-group">
                             {{ Form::label('name','Name*',['class'=>'col-sm-2 control-label']) }}

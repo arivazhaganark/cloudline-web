@@ -21,9 +21,9 @@ Route::middleware(['web'])->namespace('Backend')->prefix('admin')->group(functio
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-    Route::middleware(['admin'])->group(function () {
+    Route::middleware(['auth:admin','admin'])->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
-        Route::match(['get', 'post'], 'profile', 'HomeController@myprofile')->name('profile');
+        Route::match(['get', 'post'], 'profile', 'HomeController@myprofile')->name('myprofile');
         Route::match(['get', 'post'], 'settings', 'HomeController@settings')->name('settings');
         Route::get('registerusers', 'CustomerController@rindex');
         Route::get('registerusers/create', 'CustomerController@ruser');

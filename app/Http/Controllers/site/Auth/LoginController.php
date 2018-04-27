@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use function redirect;
+use Auth;
 
 class LoginController extends Controller {
     /*
@@ -22,19 +23,19 @@ class LoginController extends Controller {
 
 use AuthenticatesUsers;
 
+    public function __construct() {
+        $this->middleware('guest:web')->except('logout');
+    }
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
     public function authenticated($request, $user) {
-        if ($user->role == 'A') {
-            return redirect('/admin');
-        } elseif ($user->role == 'P') {
-            return redirect('/admin/profile');
-        }
+        return redirect('/');
     }
-
+    
     public function authenticate(Request $request) {
         $this->validate($request, [
             $this->username() => 'required|string',
@@ -45,17 +46,17 @@ use AuthenticatesUsers;
                         if (@$user->partner->status == 2) {
                             return $fail('Your account was declined.Contact administrator');
                         }
+                        if (@$user->role != 'P') {
+                            return $fail('Your account not partner.Contact administrator');
+                        }
                     }
                 }]
         ]);
 
         $email = $request->email;
         $password = $request->password;
-        if (\Auth::attempt(['email' => $email, 'password' => $password]) && !\Auth::user()->is_admin) {
-            // Authentication passed...
-            return redirect()->intended('partner/home');
-        } elseif (\Auth::attempt(['email' => $email, 'password' => $password]) && \Auth::user()->is_admin) {
-            return redirect()->intended('admin');
+        if (Auth::guard('web')->attempt(['email' => $email, 'password' => $password])) {
+            return redirect('/partner/home');
         } else {
             return back()->with('alert-danger', 'Please check your email and password');
         }
@@ -66,14 +67,8 @@ use AuthenticatesUsers;
      *
      * @return void
      */
-    public function __construct() {
-        $this->middleware('guest')->except('logout');
-    }
-
     public function logout(Request $request) {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
+        Auth::guard('web')->logout();
 
         return redirect('/partner');
     }

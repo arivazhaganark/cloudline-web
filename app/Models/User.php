@@ -13,6 +13,7 @@ class User extends Authenticatable {
     protected $table = 'users';
     public $timestamps = true;
     public $incrementing = false;
+    protected $guard = 'admin';
 
     use Notifiable,
         SoftDeletes,

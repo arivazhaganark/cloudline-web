@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Auth;
+use Route;
 
 class LoginController extends Controller
 {
@@ -38,7 +40,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
 
     public function showLoginForm()
@@ -48,34 +50,24 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $this->validateLogin($request);
-
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
-        if ($this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
-
-            return $this->sendLockoutResponse($request);
-        }
-
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
-        }
-
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
+      // Validate the form data
+      $this->validate($request, [
+        'email'   => 'required|email',
+        'password' => 'required'
+      ]);
+      
+      // Attempt to log the user in
+      if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password,'role' => 'A'], $request->remember)) {
+        // if successful, then redirect to their intended location
+        return redirect()->intended(route('home'));
+      } 
+      // if unsuccessful, then redirect back to the login with the form data
+      return redirect()->back()->withInput($request->only('email', 'remember'))->with('danger','You are not access to admin panel.');
     }
 
     public function logout(Request $request)
     {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
+        Auth::guard('admin')->logout();
 
         return redirect('/admin');
     }
