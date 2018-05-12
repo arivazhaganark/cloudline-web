@@ -37,16 +37,16 @@ $(document).ready(function () {
         'container': 'body'
     });
 //videocall popup
-    if (videocallEnable = localStorage.getItem("videocallEnable")) {
+    if (videocallEnable = sessionStorage.getItem("videocallEnable")) {
         var timeremain = (videocallEnable != 'true') ? moment(videocallEnable).diff(moment(), 'seconds') : 0;
     } else {
         var timeremain = 60;
-        localStorage.setItem("videocallEnable", moment().add(1, 'minutes').toString());
+        sessionStorage.setItem("videocallEnable", moment().add(1, 'minutes').toString());
     }
     setTimeout(showvideocall, timeremain * 1000);
 
     function showvideocall() {
-        localStorage.setItem('videocallEnable', 'true');
+        sessionStorage.setItem('videocallEnable', 'true');
         $('#videocall').show();
     }
 
