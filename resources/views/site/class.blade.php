@@ -119,24 +119,13 @@
                                                 <td class="option">No of Simultaneous online class room <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Total number of Concurrent Online Classes can be happened on your account.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
-                                                <td><select name="select" id="select">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
-                                                    </select></td>
+                                                <td><select class="contactus no_sim price selectedprice" data-qty='60' onChange="if (this.selectedIndex == 10) self.location = this.options[this.selectedIndex].value"></select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">No of Maximum students <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Total number of Maximum Online Students are allocated on your account.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
-                                                <td><select name="select2" id="select2">
+                                                <td><select name="select2" class="contactus price selectedprice" data-qty='24' id="max_stud" onChange="if (this.selectedIndex == 6) self.location = this.options[this.selectedIndex].value">
                                                         <option>5</option>
                                                         <option>25</option>
                                                         <option>50</option>
@@ -145,72 +134,42 @@
                                                         <option>500</option>
                                                     </select></td>
                                             </tr>
+                                            <tr><td class="plan">Recommended Add-Ons for this Plan</td></tr>
                                             <tr>
                                                 <td class="option">Virtual class room devices <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Incorporate Legacy Video Conferencing Hardware Devices like Polycom, Avaya, Lifesize, Aver & Etc., in the online class room.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
-                                                <td><select name="select3" id="select3">
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select></td>
+                                                <td><select class="contactus room_devices price" data-qty='588' onChange="if (this.selectedIndex == 6) self.location = this.options[this.selectedIndex].value"></select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Lecture Recording / Storage (In hours) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Online classes can be recorded and stored on cloud. It can be accessed and download on demand.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
-                                                <td><select name="select6" id="select6">
-                                                        <option>0</option>
-                                                        <option>10</option>
-                                                        <option>20</option>
-                                                        <option>30</option>
-                                                        <option>40</option>
-                                                        <option>50</option>
-                                                    </select></td>
+                                                <td><select class="contactus room price" data-qty='12' onChange="if (this.selectedIndex == 11) self.location = this.options[this.selectedIndex].value"></select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Live Webcasting / Cloudline Broadcasting (In Hours) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Online class room can be streamed to third parties like Youtube, Dcast, Ncast & Etc., Built-in cloudline broadcasting for better Video & Audio quality for better experience.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
-                                                <td><select name="select7" id="select7">
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select></td>
+                                                <td><select class="contactus casting price" data-qty='600' onChange="if (this.selectedIndex == 11) self.location = this.options[this.selectedIndex].value"></select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Your Own Brand <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Online classes an webinars can be happened on your own domain and brand instead of our domain.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button></td>
-                                                <td><select name="select4" id="select4">
-                                                        <option>No</option>
-                                                        <option>Yes</option>
-                                                    </select></td>
+                                                <td><a href="{{ url('contactus') }}">Contact us</a></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Currency</td>
-                                                <td><select name="select5" id="select5">
-                                                        <option>INR</option>
-                                                        <option>US Dollar</option>
-                                                    </select></td>
+                                                <td><select name="select5" class="currency"></select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Duration</td>
-                                                <td><select name="select5" id="select5">
-                                                        <option>1 Month</option>
-                                                        <option>3 Months</option>
-                                                        <option>1 Year</option>
-                                                    </select></td>
+                                                <td>1 Year</td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Total Amount</td>
-                                                <td> ? </td>
+                                                <td id="total"> ? </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -228,3 +187,4 @@
     </section>
 </div>
 @endsection
+@include('layouts.partials.cloudplan_scripts')

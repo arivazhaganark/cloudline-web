@@ -50,15 +50,7 @@ $(document).ready(function () {
         $('#videocall').show();
     }
 
-    $('.formComplete').hide();
-
-    $("#first").change(function () {
-        $("#above_selected").prop("disabled", false);
-        if ($(this).val() == "contact_us") {
-            $("#above_selected").val($(this).val());
-        } else
-            $("#above_selected").val($(this).val() * 2);
-    });
+    $('.formComplete').hide();    
 
     $('body').on('submit', '#register', function (e) {
         e.preventDefault();

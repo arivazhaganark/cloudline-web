@@ -1009,3 +1009,8 @@ li {
     background-color: #1cb18f !important;
     color: #ffffff;
 }
+
+.plan {
+    font-weight: bold;
+    padding-left: 50px;
+}

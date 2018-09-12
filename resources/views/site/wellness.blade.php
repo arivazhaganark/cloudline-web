@@ -115,56 +115,20 @@
                                                 <td class="option">No of Simultaneous Tele consulation Room <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Total number of Concurrent Consultation  can be happened on your account">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
-                                                <td><select  name="select" id="first" onChange="if (this.selectedIndex == 11)
-                                                            self.location = this.options[this.selectedIndex].value">
-                                                        
-                                                        <option value="">Select</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
-                                                        <option value="contactus">Contact us</option>
-                                                    </select></td>
+                                                    <td><select id="first" class="contactus price" data-qty='60' onChange="if (this.selectedIndex == 11) self.location = this.options[this.selectedIndex].value"></select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">No of Patients / Telemedicine Center <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Total number of maximum online Patients or Doctors allocated to your account.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
-                                                <td><select name="select" id="above_selected" disabled="on"onChange="if (this.selectedIndex == 11)
-                                                            self.location = this.options[this.selectedIndex].value">
-                                                        <option value="">Select</option>
-                                                        <option value="2">2</option>
-                                                        <option value="4">4</option>
-                                                        <option value="6">6</option>
-                                                        <option value="8">8</option>
-                                                        <option value="10">10</option>
-                                                        <option value="12">12</option>
-                                                        <option value="14">14</option>
-                                                        <option value="16">16</option>
-                                                        <option value="18">18</option>
-                                                        <option value="20">20</option>
-                                                        <option value="contactus">Contact us</option>
-                                                    </select></td>
+                                                    <td><select class="contactus price" data-qty='60' id="above_selected" disabled="on" onChange="if (this.selectedIndex == 11) self.location = this.options[this.selectedIndex].value"></select></td>
                                             </tr>
+                                            <tr><td class="plan">Recommended Add-Ons for this Plan</td></tr>
                                             <tr>
                                                 <td class="option">Consulation Recording / Storage (In hours) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Apart from free recording, Extra Consultation hours can be recorded and stored on cloud. It can be accessed and download on demand.">
                                                         <i class="fas fa-exclamation-circle"></i>
                                                     </button> </td>
-                                                <td><select name="select2" id="select2">
-                                                        <option>0</option>
-                                                        <option>10</option>
-                                                        <option>20</option>
-                                                        <option>30</option>
-                                                        <option>40</option>
-                                                        <option>50</option>
-                                                        <option>60</option>
-                                                    </select></td>
+                                                <td><select class="contactus room price" id="consulation" data-qty='12' onChange="if (this.selectedIndex == 11) self.location = this.options[this.selectedIndex].value"></select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">CME Program <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Continuing Medical Education Program over Cloudline videoconferencing.">
@@ -186,22 +150,15 @@
                                             </tr>
                                             <tr>
                                                 <td class="option">Duration</td>
-                                                <td><select name="select4" id="select4">
-                                                        <option>1 Month</option>
-                                                        <option>3 Month</option>
-                                                        <option>1 Year</option>
-                                                    </select></td>
+                                                <td>1 Year</td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Currency</td>
-                                                <td><select name="select5" id="select5">
-                                                        <option>INR</option>
-                                                        <option>US Dollar</option>
-                                                    </select></td>
+                                                <td><select name="select5" class="currency"></select></td>
                                             </tr>
                                             <tr>
                                                 <td class="option">Total Amount</td>
-                                                <td> ? </td>
+                                                <td id="total"> ? </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -219,3 +176,5 @@
     </section>
 </div>
 @endsection
+
+@include('layouts.partials.cloudplan_scripts')
