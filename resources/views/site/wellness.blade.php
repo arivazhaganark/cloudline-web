@@ -123,7 +123,7 @@
                                                     </button> </td>
                                                     <td><select class="contactus price" data-qty='60' id="above_selected" disabled="on" onChange="if (this.selectedIndex == 11) self.location = this.options[this.selectedIndex].value"></select></td>
                                             </tr>
-                                            <tr><td class="plan">Recommended Add-Ons for this Plan</td></tr>
+                                            <tr><td class="plan" style="padding-left:75px;">Recommended Add-Ons for this Plan</td></tr>
                                             <tr>
                                                 <td class="option">Consulation Recording / Storage (In hours) <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Apart from free recording, Extra Consultation hours can be recorded and stored on cloud. It can be accessed and download on demand.">
                                                         <i class="fas fa-exclamation-circle"></i>
@@ -158,7 +158,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="option">Total Amount</td>
-                                                <td id="total"> ? </td>
+                                                <td id="total">  </td>
                                             </tr>
                                         </tbody>
                                     </table>

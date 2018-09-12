@@ -134,7 +134,7 @@
                                                         <option>500</option>
                                                     </select></td>
                                             </tr>
-                                            <tr><td class="plan">Recommended Add-Ons for this Plan</td></tr>
+                                            <tr><td class="plan" style="padding-left:75px;">Recommended Add-Ons for this Plan</td></tr>
                                             <tr>
                                                 <td class="option">Virtual class room devices <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Incorporate Legacy Video Conferencing Hardware Devices like Polycom, Avaya, Lifesize, Aver & Etc., in the online class room.">
                                                         <i class="fas fa-exclamation-circle"></i>
@@ -169,7 +169,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="option">Total Amount</td>
-                                                <td id="total"> ? </td>
+                                                <td id="total">  </td>
                                             </tr>
                                         </tbody>
                                     </table>

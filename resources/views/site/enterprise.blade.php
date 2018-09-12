@@ -126,7 +126,7 @@
                                                     </button></td>
                                                 <td><select class="contactus price selectedprice" data-qty='12' id="max_participants" onChange="if (this.selectedIndex == 10) self.location = this.options[this.selectedIndex].value"></select></td>
                                             </tr>
-                                            <tr><td class="plan">Recommended Add-Ons for this Plan</td></tr>
+                                            <tr><td class="plan" style="padding-left:75px;">Recommended Add-Ons for this Plan</td></tr>
                                             <tr>
                                                 <td class="option">Board room devices  <button type="button" class=" " data-toggle="tooltip"  data-placement="right" data-html="true" title="Incorporate Legacy Video Conferencing Hardware Devices like Polycom, Avaya, Lifesize, Aver & Etc., in the meeting room.">
                                                         <i class="fas fa-exclamation-circle"></i>
@@ -181,7 +181,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="option">Total Amount</td>
-                                                <td id="total"> ? </td>
+                                                <td id="total">  </td>
                                             </tr>
                                         </tbody>
                                     </table>
