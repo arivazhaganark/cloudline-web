@@ -12,7 +12,7 @@
                     <p> <img src="{{ asset('images/footer-icon2.png') }}"  alt=""></p>
                     <p><span> Call Us</span></p>
                     <p> Call to learn more about us. Available M-F
-                        10 Am to 7 Pm. PT</p>
+                        10 Am to 7 Pm. IST</p>
                     <p> <a href="#" class="btn btn1 btn2"> 91-452-4392222 </a></p>
                 </div>
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 footer-contact1 footer-contact3  border-right">

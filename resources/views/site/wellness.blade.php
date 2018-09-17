@@ -16,7 +16,7 @@
     <section class="home-part1  price-plan-cont">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 plan-quote">  Cloudline <strong> Wellness </strong> is an integrated offering for the Hospitals and can play a significant role in value added patient  </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 plan-quote">  Cloudline <strong> Wellness </strong> is an integrated offering for the Hospitals and can play a significant role in value added patient care. </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 priceplan-img priceplan-img2"><img src="{{ asset('images/healthy.png') }}"  alt=""> </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 priceplan-txt">
                     <h3> Why Wellness Plan ? </h3>
