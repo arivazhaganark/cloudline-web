@@ -14,6 +14,13 @@
                 <strong id="company_name-error"></strong>
             </span>
         </div>
+        
+        <div class="form-group">
+            {!! Form::text('email',null,['class'=>'form-control','placeholder'=>'Email']) !!}
+            <span class="text-danger">
+                <strong id="email-error"></strong>
+            </span>
+        </div>
 
         <div class="form-group">
             {!! NoCaptcha::display() !!}

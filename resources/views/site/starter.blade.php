@@ -170,20 +170,54 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
-                                    {!! Form::label('start_date', 'Start Date is < 3 Years') !!}
-                                    {{ Form::select('start_date', ["yes"=>"Yes","no"=>"No"], null, ['class' => 'form-control','placeholder'=>'Select']) }}
+                                    {!! Form::label('start_date', 'Start Date is < 3 Years') !!} <br/>
+                                    @foreach ($values as $id => $startvalue)
+                                    <div class="form-check form-check-inline">
+                                        {!! Form::radio('start_date', $id, null ,['id' => "startvalue_{$id}"]); !!}
+                                        <label class="form-check-label" for="startvalue_{{$id}}"> {{$startvalue}} </label>
+                                    </div>
+                                    @endforeach
                                 </div>
 
                                 <div class="form-group{{ $errors->has('capital') ? ' has-error' : '' }}">
-                                    {!! Form::label('capital', 'Capital < 10 Lakhs') !!}
-                                    {{ Form::select('capital', ["yes"=>"Yes","no"=>"No"], null, ['class' => 'form-control','placeholder'=>'Select']) }}
+                                    {!! Form::label('capital', 'Capital < 10 Lakhs') !!} <br/>
+                                    @foreach ($values as $id => $capitalvalue)
+                                    <div class="form-check form-check-inline">
+                                        {!! Form::radio('capital', $id, null ,['id' => "capitalvalue_{$id}"]); !!}
+                                        <label class="form-check-label" for="capitalvalue_{{$id}}"> {{$capitalvalue}} </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                
+                                <div class="form-group {{ $errors->has('company_reg') ? ' has-error' : '' }}">
+                                    {{ Form::label('company_reg', 'Please attach Company Registration Documents*') }}
+                                    {{ Form::file('company_reg',['class'=>'form-control']) }}
+                                    <span class="text-danger">
+                                        <strong id="company_reg-error"></strong>
+                                    </span>
+                                </div>
+                                
+                                <div class="form-group {{ $errors->has('financial_statement') ? ' has-error' : '' }}">
+                                    {{ Form::label('financial_statement', 'Please attach Latest Financial Statement Documents') }}
+                                    {{ Form::file('financial_statement',['class'=>'form-control']) }}
+                                    <span class="text-danger">
+                                        <strong id="financial_statement-error"></strong>
+                                    </span>
+                                </div>
+                                
+                                <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
+                                    {!! Form::label('website','Website Link*') !!}
+                                    {!! Form::text('website',null,['class'=>'form-control']) !!}
+                                    <span class="text-danger">
+                                        <strong id="website-error"></strong>
+                                    </span>
                                 </div>
 
-                                <div class="form-group {{ $errors->has('file_upload') ? ' has-error' : '' }}" id='fileupload'>
-                                    {{ Form::label('file_upload', 'Please attach supporting documents*') }}
-                                    {{ Form::file('file_upload',['class'=>'form-control']) }}
+                                <div class="form-group {{ $errors->has('support_docs') ? ' has-error' : '' }}" id='fileupload'>
+                                    {{ Form::label('support_docs', 'Please attach supporting documents*') }}
+                                    {{ Form::file('support_docs',['class'=>'form-control']) }}
                                     <span class="text-danger">
-                                        <strong id="file_upload-error"></strong>
+                                        <strong id="support_docs-error"></strong>
                                     </span>
                                 </div>
 
@@ -224,9 +258,9 @@
             }
         });
         $('#fileupload,#submitForm').hide();
-
-        $('#start_date,#capital').change(function () {
-            if ($('#capital').val() == 'yes' && $('#start_date').val() == 'yes') {
+        
+        $("input[name='start_date'],input[name='capital']").change(function () {
+            if ($("input[name='start_date']:checked").val() == 'yes' && $("input[name='capital']:checked").val() == 'yes') {
                 $('#fileupload,#submitForm').show();
             } else {
                 $('#fileupload,#submitForm').hide();

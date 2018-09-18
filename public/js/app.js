@@ -60,7 +60,9 @@ $(document).ready(function () {
         $('#started_on-error').html("");
         $('#sector-error').html("");
         $('#specify_other-error').html("");
-        $('#file_upload-error').html("");
+        $('#support_docs-error').html("");
+        $('#company_reg-error').html("");
+        $('#website-error').html("");
 
         $.ajax({
             url: registerForm.attr('action'),
@@ -84,8 +86,14 @@ $(document).ready(function () {
                     if (data.errors.specify_other) {
                         $('#specify_other-error').html(data.errors.specify_other[0]);
                     }
-                    if (data.errors.file_upload) {
-                        $('#file_upload-error').html(data.errors.file_upload[0]);
+                    if (data.errors.support_docs) {
+                        $('#support_docs-error').html(data.errors.support_docs[0]);
+                    }
+                    if (data.errors.company_reg) {
+                        $('#company_reg-error').html(data.errors.company_reg[0]);
+                    }
+                    if (data.errors.website) {
+                        $('#website-error').html(data.errors.website[0]);
                     }
 
                 }

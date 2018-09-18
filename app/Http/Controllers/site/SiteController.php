@@ -3,14 +3,20 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Mail\StarterFormEnquiry;
+use App\Mail\VideoCallRequest;
 use App\Models\Cms;
 use App\Models\Setting;
+use App\Models\VideoCall;
 use App\Shortcodes\ProductsShortcode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use function abort;
 use function base_path;
+use function redirect;
 use function response;
 use function view;
 
@@ -33,7 +39,8 @@ class SiteController extends Controller {
     }
 
     public function starter() {
-        return view('site.starter');
+        $data['values'] = ['yes' => 'Yes', 'no' => 'No'];
+        return view('site.starter', $data);
     }
 
     public function starterstore(Request $request) {
@@ -42,14 +49,18 @@ class SiteController extends Controller {
                     'company_name' => 'required',
                     'started_on' => 'required',
                     'sector' => 'required',
+                    'company_reg' => 'required',
+                    'website' => 'required',
                     'specify_other' => 'required_if:sector,==,other',
-//                    'file_upload' => 'required_if:start_date,yes && required_if:capital,yes',
+//                    'support_docs' => 'required_if:start_date,yes && required_if:capital,yes',
                         ], [
                     'specify_other.required_if' => 'The Specify other field is required',
-                    'file_upload.required_if' => 'The File field is required',
+                    'support_docs.required_if' => 'The File field is required',
+                    'support_docs.required' => 'The Support documents are required',
+                    'company_reg.required' => 'The Company Registration field is required',
         ]);
 
-        $validator->sometimes('file_upload', 'required', function($request) {
+        $validator->sometimes('support_docs', 'required', function($request) {
             return ($request->start_date == 'yes' && $request->capital == 'yes');
         });
 
@@ -58,24 +69,19 @@ class SiteController extends Controller {
 
         if ($validator->passes()) {
 
-            $contact = Setting::where('name', '=', 'CONTACT')->first();
+            $Toemail = Setting::fetch('contact_email');
 
             $input = $request->all();
-            if ($request->file_upload) {
-                $file = $request->file('file_upload');
-                $destinationPath = base_path() . '/uploads';
-                $pathname = $file->getClientOriginalName();
-                $pathToFile = $file->move($destinationPath, $pathname);
-                \Mail::send('site.email', ['input' => $input], function($message) use ($request, $contact, $pathToFile) {
-                    $message->from('admin@gmail.com');
-                    $message->to($contact->meta_value, 'Admin')->subject('Cloudline Web Development');
-                    $message->attach($pathToFile);
-                });
+            $input['filenames'] = [$request->company_reg->getClientOriginalName(),$request->support_docs->getClientOriginalName()];
+            $input['company_reg'] = Storage::disk('public')->putFile('uploads', $request->company_reg);
+            $input['support_docs'] = Storage::disk('public')->putFile('uploads', $request->support_docs);   
+            $input['files'] = [$input['company_reg'],$input['support_docs']];
+            if ($request->hasFile('financial_statement')) {                
+                $input['financial_statement'] = Storage::disk('public')->putFile('uploads', $request->financial_statement);
+                $input['files'][] = $input['financial_statement'];
+                $input['filenames'][] = $request->financial_statement->getClientOriginalName();
             }
-            \Mail::send('site.email', ['input' => $input], function($message) use ($request, $contact) {
-                $message->from('admin@gmail.com');
-                $message->to($contact->meta_value, 'Admin')->subject('Cloudline Web Development');
-            });
+            Mail::to($Toemail)->queue(new StarterFormEnquiry($input));
 
             return response()->json(['success' => 'Success!'], 200);
         }
@@ -88,17 +94,14 @@ class SiteController extends Controller {
     }
 
     public function videocallstore(Request $request) {
-        $data = $request->only('name');
+        $data = $request->only('name', 'email');
 
         $Toemail = Setting::fetch('contact_email');
-        \Mail::send('site.videocallemail', ['data' => $data], function($message) use ($request, $Toemail) {
-            $message->from('noreply@gmail.com');
-            $message->to($Toemail, 'Admin')->subject('Join Video Call Request');
-        });
+        Mail::to($Toemail)->queue(new VideoCallRequest($data));
 
         return redirect('guideline');
     }
-    
+
     public function guideline() {
         return view('site.guideline');
     }
