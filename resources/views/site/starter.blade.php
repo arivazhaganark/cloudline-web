@@ -189,6 +189,14 @@
                                     @endforeach
                                 </div>
                                 
+                                <div class="form-group {{ $errors->has('support_docs') ? ' has-error' : '' }}" id='fileupload'>
+                                    {{ Form::label('support_docs', 'Please attach supporting documents*') }}
+                                    {{ Form::file('support_docs',['class'=>'form-control']) }}
+                                    <span class="text-danger">
+                                        <strong id="support_docs-error"></strong>
+                                    </span>
+                                </div>
+                                
                                 <div class="form-group {{ $errors->has('company_reg') ? ' has-error' : '' }}">
                                     {{ Form::label('company_reg', 'Please attach Company Registration Documents*') }}
                                     {{ Form::file('company_reg',['class'=>'form-control']) }}
@@ -211,15 +219,7 @@
                                     <span class="text-danger">
                                         <strong id="website-error"></strong>
                                     </span>
-                                </div>
-
-                                <div class="form-group {{ $errors->has('support_docs') ? ' has-error' : '' }}" id='fileupload'>
-                                    {{ Form::label('support_docs', 'Please attach supporting documents*') }}
-                                    {{ Form::file('support_docs',['class'=>'form-control']) }}
-                                    <span class="text-danger">
-                                        <strong id="support_docs-error"></strong>
-                                    </span>
-                                </div>
+                                </div>                                
 
                                 <div class="form-group{{ $errors->has('comments') ? ' has-error' : '' }}">
                                     {!! Form::label('comments','Comments If any') !!}
